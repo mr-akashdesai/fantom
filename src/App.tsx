@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from 'react'
 import {
-    BrowserRouter as Router,
+    Route, 
+    Routes,
+    useNavigate
   } from 'react-router-dom'
 import { CustomProvider , Placeholder } from 'rsuite'
 import Container from 'rsuite/Container'
-import Header from 'rsuite/Header'
+import Sidebar from 'rsuite/Sidebar'
 import NavBar from './components/NavBar/NavBar'
 import ScreenRecorder from './components/ScreenRecorder/ScreenRecorder'
+import HomePage from './components/HomePage/HomePage'
+import SpeedTest from './components/SpeedTest/SpeedTest'
 
 const App = () => {
 
     const [theme, setTheme] = useState<'light' | 'dark'>('light')
     const [loading, setLoading] = useState(true)
+    const history = useNavigate()
 
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
         e.matches ? setTheme('dark') : setTheme('light')
@@ -20,6 +25,7 @@ const App = () => {
     useEffect(() => {
         setLoading(true)
         getTheme()
+        history('/')
         setLoading(false)
     }, [])
     
@@ -42,14 +48,16 @@ const App = () => {
     return(
     <>
     <CustomProvider theme={theme}>
-    <Router>
         <Container>
-            <Header>
+            <Sidebar style={{ display: 'flex', flexDirection: 'column' }}> 
                 <NavBar />
-            </Header>
-            <ScreenRecorder />
+            </Sidebar>
+            <Routes>
+                <Route path="/homepage" element={<HomePage />} />
+                <Route path="/screen-recorder" element={<ScreenRecorder/>} />
+                <Route path="/speed-test" element={<SpeedTest />} />
+            </Routes>
         </Container>
-    </Router>
     </CustomProvider>
     </>
 )}

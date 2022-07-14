@@ -1,9 +1,3 @@
-.screenRecorder__container {
-    width: 100%;
-    padding: 3rem;
-    position: absolute;
-}
-
 .screenRecorder__pickSourceContainer {
     padding-top: 2rem;
 }
@@ -35,6 +29,7 @@
     max-height: 30rem;
     -webkit-box-shadow: 1px 1px 5px 4px rgba(0,0,0,0.5); 
     box-shadow: 1px 1px 5px 4px rgba(0,0,0,0.5);
+    width: 90%;
 }
 
 .screenRecorder__videoContainer {

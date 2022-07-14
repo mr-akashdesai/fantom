@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import { Grid, Row, Modal, Button, List } from 'rsuite'
 import PcIcon from '@rsuite/icons/Pc'
 import IconButton from 'rsuite/IconButton'
@@ -151,7 +151,7 @@ const ScreenRecorder = () => {
     }
 
     return (
-        <div className='screenRecorder__container'>
+        <div className='screenRecorder__container page-container'>
         <Grid fluid>
             <Row className='show-grid screenRecorder__pickSourceContainer'>
             <IconButton icon={<PcIcon/>} block size={'lg'} onClick={() => getSources()}>Pick Source</IconButton>

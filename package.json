@@ -52,10 +52,10 @@
               "entryPoints": [
                 {
                   "html": "./src/index.html",
-                  "js": "./src/renderer.tsx",
+                  "js": "./src/electron/renderer.tsx",
                   "name": "main_window",
                   "preload": {
-                    "js": "./src/preload.ts"
+                    "js": "./src/electron/preload.ts"
                   }
                 }
               ]
@@ -95,11 +95,13 @@
   "dependencies": {
     "@electron-toolkit/preload": "^1.0.2",
     "@electron/remote": "^2.0.8",
+    "electron-is-dev": "^2.0.0",
     "electron-squirrel-startup": "^1.0.0",
     "node-polyfill-webpack-plugin": "^2.0.0",
     "node-sass": "^7.0.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-icons": "^4.4.0",
     "react-router-dom": "^6.3.0",
     "rsuite": "^5.16.0"
   }
