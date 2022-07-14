@@ -1,6 +1,4 @@
 module.exports = {
-  // for files that should be compiled for electron renderer process
-  target: 'electron-renderer',
   /**
    * This is the main entry point for your application, it's the first file
    * that runs in the main process.

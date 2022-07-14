@@ -22,18 +22,27 @@
     padding-top: 1rem;
 }
 
-.screenRecorder__modalButton {
-    width: 5rem;
+.screenRecorder__button {
+    width: 6rem;
+}
+
+.screenRecorder__startBtn {
+    margin-right: 1rem;
 }
 
 .screenRecorder__videoPlayer {
-    width: 100%;
+    max-width: 50rem;
     max-height: 30rem;
+    -webkit-box-shadow: 1px 1px 5px 4px rgba(0,0,0,0.5); 
+    box-shadow: 1px 1px 5px 4px rgba(0,0,0,0.5);
 }
 
 .screenRecorder__videoContainer {
-    display: inline-flex;
     margin: 2rem;
-    -webkit-box-shadow: 1px 1px 5px 4px rgba(0,0,0,0.5); 
-box-shadow: 1px 1px 5px 4px rgba(0,0,0,0.5);
+    display: flex;
+    justify-content: center;
+}
+
+.screenRecorder__recordingControls {
+    text-align: center;
 }

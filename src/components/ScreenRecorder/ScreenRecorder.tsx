@@ -1,17 +1,23 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import React, { useState, useEffect } from 'react'
-import { Grid, Row, Col, Container, Modal, Button, Placeholder, List } from 'rsuite'
+import { Grid, Row, Modal, Button, List } from 'rsuite'
 import PcIcon from '@rsuite/icons/Pc'
 import IconButton from 'rsuite/IconButton'
 import {ISource} from './types/ISource'
 import { maxChars } from '../../utils/maxChars'
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const videoPlaceholder = require('../../assets/images/video-placeholder.png')
 
 const ScreenRecorder = () => {
     const [showModal, hideModal] = useState(false)
     const [sources, setSources] = useState<ISource[]>([])
-    const [stream, setStream] = useState(undefined)
+    let [mediaRecorder, setMediaRecorder] = useState(null)
+    const [eventBtn, setEventBtn] = useState('Start')
+    const [disableStart, setDisableStart] = useState(true)
+    const [disableStop, setDisableStop] = useState(true)
+
+    const recordedChunks: any[] = []
+
     const handleOpen = () => hideModal(true)
     const handleClose = () => hideModal(false)
     
@@ -27,7 +33,7 @@ const ScreenRecorder = () => {
             video: {
             mandatory: {
                 chromeMediaSource: 'desktop',
-                chromeMediaSourceId: source.id
+                chromeMediaSourceId: source.id,
                 }   
             }
         }
@@ -46,7 +52,7 @@ const ScreenRecorder = () => {
                 },
                 video: {
                 mandatory: {
-                    chromeMediaSource: 'desktop'
+                    chromeMediaSource: 'desktop',
                 }
                 }
             }                  
@@ -56,14 +62,21 @@ const ScreenRecorder = () => {
         }
         
         const mediaDevices = navigator.mediaDevices as any
-        await mediaDevices.getUserMedia(constraints()).then((stream: MediaStream) => {
-            const localVideo = document.getElementById('screenRecorder-preview') as HTMLVideoElement
-            if (localVideo) {
-              setStream(stream)
+        const stream = await mediaDevices.getUserMedia(constraints())
+        const localVideo = document.getElementById('screenRecorder-preview') as HTMLVideoElement
+            
+        if (localVideo) {
               localVideo.srcObject = stream
               localVideo.play()
-            }
-        })
+        }
+
+
+        const options = {mimeType: 'video/webm; codecs=vp9'}
+        mediaRecorder =  new MediaRecorder(stream, options)
+        mediaRecorder.ondataavailable = handleDataAvailable
+        mediaRecorder.onstop = handleStop
+        setMediaRecorder(mediaRecorder)
+        setDisableStart(false)
         handleClose()
     }
 
@@ -92,15 +105,49 @@ const ScreenRecorder = () => {
                 </List>
             </Modal.Body>
             <Modal.Footer className='screenRecorder__modalButtonGroup'>
-            <Button onClick={handleClose} className='screenRecorder__modalButton' appearance="primary" color='blue'>
+            <Button onClick={handleClose} className='screenRecorder__button' appearance="primary" color='blue'>
                 Ok
             </Button>
-            <Button onClick={handleClose} className='screenRecorder__modalButton' appearance="default">
+            <Button onClick={handleClose} className='screenRecorder__button' appearance="default">
                 Cancel
             </Button>
             </Modal.Footer>
         </Modal>
         )
+    }
+
+
+    const startRecording = () => {
+        mediaRecorder.start()
+        setDisableStart(true)
+        setDisableStop(false)
+        setEventBtn('Recording')
+        console.log('Recording Started 📹')
+    }
+
+    const stopRecording = () => mediaRecorder.stop()
+
+    const handleDataAvailable = (e: any) => recordedChunks.push(e.data)
+
+    const handleStop = async (e: any) => {
+        setDisableStop(true)
+        setEventBtn('Start')
+
+        const blob = new Blob(recordedChunks, {
+            type: 'video/webm; codecs=vp9'
+          })
+        
+        const buffer = Buffer.from(await blob.arrayBuffer())
+        
+        await window.electron.showSaveDialog({
+            title: 'Save Recording',
+            buttonLabel: 'Save video',
+            defaultPath: `screen-recording-${(new Date()).toJSON()}.webm`,
+            buffer: buffer,
+        })
+        .then((res: any) => res && console.log('Recording Saved! 🎉'))
+        .catch((err: any) => console.log('Error: ' + err.message))
+        setDisableStart(false)
     }
 
     return (
@@ -113,6 +160,19 @@ const ScreenRecorder = () => {
                <div className='screenRecorder__videoContainer'>
                 <video poster={videoPlaceholder} className='screenRecorder__videoPlayer' id='screenRecorder-preview'/>
                 </div>
+            </Row>
+            <Row className='show-grid'>
+            <div className='screenRecorder__recordingControls'>
+            <Button onClick={startRecording} className='screenRecorder__button screenRecorder__startBtn' 
+                appearance="primary" 
+                color={eventBtn === 'Start' ? 'green' : eventBtn === 'Recording' ? 'red' : null}  
+                disabled={disableStart}>
+                {eventBtn}
+            </Button>
+            <Button onClick={stopRecording} className='screenRecorder__button' appearance="default" color='orange' disabled={disableStop}>
+                Stop
+            </Button>   
+            </div>
             </Row>
             {SourceModal()}
         </Grid>

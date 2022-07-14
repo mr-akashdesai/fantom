@@ -7,7 +7,14 @@ exposeElectronAPI()
 
 const ELECTRON_API = {
     getSources: () => ipcRenderer.invoke('dialog:getSources'),
-    selectSource: (args: any) => ipcRenderer.invoke('dialog:selectSource', args)
+    showSaveDialog: (args: any) => ipcRenderer.invoke('dialog:showSaveDialog', args).then((res) =>{
+        console.log('api.showSaveDialog:', res)
+        return res
+    }),
+    saveRecording: (args: any) => ipcRenderer.invoke('dialog:saveRecording', args).then((res) =>{
+        console.log('api.saveRecording:', res)
+        return res
+    }),
 }
 
 contextBridge.exposeInMainWorld('electron', ELECTRON_API)
