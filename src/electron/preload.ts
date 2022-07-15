@@ -7,12 +7,10 @@ exposeElectronAPI()
 
 const ELECTRON_API = {
     getSources: () => ipcRenderer.invoke('dialog:getSources'),
-    showSaveDialog: (args: any) => ipcRenderer.invoke('dialog:showSaveDialog', args).then((res) =>{
-        console.log('api.showSaveDialog:', res)
-        return res
-    }),
     saveRecording: (args: any) => ipcRenderer.invoke('dialog:saveRecording', args).then((res) =>{
-        console.log('api.saveRecording:', res)
+        new Notification('Recording Saved! 🎉', { body: 'Click here to see your recording' })
+        .onclick = () => ipcRenderer.send('dialog:openRecording', res),
+        console.log('api.showSaveDialog:', res)
         return res
     }),
 }

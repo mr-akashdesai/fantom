@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import { app, BrowserWindow, desktopCapturer, dialog, ipcMain} from 'electron'
+import { app, BrowserWindow, desktopCapturer, dialog, ipcMain, shell} from 'electron'
 import { writeFile } from 'fs'
 import { ISource } from '../components/ScreenRecorder/types/ISource'
 const isDev = require('electron-is-dev')
@@ -21,11 +21,13 @@ const createWindow = (): void => {
     height: 800,
     width: 1000,
     titleBarStyle: 'hidden',
+    trafficLightPosition: { x: 10, y: 10 },
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
       nodeIntegration: true,
       devTools: isDev,
       contextIsolation: true,
+      
     },
   })
   // and load the index.html of the app.
@@ -49,7 +51,7 @@ const getvideoSources = async () => {
   return sources
 }
 
-const showSaveDialog = async (args: any) => {
+const saveRecording = async (args: any) => {
   const { filePath } = await dialog.showSaveDialog({
     title: args.title,
     buttonLabel: args.buttonLabel,
@@ -62,21 +64,15 @@ const showSaveDialog = async (args: any) => {
   } else return null
 }
 
-const saveRecording = (args: any) => new Promise<void>((resolve,reject)=>{
-  let data
-  data = args.chunks.replace(/^data:(.*?);base64,/, '') // <--- make it any type
-  data = data.replace(/ /g, '+') // <--- this is important
-  writeFile(args.filePath,data, 'base64' ,(err) => {
-    if (err) reject()
-    resolve()
-  })
-  console.log('saved! 🎉')  
-})
+const openRecording = (args: any) => {
+  shell.openPath(args)
+}
+
 
 app.whenReady().then(() => {
   ipcMain.handle('dialog:getSources', getvideoSources)
-  ipcMain.handle('dialog:showSaveDialog', async (event, args) => showSaveDialog(args))
   ipcMain.handle('dialog:saveRecording', async (event, args) => saveRecording(args))
+  ipcMain.on('dialog:openRecording', async (event, args) => openRecording(args))
   createWindow
 })
 

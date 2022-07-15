@@ -71,7 +71,7 @@ const ScreenRecorder = () => {
         }
 
 
-        const options = {mimeType: 'video/webm; codecs=vp9'}
+        const options = { mimeType: 'video/webm; codecs=vp9'}
         mediaRecorder =  new MediaRecorder(stream, options)
         mediaRecorder.ondataavailable = handleDataAvailable
         mediaRecorder.onstop = handleStop
@@ -139,7 +139,7 @@ const ScreenRecorder = () => {
         
         const buffer = Buffer.from(await blob.arrayBuffer())
         
-        await window.electron.showSaveDialog({
+        await window.electron.saveRecording({
             title: 'Save Recording',
             buttonLabel: 'Save video',
             defaultPath: `screen-recording-${(new Date()).toJSON()}.webm`,
@@ -152,6 +152,7 @@ const ScreenRecorder = () => {
 
     return (
         <div className='screenRecorder__container page-container'>
+        <h2>Screen Recorder</h2>
         <Grid fluid>
             <Row className='show-grid screenRecorder__pickSourceContainer'>
             <IconButton icon={<PcIcon/>} block size={'lg'} onClick={() => getSources()}>Pick Source</IconButton>

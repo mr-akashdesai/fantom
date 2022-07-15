@@ -10,7 +10,7 @@ import Sidebar from 'rsuite/Sidebar'
 import NavBar from './components/NavBar/NavBar'
 import ScreenRecorder from './components/ScreenRecorder/ScreenRecorder'
 import HomePage from './components/HomePage/HomePage'
-import SpeedTest from './components/SpeedTest/SpeedTest'
+import Calculator from './components/Calculator/Calculator'
 
 const App = () => {
 
@@ -25,7 +25,7 @@ const App = () => {
     useEffect(() => {
         setLoading(true)
         getTheme()
-        history('/')
+        history('/homepage')
         setLoading(false)
     }, [])
     
@@ -55,7 +55,7 @@ const App = () => {
             <Routes>
                 <Route path="/homepage" element={<HomePage />} />
                 <Route path="/screen-recorder" element={<ScreenRecorder/>} />
-                <Route path="/speed-test" element={<SpeedTest />} />
+                <Route path="/calculator" element={<Calculator />} />
             </Routes>
         </Container>
     </CustomProvider>
