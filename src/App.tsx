@@ -11,6 +11,7 @@ import NavBar from './components/NavBar/NavBar'
 import ScreenRecorder from './components/ScreenRecorder/ScreenRecorder'
 import HomePage from './components/HomePage/HomePage'
 import Calculator from './components/Calculator/Calculator'
+import ColorPicker from './components/ColorPicker/ColorPicker'
 
 const App = () => {
 
@@ -56,6 +57,7 @@ const App = () => {
                 <Route path="/homepage" element={<HomePage />} />
                 <Route path="/screen-recorder" element={<ScreenRecorder/>} />
                 <Route path="/calculator" element={<Calculator />} />
+                <Route path="/color-picker" element={<ColorPicker />} />
             </Routes>
         </Container>
     </CustomProvider>

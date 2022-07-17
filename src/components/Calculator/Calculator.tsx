@@ -84,7 +84,7 @@ const Calculator = () => {
             setDisplayValue(String(digit))
             setWaitingForOperand(false)
         } else {
-    setDisplayValue(displayValue === '0' ? String(digit) : displayValue + digit)
+            setDisplayValue(displayValue === '0' ? String(digit) : displayValue + digit)
         }
     }
     

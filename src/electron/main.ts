@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import { app, BrowserWindow, desktopCapturer, dialog, ipcMain, shell} from 'electron'
+import { app, BrowserWindow, clipboard, desktopCapturer, dialog, ipcMain, nativeTheme, shell } from 'electron'
 import { writeFile } from 'fs'
 import { ISource } from '../components/ScreenRecorder/types/ISource'
 const isDev = require('electron-is-dev')
@@ -26,10 +26,13 @@ const createWindow = (): void => {
   }
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    title: 'Fantom',
-    height: 800,
-    width: 1000,
+    title: 'Fantom',  
+    backgroundColor: nativeTheme.shouldUseDarkColors ? '#282C34' : '#ddd',
+    height: 640,
+    width: 800,
+    show: false,
     titleBarStyle: 'hidden',
+    titleBarOverlay: true,
     trafficLightPosition: { x: 10, y: 10 },
     icon: logosPath,
     webPreferences: {
@@ -40,10 +43,13 @@ const createWindow = (): void => {
       
     },
   })
-  // and load the index.html of the app.
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY)
   // Open the DevTools.
   mainWindow.webContents.openDevTools()
+
+  mainWindow.once('ready-to-show', () => {
+    mainWindow.show()
+  })
 }
 
 const getvideoSources = async () => {
@@ -69,21 +75,30 @@ const saveRecording = async (args: any) => {
   })
 
   if (filePath) {
-    writeFile(filePath, args.buffer, () => console.log('video saved successfully!'))
-    return { filePath: filePath, logo: logosPath }
+    writeFile(filePath, args.buffer, () => 
+    console.log('video saved successfully!'))
+    return filePath
   } else return null
+}
+
+const copyToClipboard = async (args: any) => {
+  console.log('reached', args)
+  await clipboard.writeText(args)
+  return 'sucesss'
 }
 
 const openRecording = (args: any) => {
   shell.openPath(args)
 }
+
 app.whenReady().then(() => {
   ipcMain.handle('dialog:getSources', getvideoSources)
   ipcMain.handle('dialog:saveRecording', async (event, args) => saveRecording(args))
   ipcMain.on('dialog:openRecording', async (event, args) => openRecording(args))
+  ipcMain.handle('dialog:copyToClipboard', async (event, args) => copyToClipboard(args))
+
   createWindow
 })
-
 
 // // This method will be called when Electron has finished
 // // initialization and is ready to create browser windows.

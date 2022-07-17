@@ -1,7 +1,8 @@
 .navBar__container {
     height: 100%;
+    width: 5rem;
     position: fixed;
-    padding-top: 10%;
+    padding-top: 8%;
     z-index: 100;
     -webkit-user-select: text;
     -webkit-app-region: no-drag;
@@ -26,7 +27,36 @@
     }
 
     .rs-nav-subtle .rs-nav-item {
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    .rs-nav-subtle .rs-nav-item:focus, .rs-nav-subtle .rs-nav-item:hover {
+      @media (prefers-color-scheme: dark) {
+        color: white;
+     }
+     
+     @media (prefers-color-scheme: light) {
+       color: #373737;
+     }
+    }
+
+    .rs-nav-subtle .rs-nav-item.rs-nav-item-active:before {
+      @media (prefers-color-scheme: dark) {
+        background-color: white;
+     }
+     
+     @media (prefers-color-scheme: light) {
+        background-color: #373737;
+     }
+    }
+    .rs-nav-item.rs-nav-item-active  {
+      @media (prefers-color-scheme: dark) {
+        color: white;
+     }
+     
+     @media (prefers-color-scheme: light) {
+       color: #373737;
+     }
     }
       
 }
@@ -49,4 +79,8 @@
     font-size: 1.5rem;
     text-align: center;
     margin-top: 0.25rem;
+}
+
+.navBar__logo {
+  width: 2rem;
 }
