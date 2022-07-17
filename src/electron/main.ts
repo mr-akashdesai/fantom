@@ -20,7 +20,7 @@ if (require('electron-squirrel-startup')) {
 const logosPath = path.join(__dirname, '../../src/assets/images/logo/fantom-logo-lg.png')
 
 const createWindow = (): void => {
-
+  
   if(process.platform === 'darwin') {
     app.dock.setIcon(logosPath)
   }
@@ -46,7 +46,7 @@ const createWindow = (): void => {
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY)
   // Open the DevTools.
   mainWindow.webContents.openDevTools()
-
+  
   mainWindow.once('ready-to-show', () => {
     mainWindow.show()
   })

@@ -6,6 +6,7 @@ import { FaHome } from 'react-icons/fa'
 import {GoDesktopDownload} from 'react-icons/go'
 import {AiFillCalculator} from 'react-icons/ai'
 import {MdColorLens} from 'react-icons/md'
+import {TiWeatherPartlySunny} from 'react-icons/ti'
 
 
 const logo = require('../../assets/images/logo/fantom-logo-large.svg')
@@ -37,7 +38,9 @@ const NavBar = () => {
                 <Nav.Item eventKey="color-picker" onClick={() => history('/color-picker')}>
                     <MdColorLens size={iconSize} />
                 </Nav.Item>
-                <Nav.Item eventKey="about">About</Nav.Item>
+                <Nav.Item eventKey="weather" onClick={() => history('/weather')}>
+                    <TiWeatherPartlySunny size={iconSize} />
+                </Nav.Item>
             </Nav>
         </div>
     </div>

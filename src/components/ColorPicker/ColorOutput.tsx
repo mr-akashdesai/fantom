@@ -25,7 +25,7 @@ const ColorOutput = (color: any) => {
         return (
         <InputGroup className="colorPicker__colorOutputValue" >
         <Input readOnly value={value} />
-            <Button onClick={() => saveToClipboard(value)}>
+            <Button onClick={() => saveToClipboard(value) }>
                 <FiCopy size={'1.5rem'} />
             </Button>
         </InputGroup>
