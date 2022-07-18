@@ -5,12 +5,12 @@ import { Button } from 'rsuite'
 
 const Forecast = (forecastData: any) => {
 
-    const data = forecastData.forecast
+    const data = forecastData.forecastData.forecast
 
     useEffect(() => {
-        scrollIntoCorrectHour()
+        setTimeout(() => scrollIntoCorrectHour(), 50)
     }, [])
-
+    
     const scrollIntoCorrectHour = () => {
         const dateHour = new Date().getHours()
         const element = document.getElementById(`hour-${dateHour}`)
@@ -19,11 +19,11 @@ const Forecast = (forecastData: any) => {
 
     const todayHourlyForecast = () => 
     <>
-        <Button appearance={'subtle'} onClick={() =>  document.getElementById('hourContainer').scrollLeft -= 100}>
+        <Button appearance={'subtle'} onClick={() =>  document.getElementById('hourContainer').scrollLeft -= 150}>
             <MdOutlineKeyboardArrowLeft size={'2rem'} />
         </Button>
             <div id='hourContainer' className="forecast__hourContainer">
-            {data.forecast.forecastday[0].hour.map((value: any, index: any) => {
+            {data && data.forecastday[0].hour.map((value: any, index: any) => {
                 return (
                     <div id={`hour-${index}`} key={index} className="forecast__hourlyForecast">
                     <div>{format(new Date(value.time), 'HH')}</div>
@@ -33,7 +33,7 @@ const Forecast = (forecastData: any) => {
                 )
             })}
         </div>
-        <Button appearance={'subtle'} onClick={() =>  document.getElementById('hourContainer').scrollLeft += 100}>
+        <Button appearance={'subtle'} onClick={() =>  document.getElementById('hourContainer').scrollLeft += 150}>
             <MdOutlineKeyboardArrowRight size={'2rem'}/>
         </Button>
     </>

@@ -1,14 +1,21 @@
 import React from 'react'
 import { formatRelative } from 'date-fns'
 
-const CurrentWeather = (currentWeather: any) => {
-    const weather = currentWeather.currentWeather.current
-    const location = currentWeather.currentWeather.location
+type CurrentWeatherProps = {
+    currentWeather: any
+    forecastData: any
+}
+
+const CurrentWeather = ({currentWeather, forecastData}:  CurrentWeatherProps) => {
+    const weather = currentWeather.current
+    const location = currentWeather.location
+    const forecast = forecastData.forecast.forecastday[0].day
 
     const lastUpdated = () =>{
         const str = formatRelative(new Date(weather.last_updated), new Date())
         return str.slice(0, 1).toUpperCase() + str.substring(1)
     }
+
     return (
         <>
         <div className='currentWeather__container'>
@@ -22,6 +29,7 @@ const CurrentWeather = (currentWeather: any) => {
                 </div>
                 <div className='currentWeather__tempContainer'>
                 <span className='currentWeather__temperature'>{weather.temp_c}°</span>
+                <span className='currentWeather__highLow'>H:{Math.round(forecast.maxtemp_c)}° L:{Math.round(forecast.mintemp_c)}°</span>
                 <span className='currentWeather__icon'><img src={weather.condition.icon}/></span>
                 </div>
             </div>
