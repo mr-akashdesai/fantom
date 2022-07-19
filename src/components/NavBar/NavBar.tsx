@@ -2,10 +2,10 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Divider, Nav } from 'rsuite'
-import { FaHome } from 'react-icons/fa'
-import {GoDesktopDownload} from 'react-icons/go'
-import {AiFillCalculator} from 'react-icons/ai'
-import {MdColorLens} from 'react-icons/md'
+import { FaHome, FaRunning } from 'react-icons/fa'
+import {BiVideoRecording} from 'react-icons/bi'
+import {BsCalculatorFill} from 'react-icons/bs'
+import {MdColorLens, MdLocalMovies} from 'react-icons/md'
 import {TiWeatherPartlySunny} from 'react-icons/ti'
 
 
@@ -30,16 +30,22 @@ const NavBar = () => {
                 </Nav.Item>
                 <Divider />
                 <Nav.Item eventKey="screen-recorder" onClick={() => history('/screen-recorder')}> 
-                    <GoDesktopDownload size={iconSize}/>
+                    <BiVideoRecording size={iconSize}/>
                 </Nav.Item>
                 <Nav.Item eventKey="calculator" onClick={() => history('/calculator')}>
-                    <AiFillCalculator size={iconSize} />
+                    <BsCalculatorFill size={iconSize} />
                 </Nav.Item>
                 <Nav.Item eventKey="color-picker" onClick={() => history('/color-picker')}>
                     <MdColorLens size={iconSize} />
                 </Nav.Item>
                 <Nav.Item eventKey="weather" onClick={() => history('/weather')}>
                     <TiWeatherPartlySunny size={iconSize} />
+                </Nav.Item>
+                <Nav.Item eventKey="sports" onClick={() => history('/sports')}>
+                    <FaRunning size={iconSize} />
+                </Nav.Item>
+                <Nav.Item eventKey="movies" onClick={() => history('/movies')}>
+                    <MdLocalMovies size={iconSize} />
                 </Nav.Item>
             </Nav>
         </div>

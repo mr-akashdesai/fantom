@@ -17,7 +17,7 @@
 }
 
 .screenRecorder__button {
-    width: 6rem;
+    width: 10rem;
 }
 
 .screenRecorder__startBtn {
@@ -29,15 +29,20 @@
     max-height: 30rem;
     -webkit-box-shadow: 1px 1px 5px 4px rgba(0,0,0,0.5); 
     box-shadow: 1px 1px 5px 4px rgba(0,0,0,0.5);
-    width: 90%;
+    width: 100%;
 }
 
 .screenRecorder__videoContainer {
-    margin: 2rem;
-    display: flex;
-    justify-content: center;
+    padding: 2rem 0rem;
 }
 
 .screenRecorder__recordingControls {
-    text-align: center;
+    text-align: end;
+}
+
+.screenRecorder__emoji {
+    font-size: 1.1rem;
+    position: absolute;
+    padding-left: 0.75rem;
+    margin-top: -0.25rem;
 }

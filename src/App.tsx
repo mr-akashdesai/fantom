@@ -4,7 +4,7 @@ import {
     Routes,
     useNavigate
   } from 'react-router-dom'
-import { CustomProvider , Placeholder } from 'rsuite'
+import { CustomProvider , Loader } from 'rsuite'
 import Container from 'rsuite/Container'
 import Sidebar from 'rsuite/Sidebar'
 import NavBar from './components/NavBar/NavBar'
@@ -13,6 +13,8 @@ import HomePage from './components/HomePage/HomePage'
 import Calculator from './components/Calculator/Calculator'
 import ColorPicker from './components/ColorPicker/ColorPicker'
 import Weather from './components/Weather/Weather'
+import Sports from './components/Sports/Sports'
+import Movies from './components/Movies/Movies'
 
 const App = () => {
 
@@ -25,7 +27,6 @@ const App = () => {
      })
 
     useEffect(() => {
-        setLoading(true)
         getTheme()
         history('/homepage')
         setLoading(false)
@@ -41,11 +42,7 @@ const App = () => {
         
     }
 
-    if (loading) {
-        return (
-        <Placeholder style={{ marginTop: 30 }} rows={5} graph="image" active />
-        )
-    }
+    if (loading) { return <Loader size={'lg'} backdrop content="loading..." vertical /> }
 
     return(
     <>
@@ -60,6 +57,8 @@ const App = () => {
                 <Route path="/calculator" element={<Calculator />} />
                 <Route path="/color-picker" element={<ColorPicker />} />
                 <Route path="/weather" element={<Weather />} />
+                <Route path="/sports" element={<Sports />} />
+                <Route path="/movies" element={<Movies />} />
             </Routes>
         </Container>
     </CustomProvider>

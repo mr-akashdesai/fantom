@@ -21,6 +21,7 @@ const WeatherSearch = ({setCoords} : SearchProps) => {
             <div onClick={() => {
                 setCoords(suggestion.lat, suggestion.lon)
                 setShowSuggestions(false)
+                setSearchText('')
                 }} 
             key={suggestion.id}
             className='weather__suggestionItem'>{suggestion.name}, {suggestion.country}</div>)}
@@ -33,7 +34,7 @@ const WeatherSearch = ({setCoords} : SearchProps) => {
         setShowSuggestions(true)
         setSearchText(value)
 
-        await axios.get(`${process.env.WEATHER_API_URL}/search.json?key=${process.env.WEATHER_API_KEY}&q=${value}`)
+        value.length >= 3 && await axios.get(`${process.env.WEATHER_API_URL}/search.json?key=${process.env.WEATHER_API_KEY}&q=${value}`)
         .then((res) => setSuggestions(res.data))
         .catch((err) => console.log(err))
     }

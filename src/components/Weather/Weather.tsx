@@ -69,7 +69,7 @@ const Weather = () => {
         {!loading &&
         <div className="page-container">
             <div className="weather__header">
-            <h2 className="weather__title">Weather</h2>
+            <h2 className="weather__title">Weather 🌦</h2>
             <WeatherSearch setCoords={setCoords} />
             </div>    
             <CurrentWeather currentWeather={currentWeather} forecastData={forecast}/>

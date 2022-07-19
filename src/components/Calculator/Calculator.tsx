@@ -141,7 +141,7 @@ const Calculator = () => {
     
     return (
     <div className='page-container'>
-        <h2 className='calculator__title'>Calculator</h2>
+        <h2 className='calculator__title'>Calculator 📟</h2>
       <div className='calculator'>
         {CalculatorDisplay(displayValue)}
         <div className='calculator-keypad'>

@@ -6,15 +6,24 @@ import { Button } from 'rsuite'
 const Forecast = (forecastData: any) => {
 
     const data = forecastData.forecastData.forecast
+    const location = forecastData.forecastData.location
+    const dateHour = new Date(location.localtime).getHours()
 
     useEffect(() => {
         setTimeout(() => scrollIntoCorrectHour(), 50)
-    }, [])
+    }, [location])
     
     const scrollIntoCorrectHour = () => {
-        const dateHour = new Date().getHours()
         const element = document.getElementById(`hour-${dateHour}`)
         element.scrollIntoView({ behavior: 'smooth' , inline: 'center'})
+    }
+
+    const checkCurrentHour = (value: any) => { 
+        if(dateHour === new Date(value).getHours()){
+            return <b>Now</b>
+        } else {
+            return format(new Date(value), 'HH')
+        }
     }
 
     const todayHourlyForecast = () => 
@@ -26,9 +35,9 @@ const Forecast = (forecastData: any) => {
             {data && data.forecastday[0].hour.map((value: any, index: any) => {
                 return (
                     <div id={`hour-${index}`} key={index} className="forecast__hourlyForecast">
-                    <div>{format(new Date(value.time), 'HH')}</div>
-                    <img src={value.condition.icon} />
-                    <div>{Math.round(value.temp_c)}°</div>
+                        <div>{checkCurrentHour(value.time)}</div>
+                        <img src={value.condition.icon} />
+                        <div>{Math.round(value.temp_c)}°</div>
                     </div>
                 )
             })}

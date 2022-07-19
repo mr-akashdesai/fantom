@@ -1,5 +1,7 @@
+/* eslint-disable quotes */
 import React from 'react'
 import { formatRelative } from 'date-fns'
+import {formatInTimeZone} from 'date-fns-tz'
 
 type CurrentWeatherProps = {
     currentWeather: any
@@ -19,7 +21,10 @@ const CurrentWeather = ({currentWeather, forecastData}:  CurrentWeatherProps) =>
     return (
         <>
         <div className='currentWeather__container'>
-            <div className='currentWeather__location'>{location.name}, {location.country}</div>
+            <div className='currentWeather__location'>
+                {location.name}, {location.country}
+                <div className='currentWeather__localTime'>{formatInTimeZone(new Date(), location.tz_id, "HH:mm zzz")}</div>
+            </div>
             <div className='currentWeather__status'>{weather.condition.text}</div>
             <div className='currentWeather__feelsLikeLabel'>Feels like</div>
             <div className='currentWeather__feelsLike'>{weather.feelslike_c}°</div>
