@@ -35,7 +35,7 @@
       }
       
       @media (prefers-color-scheme: light) {
-        background-color: #a5adc0;
+        background-color: #ffff;
       }
 }
 
@@ -55,7 +55,7 @@
       }
       
       @media (prefers-color-scheme: light) {
-        background-color: #a5adc0;
+        background-color: #f2eeee;
       }
 }
 
@@ -67,7 +67,7 @@
       }
       
       @media (prefers-color-scheme: light) {
-        background-color: #a5adc0;
+        background-color: #ffff;
       }
 }
 
@@ -89,4 +89,9 @@
 
 .sports__matchTime {
     float: right;
+    color: #76BC87;
+}
+
+.sports__matchLIVE {
+    color: #ce3b54;
 }

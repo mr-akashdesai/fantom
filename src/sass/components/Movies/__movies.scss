@@ -1,0 +1,104 @@
+.movie__container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: 1.5%;
+    grid-row-gap: 2rem;
+}
+
+.movie__overflowWrapper{
+    height: 50rem;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.movies__gridContainer{
+    padding: 2rem 0rem;
+
+    button {
+        background-color:#15171b;
+    }
+}
+
+.movie__itemContainer {
+    cursor: pointer;
+    width: 11rem;
+    height: 23rem;
+    border-radius: 0.313rem;
+    @media (prefers-color-scheme: dark) {
+        background-color: #15171b;
+      }
+      
+      @media (prefers-color-scheme: light) {
+        background-color: #a5adc0;
+      }
+}
+
+.movie__posterImage {
+    width: 11rem;
+    min-width: 5.982rem;
+}
+
+.movie__itemInfo {
+    font-size: 0.75rem;
+    font-variant: all-petite-caps;
+    padding: 0.5rem;
+
+    @media (prefers-color-scheme: dark) {
+        color: #a5adc0;
+      }
+      
+      @media (prefers-color-scheme: light) {
+        color: #30353f;
+      }
+}
+
+.movie__voteAverageStar{
+    color: yellow;
+
+    svg {
+        transform: translate(0px, 2px);
+    }
+}
+
+.movie__itemTitle {
+    padding: 0.5rem;
+    font-size: 0.85rem;
+    font-weight: 500;
+    font-family: 'Avenir Next';
+}
+
+.movie__releaseDate {
+    justify-self: end;
+    float: right;
+}
+
+.movie__voteAverageRating{
+    margin-left: 0.15rem;
+}
+
+.movies__heading{
+    padding: 1rem 0rem;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+
+.movies__buttonContainer{
+    float: right;
+    transform: translate(0, 3.25rem);
+
+    button {
+        margin-left: 1rem;
+        width: 7rem;
+    }
+}
+
+.movies__selectedType{
+    color: yellow !important;
+    border: 1px solid yellow !important;
+}
+
+.movies__unSelectedType{
+    color: white !important;
+    border: 1px solid white !important;
+}

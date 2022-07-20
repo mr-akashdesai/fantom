@@ -15,6 +15,7 @@ import ColorPicker from './components/ColorPicker/ColorPicker'
 import Weather from './components/Weather/Weather'
 import Sports from './components/Sports/Sports'
 import Movies from './components/Movies/Movies'
+import MovieDetails from './components/Movies/MovieDetails/MovieDetails'
 
 const App = () => {
 
@@ -59,6 +60,7 @@ const App = () => {
                 <Route path="/weather" element={<Weather />} />
                 <Route path="/sports" element={<Sports />} />
                 <Route path="/movies" element={<Movies />} />
+                <Route path="/movie-details/:id" element={<MovieDetails />} />
             </Routes>
         </Container>
     </CustomProvider>

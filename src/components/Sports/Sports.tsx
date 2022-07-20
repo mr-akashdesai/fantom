@@ -45,6 +45,7 @@ const Sports = () => {
             case 'football': return '⚽️'
             case 'cricket': return '🏏'
             case 'golf': return '⛳️'
+            default:  return '🏅'
         }
     }
 
@@ -52,40 +53,40 @@ const Sports = () => {
         
         const sportsArr = sports[sport]
     
-        return (
-            <>
-            {sportsArr.length > 0 &&
-            <>
-            <div className="sports__type">{sport[0].toUpperCase() + sport.slice(1)} {getIcon(sport)}</div>
-                <div className="sports__matchContainer">
-                {sportsArr.map((game: any) =>{
-                    return(
-                        <div className={sportsArr.length === 1 ? 'sports__matchRowBorder' : 'sports__matchRow'}>
-                            <div className="sports__matchName">
-                                {game.match}
-                                <span className="sports__matchTime">
-                                    {formattedDistanceToNow(new Date(game.start))}
-                                </span>
-                            </div>
-                            <div className="sports__stadiumName">{game.stadium} </div>
-                            <div className="sports__matchTournament">{game.tournament}</div>
+        const matches = sportsArr.length > 0 &&
+        <> 
+        <div className="sports__type">
+            {sport[0].toUpperCase() + sport.slice(1)}&nbsp;{getIcon(sport)}
+            </div>
+            <div className="sports__matchContainer">
+            {sportsArr.map((game: any) =>{
+                let timeString = ''
+                new Date() < new Date(game.start) ?
+                    timeString = formattedDistanceToNow(new Date(game.start)) :  timeString = 'LIVE'
+                return(
+                    <div className={sportsArr.length === 1 ? 'sports__matchRowBorder' : 'sports__matchRow'}>
+                        <div className="sports__matchName">
+                            {game.match}
+                            <span className={timeString === 'LIVE' ? 'sports__matchTime sports__matchLIVE' : 'sports__matchTime'} >
+                                {timeString}
+                            </span>
                         </div>
-                    )
-                })}
-                </div>
-            </>}
+                        <div className="sports__stadiumName">{game.stadium} </div>
+                        <div className="sports__matchTournament">{game.tournament}</div>
+                    </div>
+                )
+            })}
+            </div> 
             </>
-        )
+
+        return matches
     }
-
-
 
     if (error) { return <div>Error</div> }
     if (loading) { return <Loader size={'lg'} backdrop content="loading..." vertical /> }
 
     return (
         <>
-        {console.log(sports['cricket'])}
         {!loading &&
         <div className="page-container">
             <h2>Sports 🏃🏽‍♀️</h2>

@@ -28,8 +28,9 @@ const createWindow = (): void => {
   const mainWindow = new BrowserWindow({
     title: 'Fantom',  
     backgroundColor: nativeTheme.shouldUseDarkColors ? '#282C34' : '#ddd',
-    height: 800,
-    width: 1100,
+    height: 960,
+    width: 1280,
+    minWidth: 768,
     show: false,
     titleBarStyle: 'hidden',
     titleBarOverlay: true,
