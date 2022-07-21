@@ -15,6 +15,6 @@ export const toggleOverflowWrapper = (id: string) => {
         button.scrollIntoView(false)
     } else {
         button.innerHTML = 'Less...'
-        button.style.marginTop = '1rem'
+        button.style.marginTop = '1.5rem'
     }
 }

@@ -27,14 +27,12 @@ const Movies = () => {
     const [error, setError] = useState(false)
 
     const [trending, setTrending] = useState(null)
-    const [carouselIndex, setCarouselIndex] = useState(1)
 
     const [movies, setMovies] = useState(null)
     const [tvShows, setTvShows] = useState(null)
     const [topRatedTvShows, setTopRatedTvShows] = useState(null)
 
     const [upcomingMovies, setUpcomingMovies] = useState(null)
-    const [upcomingTvShows, setUpcomingTvShows] = useState(null)
     const [topRatedMovies, setTopRatedMovies] = useState(null)
     
 

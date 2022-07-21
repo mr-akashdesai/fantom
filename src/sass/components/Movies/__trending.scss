@@ -11,12 +11,13 @@
         height: 4px;              /* height of horizontal scrollbar ← You're missing this */
         width: 4px;               /* width of vertical scrollbar */
         border: 1px solid #d5d5d5;
-      }
+    }
       
 }
 
 .trending__itemContainer{
     height: 28.5rem;
+    cursor: pointer;
     background: rgb(0,0,0);
     background: linear-gradient(0deg, rgba(0,0,0,0.89) 15%, rgba(255,255,255,0) 100%);
     img {
@@ -28,6 +29,7 @@
     -webkit-transform: translateX(100%);
     animation: slide-in 0.5s forwards;
     -webkit-animation: slide-in 0.5s forwards;
+    border-radius: 1rem;
     
     .trending__gradient {
         height: 100%;
@@ -89,7 +91,7 @@
     margin-left: 0.75rem;
     font-weight: 400;
     background: brown;
-    padding: 0.25rem;
+    padding: 0.25rem 0.4rem 0.25rem 0.25rem;
     border-radius: 6px;
 }
 
@@ -99,14 +101,18 @@
     margin-top: -8.5rem;
     margin-left: 15rem;
     font-size: 1.5rem;
-    height: rem;
     font-family: "Avenir Next";
 }
 
 .trending__overview {
     margin-top: 0.25rem;
-    font-size: 0.6rem;
+    font-size: 0.75rem;
     width: 30rem;
     margin-left: 15rem;
     font-weight: 200;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
 }
