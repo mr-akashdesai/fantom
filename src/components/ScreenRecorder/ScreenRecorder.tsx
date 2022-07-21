@@ -1,12 +1,10 @@
-/* eslint-disable @typescript-eslint/no-var-requires */
 import React, { useState } from 'react'
 import { Grid, Row, Modal, Button, List } from 'rsuite'
 import PcIcon from '@rsuite/icons/Pc'
 import IconButton from 'rsuite/IconButton'
 import {ISource} from './types/ISource'
 import { maxChars } from '../../utils/maxChars'
-
-const videoPlaceholder = require('../../assets/images/video-placeholder.png')
+import videoPlaceholder from '../../assets/images/video-placeholder.png'
 
 const ScreenRecorder = () => {
     const [showModal, hideModal] = useState(false)

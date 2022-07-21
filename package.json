@@ -69,6 +69,7 @@
     "react-router-dom": "^6.3.0",
     "rsuite": "^5.16.0",
     "tinycolor2": "^1.4.2",
-    "use-eye-dropper": "^1.4.0"
+    "use-eye-dropper": "^1.4.0",
+    "webp-loader": "^0.6.0"
   }
 }

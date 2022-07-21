@@ -16,6 +16,7 @@ import Weather from './components/Weather/Weather'
 import Sports from './components/Sports/Sports'
 import Movies from './components/Movies/Movies'
 import MovieDetails from './components/Movies/MovieDetails/MovieDetails'
+import SeriesDetails from './components/Movies/SeriesDetails/SeriesDetails'
 
 const App = () => {
 
@@ -61,6 +62,7 @@ const App = () => {
                 <Route path="/sports" element={<Sports />} />
                 <Route path="/movies" element={<Movies />} />
                 <Route path="/movie-details/:id" element={<MovieDetails />} />
+                <Route path="/series-details/:id" element={<SeriesDetails />} />"
             </Routes>
         </Container>
     </CustomProvider>

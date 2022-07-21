@@ -7,9 +7,7 @@ import {BiVideoRecording} from 'react-icons/bi'
 import {BsCalculatorFill} from 'react-icons/bs'
 import {MdColorLens, MdLocalMovies} from 'react-icons/md'
 import {TiWeatherPartlySunny} from 'react-icons/ti'
-
-
-const logo = require('../../assets/images/logo/fantom-logo-large.svg')
+import logo from '../../assets/images/logo/fantom-logo-large.svg'
 
 const NavBar = () => {
     const history = useNavigate()

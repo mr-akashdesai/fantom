@@ -1,23 +1,15 @@
 /* eslint-disable quotes */
 import axios from 'axios'
-import { format } from 'date-fns'
 import React, { useEffect, useState } from 'react'
-import { Button, Loader } from 'rsuite'
-import {RiStarSFill} from 'react-icons/ri'
+import { Button, ButtonToolbar, Loader } from 'rsuite'
 import { useNavigate } from 'react-router-dom'
-import { toggleOverflowWrapper } from '../../utils/toggleOverflowWrapper'
 import Trending from './Trending'
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
+import { SectionType, RenderMovies, RenderTvShows } from './movieRenderHelpers'
 
 enum Type {
     movies = 1,
     tvShows = 2,
-}
-
-enum SectionType {
-    trending = 'trending',
-    popular = 'popular',
-    upcoming = 'upcoming',
-    topRated =  'topRated',
 }
 
 const Movies = () => {
@@ -40,16 +32,17 @@ const Movies = () => {
     const [selectedType, setSelectedType] = useState(Type.movies)
     
     useEffect(() => {
-        getTrending()
-        getMovies()
-        getTvShows()
+        setLoading(true)
+        Promise.all([
+            getTrending(),
+            getMovies(),
+            getTvShows(),])
+        .then(() => setLoading(false))
     }, [pageNumber])
 
     const getTrending = async () => {
         await axios.get(`${process.env.MOVIE_DB_URL}/trending/all/day?api_key=${process.env.MOVIE_DB_API_KEY}`)
-        .then((res) =>{ 
-            setTrending(res.data) 
-        })
+        .then((res) => setTrending(res.data))
         .catch((err) => console.error(err))
     }
 
@@ -75,79 +68,33 @@ const Movies = () => {
         await axios.get(`${process.env.MOVIE_DB_URL}/tv/top_rated?api_key=${process.env.MOVIE_DB_API_KEY}&language=en-US&page=${pageNumber}`)
         .then((res) => setTopRatedTvShows(res.data))
         .catch((err) => console.log(err))
-        .then(() => setLoading(false))
     }
 
-
-    const determineTitle = (sectionType: SectionType) => {
-        switch (sectionType) {
-            case SectionType.popular: return 'Popular'
-            case SectionType.topRated: return 'Top Rated'
-            case SectionType.trending: return 'Trending'
-            case SectionType.upcoming: return 'Upcoming'
-        }
-    }
-
-
-    const renderMovies = (data: any, type: SectionType) => 
-        <div className="movies__gridContainer">
-            <div className="movies__heading">
-                <h4>{determineTitle(type)}</h4>
-                </div>
-            <div id={type} className="movie__container movie__overflowWrapper">
-                {data && data.results.map((movie: any, index: number) => 
-                <div key={index} className="movie__itemContainer" onClick={() => history(`/movie-details/${movie.id}`)}>
-                    <img className="movie__posterImage" src={`${process.env.MOVIE_DB_IMAGE_URL}${movie.poster_path}`} />
-                    <div className="movie__itemInfo">
-                        <span className="movie__voteAverageStar"><RiStarSFill /></span> 
-                        <span className="movie__voteAverageRating">&nbsp;{movie.vote_average.toFixed(1)}</span>
-                        <span className="movie__releaseDate">{format(new Date(movie.release_date), 'yyyy')}</span>
-                    </div>
-                    <div className="movie__itemTitle">{movie.title}{movie.name}</div>
-                </div>)}
-            </div>
-            <Button id={`toggle-${type}`} onClick={() => toggleOverflowWrapper(type)}block>More...</Button>
-        </div>
-
-    const renderTvShows = (data: any, type: SectionType) => 
-        <div className="movies__gridContainer">
-            <div className="movies__heading">
-                <h4>{determineTitle(type)}</h4>
-                </div>
-            <div id={type} className="movie__container movie__overflowWrapper">
-            {data && data.results.map((series: any, index: number) => 
-                <div key={index} className="movie__itemContainer" onClick={() => history(`/series-details/${series.id}`)}>
-                    <img className="movie__posterImage" src={`${process.env.MOVIE_DB_IMAGE_URL}${series.poster_path}`} />
-                    <div className="movie__itemInfo">
-                    <span className="movie__voteAverageStar"><RiStarSFill /></span> 
-                    <span className="movie__voteAverageRating">&nbsp;{series.vote_average.toFixed(1)}</span>
-                    <span className="movie__releaseDate">{format(new Date(series.first_air_date), 'yyyy')}</span>
-                    </div>
-                    <div className="movie__itemTitle">{series.name}</div>
-                </div>)}
-            </div>
-            <Button id={`toggle-${type}`} onClick={() => toggleOverflowWrapper(type)}block>More...</Button>
-        </div>
 
     const Popular = () =>         
     <div className="movies__popular">
-            {selectedType === Type.movies && renderMovies(movies, SectionType.popular)}
-            {selectedType === Type.tvShows && renderTvShows(tvShows, SectionType.popular)}
+        {selectedType === Type.movies && <RenderMovies data={movies} type={SectionType.popular} history={history} overFlowWrapper/>}
+        {selectedType === Type.tvShows && <RenderTvShows data={tvShows} type={SectionType.popular} history={history} overFlowWrapper/>}
     </div>
 
     const Upcoming = () => 
-        <div className="movies__upcoming">
-            {selectedType === Type.movies && renderMovies(upcomingMovies, SectionType.upcoming)}
-        </div>
+    <div className="movies__upcoming">
+        {selectedType === Type.movies && <RenderMovies data={upcomingMovies} type={SectionType.upcoming} history={history} overFlowWrapper/>}
+    </div>
 
     const TopRated = () =>
     <div className="movies__upcoming">
-        {selectedType === Type.movies && renderMovies(topRatedMovies, SectionType.topRated)}
-        {selectedType === Type.tvShows && renderTvShows(topRatedTvShows, SectionType.topRated)}
+        {selectedType === Type.movies && <RenderMovies data={topRatedMovies} type={SectionType.topRated} history={history} overFlowWrapper/>} 
+        {selectedType === Type.tvShows && <RenderTvShows data={topRatedTvShows} type={SectionType.topRated} history={history} overFlowWrapper/>}
     </div>
 
     const TypeToggle = () =>   
-        <div className="movies__buttonContainer">
+        <div id={'button-container'} className="movies__buttonContainer">
+            <ButtonToolbar>
+            <Button className="movies__paginationBtn" onClick={() => setPageNumber(pageNumber - 1 > 0 ? pageNumber - 1 : 1)}><IoIosArrowBack/></Button>
+            <div className="movies__pageNumber">{pageNumber}</div>
+            <Button className="movies__paginationBtn" onClick={() => setPageNumber(pageNumber + 1 <= 100 ? pageNumber + 1 : 100)}><IoIosArrowForward/></Button>
+            </ButtonToolbar>
             <Button onClick={() => setSelectedType(Type.movies)} 
             className={selectedType === Type.movies ? 'movies__selectedType' : 'movies__unSelectedType'}
             appearance="ghost"> 
