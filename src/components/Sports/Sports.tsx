@@ -59,12 +59,12 @@ const Sports = () => {
             {sport[0].toUpperCase() + sport.slice(1)}&nbsp;{getIcon(sport)}
             </div>
             <div className="sports__matchContainer">
-            {sportsArr.map((game: any) =>{
+            {sportsArr.map((game: any, index: number) =>{
                 let timeString = ''
                 new Date() < new Date(game.start) ?
                     timeString = formattedDistanceToNow(new Date(game.start)) :  timeString = 'LIVE'
                 return(
-                    <div className={sportsArr.length === 1 ? 'sports__matchRowBorder' : 'sports__matchRow'}>
+                    <div key={index} className={sportsArr.length === 1 ? 'sports__matchRowBorder' : 'sports__matchRow'}>
                         <div className="sports__matchName">
                             {game.match}
                             <span className={timeString === 'LIVE' ? 'sports__matchTime sports__matchLIVE' : 'sports__matchTime'} >

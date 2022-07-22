@@ -42,7 +42,7 @@ const ColorPicker = () => {
     convertableColor = tinycolor(color)
     const hexString = convertableColor.toHexString()
 
-    if(palette.length < 32 && !palette.includes(hexString)) {
+    if(palette.length < 36 && !palette.includes(hexString)) {
       setPalette(prevState => [...prevState, hexString])
       setPaletteIndex(palette.length)
     } else {
@@ -60,19 +60,23 @@ const ColorPicker = () => {
         <>
         <div className='page-container'>
             <h2>Color Picker 🎨</h2>
-                <div>
+                <div className='colorPicker__masterContainer'>
                 <div id="color-picker" className="colorPicker__colorPicker">
                 <RgbaColorPicker color={color} onChange={(res) => setColor(res)} /> 
                 </div>
                 <div id="palette" className="colorPicker__paletteContainer">
-                <BlockPicker colors={palette}  className="colorPicker__palette" 
+                <BlockPicker colors={palette} className="colorPicker__palette" 
                     triangle='hide' 
+                    onChange={(color) => {
+                      const cc = tinycolor(color.rgb)
+                      setColor(cc.toRgb())}}
                     color={palette.length > 0 ? palette[paletteIndex] : color} 
                     onSwatchHover={(value) => selectPaletteColor(value)}  />
                 </div>
+                <div>
+                  {ColorOutput(color)}
                 </div>
                 <div className="colorPicker__controlPanel">
-                  {ColorOutput(color)}
                 <div className='colorPicker__buttonContainer'>
                 <span style={{backgroundColor: colorString}} className="colorPicker__colorPreview"/>
                   <span id="eyedropper" className='colorPicker__buttonSpace'>
@@ -80,11 +84,12 @@ const ColorPicker = () => {
                     <CgColorPicker size={'2rem'} />
                   </Button> 
                   </span>
-                  <span id="add-to-palette" className='colorPicker__buttonSpace'>
+                  <div id="add-to-palette" className='colorPicker__buttonSpace'>
                   <Button onClick={() => AddToPalette()}>
                     <HiOutlineViewGridAdd size={'2rem'} />
                   </Button>
-                  </span>
+                  </div>
+                </div>
                 </div>
                 </div>
         </div>

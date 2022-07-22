@@ -90,7 +90,7 @@
 
 .movies__buttonContainer{
     float: right;
-    transform: translate(-0.5rem, 3.25rem);
+    transform: translate(0rem, 3.25rem);
 
     button {
         margin-left: 1rem;
@@ -111,8 +111,34 @@
 
     .movies__pageNumber{
         background-color: #30353f;
-        padding: 1rem;
         border-radius: 5px;
+
+        input {
+            width: 4rem;
+            text-align: center;
+            display: block;
+            background-image: none;
+            -webkit-transition: border-color .3s ease-in-out;
+            transition: border-color .3s ease-in-out;
+            border-radius: 6px;
+            padding: 7px 11px;
+            font-size: 14px;
+            line-height: 1.42857143;
+
+            @media (prefers-color-scheme: dark) {
+            color: #575757;
+            color: var(--rs-text-primary);
+            background-color: var(--rs-input-bg);
+            border: 1px solid var(--rs-border-primary);
+            }
+            
+            @media (prefers-color-scheme: light) {
+            color: #575757;
+            background-color: #fff;
+            background-color: var(--rs-input-bg);
+            border: 1px solid #e5e5ea;
+            }
+        }
     }
 }
 
@@ -131,4 +157,9 @@
     top: 61rem;
     left: 7rem;
     width: 84%;
+}
+
+.movies__header {
+    display: grid;
+    grid-auto-flow: column;
 }

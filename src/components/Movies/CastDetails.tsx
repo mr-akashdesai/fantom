@@ -6,7 +6,7 @@ const CastDetails = (cast: any) => {
 
 return (
     <>
-    {!!cast &&
+    {!!cast && cast.cast.length > 0 &&
     <div className="cast__container">
         <div className="cast__heading"><h4>Cast</h4></div>
         <div className="cast__grid">

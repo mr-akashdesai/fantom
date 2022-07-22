@@ -6,6 +6,8 @@ import { useNavigate } from 'react-router-dom'
 import Trending from './Trending'
 import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
 import { SectionType, RenderMovies, RenderTvShows } from './movieRenderHelpers'
+import { DebounceInput } from 'react-debounce-input'
+import MultiSearch from './MultiSearch'
 
 enum Type {
     movies = 1,
@@ -88,12 +90,23 @@ const Movies = () => {
         {selectedType === Type.tvShows && <RenderTvShows data={topRatedTvShows} type={SectionType.topRated} history={history} overFlowWrapper/>}
     </div>
 
+    const setPageNumberInput = (input: string) => {
+        const int = parseInt(input)
+        !isNaN(int) && setPageNumber(int)
+    }
+
     const TypeToggle = () =>   
         <div id={'button-container'} className="movies__buttonContainer">
             <ButtonToolbar>
             <Button className="movies__paginationBtn" onClick={() => setPageNumber(pageNumber - 1 > 0 ? pageNumber - 1 : 1)}><IoIosArrowBack/></Button>
-            <div className="movies__pageNumber">{pageNumber}</div>
-            <Button className="movies__paginationBtn" onClick={() => setPageNumber(pageNumber + 1 <= 100 ? pageNumber + 1 : 100)}><IoIosArrowForward/></Button>
+            <div className="movies__pageNumber">
+            <DebounceInput
+                value={pageNumber}
+                minLength={1}
+                debounceTimeout={500}
+                onChange={event => setPageNumberInput(event.target.value)} />
+            </div>
+            <Button className="movies__paginationBtn" onClick={() => setPageNumber(pageNumber + 1)}><IoIosArrowForward/></Button>
             </ButtonToolbar>
             <Button onClick={() => setSelectedType(Type.movies)} 
             className={selectedType === Type.movies ? 'movies__selectedType' : 'movies__unSelectedType'}
@@ -115,7 +128,10 @@ const Movies = () => {
     <>
     {!loading &&
     <div className="page-container">
-        <h2>Movies & TV 🍿</h2>
+        <div className="movies__header">
+            <h2>Movies & TV 🍿</h2>
+            <MultiSearch />
+        </div>
         <div className="movies__trending">
             <Trending {...trending} />
         </div>

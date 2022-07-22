@@ -42,7 +42,7 @@ const WeatherSearch = ({setCoords} : SearchProps) => {
     return (
         <>
         <InputGroup inside size={'md'} className="weather__search" >
-        <Input value={searchText} onChange={(value) => onInputChange(value) } />
+        <Input placeholder='Search city...' value={searchText} onChange={(value) => onInputChange(value) } />
             <InputGroup.Button disabled>
                 <GoSearch />
             </InputGroup.Button>

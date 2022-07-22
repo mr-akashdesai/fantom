@@ -28,6 +28,7 @@
       }
     border-radius: 5px;
     padding-bottom: 1rem;
+    overflow: hidden;
 }
 
 .cast__profilePic{
@@ -47,4 +48,11 @@
     font-variant: all-petite-caps;
     font-size: 0.8rem;
     font-style: italic;
+    font-family: 'Avenir Next';
+    height: 3.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
 }

@@ -33,8 +33,18 @@ type renderProps ={
     title?: string,
 }
 
+export const redirectToCorrectMediaType = (mediaType: string, id: number) => {
+    switch (mediaType) {
+        case 'movie': return `/movie-details/${id}`
+        case 'tv': return `/series-details/${id}`
+    }
+} 
 
-export const RenderMovies = ({data, type, history, overFlowWrapper, title} :renderProps) => 
+
+export const RenderMovies = ({data, type, history, overFlowWrapper, title} :renderProps) => {
+    return (
+        <>
+        {!!data && data.results.length > 0 &&
     <div className="movies__gridContainer">
         <div className="movies__heading">
             <h4>{title ? title : determineTitle(type)}</h4>
@@ -57,9 +67,14 @@ export const RenderMovies = ({data, type, history, overFlowWrapper, title} :rend
             </div>)}
         </div>
         {overFlowWrapper && <Button id={`toggle-${type}`} onClick={() => toggleOverflowWrapper(type)}block>More...</Button>}
-    </div>
+    </div>}
+    </>
+    )}
 
-export const RenderTvShows = ({data, type, history, overFlowWrapper, title} :renderProps) => 
+export const RenderTvShows = ({data, type, history, overFlowWrapper, title} :renderProps) => {
+    return (
+        <>
+        {!!data && data.results.length > 0 &&
     <div className="movies__gridContainer">
         <div className="movies__heading">
             <h4>{title ? title : determineTitle(type)}</h4>
@@ -82,4 +97,5 @@ export const RenderTvShows = ({data, type, history, overFlowWrapper, title} :ren
             </div>)}
         </div>
         {overFlowWrapper && <Button id={`toggle-${type}`} onClick={() => toggleOverflowWrapper(type)}block>More...</Button>}
-    </div>
+    </div>}
+    </>)}
