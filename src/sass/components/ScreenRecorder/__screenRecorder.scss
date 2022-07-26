@@ -1,0 +1,46 @@
+.screenRecorder__pickSourceContainer {
+    padding-top: 2rem;
+}
+
+.screenRecorder__imagePreview  {
+    width: 5rem;
+    float: right;
+}
+
+.screenRecorder__imagePreviewContainer {
+    display: flow-root;
+    cursor: pointer;
+}
+
+.screenRecorder__modalButtonGroup{
+    padding-top: 1rem;
+}
+
+.screenRecorder__button {
+    width: 10rem;
+}
+
+.screenRecorder__startBtn {
+    margin-right: 1rem;
+}
+
+.screenRecorder__videoPlayer {
+    -webkit-box-shadow: 1px 1px 5px 4px rgba(0,0,0,0.5); 
+    box-shadow: 1px 1px 5px 4px rgba(0,0,0,0.5);
+    width: 100%;
+}
+
+.screenRecorder__videoContainer {
+    padding: 2rem 0rem;
+}
+
+.screenRecorder__recordingControls {
+    text-align: end;
+}
+
+.screenRecorder__emoji {
+    font-size: 1.1rem;
+    position: absolute;
+    padding-left: 0.75rem;
+    margin-top: -0.25rem;
+}

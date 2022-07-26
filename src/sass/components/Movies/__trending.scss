@@ -1,0 +1,121 @@
+.trending__container {
+    border-radius: 1rem;
+    display: grid;
+    grid-template-columns: repeat(20, 1fr);
+    grid-column-gap: 1.5%;
+    grid-row-gap: 2rem;
+    overflow-y: hidden;
+    overflow-x: scroll;
+    scroll-behavior: smooth;
+    ::-webkit-scrollbar {
+        height: 4px;              /* height of horizontal scrollbar ← You're missing this */
+        width: 4px;               /* width of vertical scrollbar */
+        border: 1px solid #d5d5d5;
+    }
+      
+}
+
+.trending__itemContainer{
+    height: 28.5rem;
+    cursor: pointer;
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba(0,0,0,0.89) 15%, rgba(255,255,255,0) 100%);
+    img {
+        position:relative;
+        z-index:-1;
+        display:block;
+    }
+    transform: translateX(100%);
+    -webkit-transform: translateX(100%);
+    animation: slide-in 0.5s forwards;
+    -webkit-animation: slide-in 0.5s forwards;
+    border-radius: 1rem;
+    
+    .trending__gradient {
+        height: 100%;
+        background: rgb(0,0,0);
+        background: linear-gradient(0deg, rgba(0,0,0,0.9) 19%, rgba(255,255,255,0) 100%);
+        border-radius: 1rem;
+    }
+
+    @media (prefers-color-scheme: light) {
+        color: var(--rs-body);
+        }
+      
+    @keyframes slide-in {
+        100% { transform: translateX(0%); }
+    }
+    
+    @-webkit-keyframes slide-in {
+        100% { -webkit-transform: translateX(0%); }
+    }
+    
+    @-webkit-keyframes slide-in {
+        0% { -webkit-transform: translateX(0%); }
+        100% { -webkit-transform: translateX(-100%); }
+    }
+
+}
+
+.current {
+    opacity: 1;
+}
+
+.trending__backdropImage{
+    height: 100%;
+    border-radius: 1rem;
+}
+
+.trending__posterImage {
+    width: 8rem;
+    margin-top: -13.5rem;
+    margin-left: 4rem;
+    z-index: 2 !important;
+    -webkit-box-shadow: 0px 3px 9px 3px rgba(0,0,0,0.48); 
+    box-shadow: 0px 3px 9px 3px rgba(0,0,0,0.48);
+}
+
+.trending__itemInfo {
+    margin-left: 15rem;
+    font-variant: all-petite-caps
+}
+
+.trending__voteAverageStar {
+    color: yellow;
+    svg {
+        transform: translate(0px, 2px);
+    }
+}
+
+.trending__releaseDate {
+    display: inline-block;
+    transform: translate(0px, -4px);
+    font-size: 0.75rem;
+    margin-left: 0.75rem;
+    font-weight: 400;
+    background: brown;
+    padding: 0.25rem 0.4rem 0.25rem 0.25rem;
+    border-radius: 6px;
+}
+
+.trending__itemTitle{
+    width: 70%;
+    font-weight: 500;
+    margin-top: -8.5rem;
+    margin-left: 15rem;
+    font-size: 1.5rem;
+    font-family: "Avenir Next";
+}
+
+.trending__overview {
+    margin-top: 0.25rem;
+    font-size: 0.75rem;
+    width: 30rem;
+    margin-left: 15rem;
+    font-weight: 200;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+}

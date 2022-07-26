@@ -1,0 +1,143 @@
+$heroHeight: 38rem;
+
+.hero__container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: $heroHeight;
+    padding-left: 5rem;
+    background: rgb(0, 0, 0);
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.95) 15%, rgba(255, 255, 255, 0) 100%);
+    overflow: hidden;
+
+        
+        @media (prefers-color-scheme: light) {
+        color: var(--rs-body);
+        }
+
+
+    img {
+        position:relative;
+        z-index:-1;
+    }
+
+    .rs-btn-subtle{
+        background-color: transparent !important;
+        color: #fff;
+    }
+}
+
+.hero__backdropImage {
+    min-width: 100%;
+    max-height: $heroHeight;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+.moiveDetails__gradient{
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba(0,0,0,0.89) 15%, rgba(255,255,255,0) 100%);
+}
+
+.hero__posterImage {
+    width: 9rem;
+    margin-left: 8rem;
+    margin-top: -20rem;
+    z-index: 1 !important;
+    -webkit-box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.8); 
+    box-shadow: 0px 0px 5px 3px rgba(0,0,0,0.8);
+}
+
+.hero__productionLogo{
+    width: 6rem;
+    z-index: 1 !important;
+    margin-right: 1rem;
+}
+
+.hero__title {
+    margin-top: -17.5rem;
+    margin-left: 17.85rem;
+    font-size: 2.5rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    font-family: "Avenir Next";
+}
+
+.hero__productionCountries{
+    img
+    {
+        width: 1.25rem !important;
+        z-index: 1 !important;
+        margin-top: 0.25rem;
+        margin-left: 0.75rem;
+    }
+}
+
+.hero__runtime {
+    margin-left: 18rem;
+    font-size: 0.75rem;
+    font-variant: all-petite-caps;
+}
+
+.hero__releaseDate{
+    margin-left: 18rem;
+    font-size: 0.75rem;
+    font-variant: all-petite-caps;
+}
+
+.hero__tagline {
+    margin-left: 18rem;
+    font-size: 0.75rem;
+    font-variant: all-small-caps;
+}
+
+.hero__overview {
+    margin-left: 18rem;
+    width: 50%;
+    margin-top: 0.5rem;
+    height: 4.35rem;
+    font-size: 0.75rem;
+    margin-bottom: 1rem;
+    font-weight: 200;
+    overflow: scroll;
+    scroll-behavior: smooth;
+}
+
+.hero__genres {
+    margin-left: 18rem;
+    padding-top: 1rem;
+    font-size: 0.75rem;
+    width: 30%;
+    font-weight: 300;
+    font-variant: all-petite-caps;
+}
+
+.hero__productionCompanies{
+    position: absolute;
+    top: 2rem;
+    right: 0;
+    background: rgba(222, 222, 222, 0.5);
+    padding: 0.5rem;
+    border-radius: 1rem 0rem 0rem 1rem;
+}
+
+.hero__backBtn{
+    position: absolute;
+    color: var(--rs-body);
+    padding: 3rem;
+}
+
+.hero__seasons {
+    font-variant: all-small-caps;
+    font-size: 0.8rem;
+    background: cornflowerblue;
+    padding: 0.25rem 0.3rem;
+    border-radius: 5px;
+    transform: translate(0px, -4px);
+    display: inline-block;
+    font-weight: 500;
+}

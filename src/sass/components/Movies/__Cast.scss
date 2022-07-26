@@ -1,0 +1,56 @@
+
+@use '../../base/common/_variables' as var;
+
+.cast__container {
+    position: absolute;
+    top: 38rem;
+    left: 6rem;
+    padding: 1rem;
+    width: 87%;
+}
+
+.cast__grid {
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 14%;
+    overflow-x: auto;
+    gap: 1rem;
+}
+
+.cast__heading{
+    padding-bottom: 1rem;
+}
+
+.cast__item {
+    background-color: var.$darkModePodBg;
+    color: #fff;
+    border-radius: 5px;
+    padding-bottom: 1rem;
+    overflow: hidden;
+}
+
+.cast__profilePic{
+    width: 100%;
+    object-fit: cover;
+    aspect-ratio: 7.5/10;
+}
+
+.cast__name {
+    font-weight: 500;
+    padding: 1rem 0rem 0rem 0.5rem;
+    font-family: "Avenir Next";
+}
+
+.cast__character {
+    padding: 0rem 0.5rem;
+    font-variant: all-petite-caps;
+    font-size: 0.8rem;
+    font-style: italic;
+    font-family: 'Avenir Next';
+    height: 3.8rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
