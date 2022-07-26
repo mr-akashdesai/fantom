@@ -37,7 +37,10 @@
         background: linear-gradient(0deg, rgba(0,0,0,0.9) 19%, rgba(255,255,255,0) 100%);
         border-radius: 1rem;
     }
-    
+
+    @media (prefers-color-scheme: light) {
+        color: var(--rs-body);
+        }
       
     @keyframes slide-in {
         100% { transform: translateX(0%); }

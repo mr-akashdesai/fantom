@@ -11,6 +11,12 @@ $heroHeight: 38rem;
     background: linear-gradient(0deg, rgba(0, 0, 0, 0.95) 15%, rgba(255, 255, 255, 0) 100%);
     overflow: hidden;
 
+        
+        @media (prefers-color-scheme: light) {
+        color: var(--rs-body);
+        }
+
+
     img {
         position:relative;
         z-index:-1;
@@ -18,6 +24,7 @@ $heroHeight: 38rem;
 
     .rs-btn-subtle{
         background-color: transparent !important;
+        color: #fff;
     }
 }
 
@@ -120,7 +127,7 @@ $heroHeight: 38rem;
 
 .hero__backBtn{
     position: absolute;
-    color: white;
+    color: var(--rs-body);
     padding: 3rem;
 }
 

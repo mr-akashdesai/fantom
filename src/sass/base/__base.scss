@@ -1,2 +1,3 @@
-@import './themes/_themes';
-@import './common/_common';
+@use './themes/_themes';
+@use './common/_common';
+@use './common/_variables';

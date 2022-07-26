@@ -1,3 +1,6 @@
+
+@use '../../base/common/_variables' as var;
+
 .cast__container {
     position: absolute;
     top: 38rem;
@@ -19,13 +22,8 @@
 }
 
 .cast__item {
-    @media (prefers-color-scheme: dark) {
-        background-color: #15171b;
-      }
-      
-      @media (prefers-color-scheme: light) {
-        background-color: #a5adc0;
-      }
+    background-color: var.$darkModePodBg;
+    color: #fff;
     border-radius: 5px;
     padding-bottom: 1rem;
     overflow: hidden;

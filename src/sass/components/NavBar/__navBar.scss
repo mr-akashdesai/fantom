@@ -13,7 +13,7 @@
       }
       
       @media (prefers-color-scheme: light) {
-        background: #969491; 
+        background: #282828; 
         color: black;
       }
 
@@ -31,18 +31,12 @@
     }
 
     .rs-nav-subtle .rs-nav-item:focus, .rs-nav-subtle .rs-nav-item:hover {
-      @media (prefers-color-scheme: dark) {
-        color: white;
-     }
-     
-     @media (prefers-color-scheme: light) {
-       color: #373737;
-     }
+      color: #fff;
     }
 
     .rs-nav-subtle .rs-nav-item.rs-nav-item-active:before {
       @media (prefers-color-scheme: dark) {
-        background-color: white;
+        background-color:#fff;
      }
      
      @media (prefers-color-scheme: light) {
@@ -50,13 +44,7 @@
      }
     }
     .rs-nav-item.rs-nav-item-active  {
-      @media (prefers-color-scheme: dark) {
-        color: white;
-     }
-     
-     @media (prefers-color-scheme: light) {
-       color: #373737;
-     }
+      color: #fff;
     }
       
 }
