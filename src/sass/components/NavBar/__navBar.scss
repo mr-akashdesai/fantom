@@ -3,7 +3,7 @@
     width: 5rem;
     position: fixed;
     padding-top: 8%;
-    z-index: 100;
+    z-index: 50;
     -webkit-user-select: text;
     -webkit-app-region: no-drag;
 
@@ -71,4 +71,41 @@
 
 .navBar__logo {
   width: 2rem;
+}
+
+.topBar__container {
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2.25rem;
+  z-index: 100;
+
+  @media (prefers-color-scheme: dark) {
+    background: #13161a; 
+    color: #98A0B1;
+ }
+ 
+ @media (prefers-color-scheme: light) {
+   background: #343434; 
+   color: black;
+ }
+
+ .rs-btn-subtle{
+  background-color: transparent !important;
+}
+
+  button:hover {
+    background: transparent;
+  }
+
+ .topBar__navButtonContainer{
+  padding-top: 0.1rem;
+  padding-left: 7.5%;
+ }
+
+ .topBar__settings {
+  float: right;
+  padding-right: 0.5rem;
+ }
 }

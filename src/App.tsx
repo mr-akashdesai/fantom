@@ -3,7 +3,6 @@ import {
     Navigate,
     Route, 
     Routes,
-    useNavigate
   } from 'react-router-dom'
 import { CustomProvider , Loader } from 'rsuite'
 import Container from 'rsuite/Container'
@@ -19,52 +18,64 @@ import Entertainment from './components/Entertainment/Entertainment'
 import MovieDetails from './components/Entertainment/MovieDetails/MovieDetails'
 import SeriesDetails from './components/Entertainment/SeriesDetails/SeriesDetails'
 import { getTheme } from './utils/getTheme'
-import { Theme } from './components/Settings/Types/Theme'
+import { initialContext, useImmerReducer, Context } from './Context/context'
+import { Reducer } from './Context/reducer'
+import { ITheme } from './components/Settings/Types/ITheme'
 
 const App = () => {
 
-    const [themeSetting, setThemeSetting] = useState<Theme>(Theme.System)
+    const [state, dispatch] = useImmerReducer(Reducer, initialContext)
+    
     const [theme, setTheme] = useState<'light' | 'dark'>('light')
     const [loading, setLoading] = useState(true)
-
-    themeSetting === Theme.Dark &&
-    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
-        e.matches ? setTheme('dark') : setTheme('light')
-     })
 
     useEffect(() => {
         setTheme(getTheme())
         setLoading(false)
     }, [])
 
-    
-    
-    
+    useEffect(() => {
+        switch(state.themeSetting){
+            case ITheme.System: () => window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+                e.matches ? setTheme('dark') : setTheme('light')})
+                break
+            case ITheme.Light : setTheme('light')
+            break
+            case ITheme.Dark: setTheme('dark')
+            break        
+        }
+
+    },[state.themeSetting])
+
+
+
 
     if (loading) { return <Loader size={'lg'} backdrop content="loading..." vertical /> }
 
     return(
     <>
-    <CustomProvider theme={theme}>
-        <Container>
+    <Context.Provider value={{state, dispatch}}>
+        <CustomProvider theme={theme}>
+            <Container>
 
-            <Sidebar style={{ display: 'flex', flexDirection: 'column' }}> 
-                <NavBar  />
-            </Sidebar>
-            <Routes>
-                <Route path="/" element={<Navigate replace to="/homepage" />} />
-                <Route path="/homepage" element={<HomePage />} />
-                <Route path="/screen-recorder" element={<ScreenRecorder/>} />
-                <Route path="/calculator" element={<Calculator />} />
-                <Route path="/color-picker" element={<ColorPicker />} />
-                <Route path="/weather" element={<Weather />} />
-                <Route path="/sports" element={<Sports />} />
-                <Route path="/entertainment" element={<Entertainment />} />
-                <Route path="/movie-details/:id" element={<MovieDetails />} />
-                <Route path="/series-details/:id" element={<SeriesDetails />} />"
-            </Routes>
-        </Container>
-    </CustomProvider>
+                <Sidebar style={{ display: 'flex', flexDirection: 'column' }}> 
+                    <NavBar  />
+                </Sidebar>
+                <Routes>
+                    <Route path="/" element={<Navigate replace to="/homepage" />} />
+                    <Route path="/homepage" element={<HomePage />} />
+                    <Route path="/screen-recorder" element={<ScreenRecorder/>} />
+                    <Route path="/calculator" element={<Calculator />} />
+                    <Route path="/color-picker" element={<ColorPicker />} />
+                    <Route path="/weather" element={<Weather />} />
+                    <Route path="/sports" element={<Sports />} />
+                    <Route path="/entertainment" element={<Entertainment />} />
+                    <Route path="/movie-details/:id" element={<MovieDetails />} />
+                    <Route path="/series-details/:id" element={<SeriesDetails />} />"
+                </Routes>
+            </Container>
+        </CustomProvider>
+    </Context.Provider>
     </>
 )}
 

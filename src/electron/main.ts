@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { app, BrowserWindow, clipboard, desktopCapturer, dialog, ipcMain, nativeTheme, shell } from 'electron'
 import { writeFile } from 'fs'
+import { ITheme } from '../components/Settings/Types/ITheme'
 import { ISource } from '../components/ScreenRecorder/types/ISource'
 const isDev = require('electron-is-dev')
 const path = require('path')
@@ -53,6 +54,10 @@ const createWindow = (): void => {
   })
 }
 
+const changeThemeSource = (args: ITheme) => {
+  nativeTheme.themeSource = args
+ }
+
 const getvideoSources = async () => {
   const sources: ISource[] = []
   const inputSources = await desktopCapturer.getSources({types: ['window', 'screen'], fetchWindowIcons: true})
@@ -83,7 +88,6 @@ const saveRecording = async (args: any) => {
 }
 
 const copyToClipboard = async (args: any) => {
-  console.log('reached', args)
   await clipboard.writeText(args)
   return 'sucesss'
 }
@@ -93,6 +97,7 @@ const openRecording = (args: any) => {
 }
 
 app.whenReady().then(() => {
+  ipcMain.on('dialog:setThemeSource', async (event, args) => changeThemeSource(args))
   ipcMain.handle('dialog:getSources', getvideoSources)
   ipcMain.handle('dialog:saveRecording', async (event, args) => saveRecording(args))
   ipcMain.on('dialog:openRecording', async (event, args) => openRecording(args))
