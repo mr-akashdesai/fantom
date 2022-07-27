@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import {
+    Navigate,
     Route, 
     Routes,
     useNavigate
@@ -14,35 +15,31 @@ import Calculator from './components/Calculator/Calculator'
 import ColorPicker from './components/ColorPicker/ColorPicker'
 import Weather from './components/Weather/Weather'
 import Sports from './components/Sports/Sports'
-import Movies from './components/Movies/Movies'
-import MovieDetails from './components/Movies/MovieDetails/MovieDetails'
-import SeriesDetails from './components/Movies/SeriesDetails/SeriesDetails'
+import Entertainment from './components/Entertainment/Entertainment'
+import MovieDetails from './components/Entertainment/MovieDetails/MovieDetails'
+import SeriesDetails from './components/Entertainment/SeriesDetails/SeriesDetails'
+import { getTheme } from './utils/getTheme'
+import { Theme } from './components/Settings/Types/Theme'
 
 const App = () => {
 
+    const [themeSetting, setThemeSetting] = useState<Theme>(Theme.System)
     const [theme, setTheme] = useState<'light' | 'dark'>('light')
     const [loading, setLoading] = useState(true)
-    const history = useNavigate()
 
+    themeSetting === Theme.Dark &&
     window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
         e.matches ? setTheme('dark') : setTheme('light')
      })
 
     useEffect(() => {
-        getTheme()
-        history('/homepage')
+        setTheme(getTheme())
         setLoading(false)
     }, [])
+
     
     
-    const getTheme = async () => {
-        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
-            setTheme('dark')
-        } else {
-            setTheme('light')
-        }
-        
-    }
+    
 
     if (loading) { return <Loader size={'lg'} backdrop content="loading..." vertical /> }
 
@@ -50,17 +47,19 @@ const App = () => {
     <>
     <CustomProvider theme={theme}>
         <Container>
+
             <Sidebar style={{ display: 'flex', flexDirection: 'column' }}> 
-                <NavBar />
+                <NavBar  />
             </Sidebar>
             <Routes>
+                <Route path="/" element={<Navigate replace to="/homepage" />} />
                 <Route path="/homepage" element={<HomePage />} />
                 <Route path="/screen-recorder" element={<ScreenRecorder/>} />
                 <Route path="/calculator" element={<Calculator />} />
                 <Route path="/color-picker" element={<ColorPicker />} />
                 <Route path="/weather" element={<Weather />} />
                 <Route path="/sports" element={<Sports />} />
-                <Route path="/movies" element={<Movies />} />
+                <Route path="/entertainment" element={<Entertainment />} />
                 <Route path="/movie-details/:id" element={<MovieDetails />} />
                 <Route path="/series-details/:id" element={<SeriesDetails />} />"
             </Routes>

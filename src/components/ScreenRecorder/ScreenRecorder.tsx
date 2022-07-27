@@ -150,7 +150,7 @@ const ScreenRecorder = () => {
 
     return (
         <div className='screenRecorder__container page-container'>
-        <h2>Screen Recorder <span className="screenRecorder__emoji">🔴</span></h2>
+        <h2>Screen Recorder 🎥</h2>
         <Grid fluid>
             <Row className='show-grid screenRecorder__pickSourceContainer'>
             <IconButton icon={<PcIcon/>} block size={'lg'} onClick={() => getSources()}>Pick Source</IconButton>

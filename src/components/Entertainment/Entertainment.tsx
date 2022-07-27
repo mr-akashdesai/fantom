@@ -14,7 +14,7 @@ enum Type {
     tvShows = 2,
 }
 
-const Movies = () => {
+const Entertainment = () => {
 
     const history = useNavigate()
     const [loading, setLoading] = useState(true)
@@ -129,7 +129,7 @@ const Movies = () => {
     {!loading &&
     <div className="page-container">
         <div className="movies__header">
-            <h2>Movies & TV 🍿</h2>
+            <h2>Entertainment 🍿</h2>
             <MultiSearch />
         </div>
         <div className="movies__trending">
@@ -144,4 +144,4 @@ const Movies = () => {
     )
 }
 
-export default Movies
+export default Entertainment
