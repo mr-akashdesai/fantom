@@ -70,10 +70,10 @@ const MultiSearch = () => {
 
 
     const SetSuggestions = async () => {
-        searchText.length >= 3 && await axios.get(`${process.env.MOVIE_DB_URL}/search/multi?api_key=${process.env.MOVIE_DB_API_KEY}&language=en-US&query=${searchText}&page=1&include_adult=false`)
+        searchText.length >= 3 && 
+        await axios.get(`${process.env.MOVIE_DB_URL}/search/multi?api_key=${process.env.MOVIE_DB_API_KEY}&language=en-US&query=${searchText}&page=1&include_adult=false`)
         .then((res) => setSuggestions(res.data.results))
         .catch((err) => console.log(err))
-        .then(() => console.log(suggestions))
     }
 
     const onInputChange = async (value: string) => setSearchText(value)
