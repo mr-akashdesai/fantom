@@ -22,8 +22,7 @@
 }
 
 .cast__item {
-    background-color: var.$darkModePodBg;
-    color: #fff;
+    background-color: var(--rs-input-bg);
     border-radius: 5px;
     padding-bottom: 1rem;
     overflow: hidden;

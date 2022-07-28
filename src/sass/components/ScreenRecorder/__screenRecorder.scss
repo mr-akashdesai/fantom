@@ -1,5 +1,9 @@
 .screenRecorder__pickSourceContainer {
     padding-top: 2rem;
+
+    .rs-btn-icon-with-text.rs-btn-lg.rs-btn-icon-placement-left {
+        padding: 10px 16px 10px 0px;
+    }
 }
 
 .screenRecorder__imagePreview  {
@@ -25,9 +29,11 @@
 }
 
 .screenRecorder__videoPlayer {
-    -webkit-box-shadow: 1px 1px 5px 4px rgba(0,0,0,0.5); 
-    box-shadow: 1px 1px 5px 4px rgba(0,0,0,0.5);
     width: 100%;
+    max-height: 27.5rem;
+    object-fit: contain;
+    display: grid;
+    margin: auto;
 }
 
 .screenRecorder__videoContainer {

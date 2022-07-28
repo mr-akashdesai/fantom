@@ -89,7 +89,7 @@ const Sports = () => {
         <>
         {!loading &&
         <div className="page-container">
-            <h2>Sports 🏃🏽‍♀️</h2>
+            <h3>Sports 🏆</h3>
             <div className="sports__container">
             {renderMatches('cricket')}
             {renderMatches('football')}

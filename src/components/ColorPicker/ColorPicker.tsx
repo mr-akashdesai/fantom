@@ -59,7 +59,7 @@ const ColorPicker = () => {
     return (
         <>
         <div className='page-container'>
-            <h2>Color Picker 🎨</h2>
+            <h3>Color Picker 🎨</h3>
                 <div className='colorPicker__masterContainer'>
                 <div id="color-picker" className="colorPicker__colorPicker">
                 <RgbaColorPicker color={color} onChange={(res) => setColor(res)} /> 

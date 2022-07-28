@@ -17,8 +17,8 @@
     padding: 2rem 0rem;
 
     .drawer-button {
-        background-color: var.$darkModePodBg;
-        color: #fff;
+        background-color: var(--rs-input-bg);
+        margin-top: 1rem;
     }
 }
 
@@ -26,8 +26,7 @@
     cursor: pointer;
     border-radius: 0.313rem;
     padding-bottom: 1rem;
-    background-color: var.$darkModePodBg;
-    color: #fff;
+    background-color: var(--rs-input-bg);
 }
 
 .movie__posterImage {
@@ -40,11 +39,26 @@
     font-size: 0.75rem;
     font-variant: all-petite-caps;
     padding: 0.5rem 0.75rem 0rem 0.75rem;
-    color: #a5adc0;
+
+    @media (prefers-color-scheme: dark) {
+        color: #a5adc0;
+    }
+    
+    @media (prefers-color-scheme: light) {
+        color: var(--rs-gray-700);
+    }
 }
 
 .movie__voteAverageStar{
-    color: yellow;
+
+    @media (prefers-color-scheme: dark) {
+        color: yellow;
+    }
+    
+    @media (prefers-color-scheme: light) {
+        color: var(--rs-orange-600);
+    }
+
 
     svg {
         transform: translate(0px, 2px);
@@ -136,8 +150,8 @@
 
 .movies__selectedType{
     @media (prefers-color-scheme: dark) {
-        color: var(--rs-green-700) !important;
-        border: 1px solid var(--rs-green-700) !important;
+        color: var(--rs-yellow-700) !important;
+        border: 1px solid var(--rs-yellow-700) !important;
       }
       
       @media (prefers-color-scheme: light) {

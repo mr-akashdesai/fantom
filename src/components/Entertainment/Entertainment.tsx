@@ -129,12 +129,10 @@ const Entertainment = () => {
     {!loading &&
     <div className="page-container">
         <div className="movies__header">
-            <h2>Entertainment 🍿</h2>
+            <h3>Entertainment 🍿</h3>
             <MultiSearch />
         </div>
-        <div className="movies__trending">
-            <Trending {...trending} />
-        </div>
+        <Trending {...trending} />
         <TypeToggle />
         <Popular />
         <Upcoming />

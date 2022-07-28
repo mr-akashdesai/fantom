@@ -7,8 +7,9 @@
 @use './ColorPicker/_colorPicker';
 @use './Weather/_weather';
 @use './Sports/_sports';
-@use './Movies/_movies';
-@use './Movies/_trending';
-@use './Movies/_hero';
-@use './Movies/_cast';
-@use './Movies/_multiSearch';
+@use './Entertainment/_movies';
+@use './Entertainment/_trending';
+@use './Entertainment/_hero';
+@use './Entertainment/_cast';
+@use './Entertainment/_multiSearch';
+@use './Dictionary/_dictionary';

@@ -28,7 +28,8 @@ const Settings = ({setOpenSettings}: any) => {
 return (
     <>
     <div ref={settingsRef} className='settings__container'>
-        <h5>Theme:</h5>
+        <h6>Theme:</h6>
+        <br/>
         <RadioGroup name="radioList" inline appearance="picker" defaultValue={state.themeSetting}>
             <Radio value={ITheme.System} onClick={() => dispatch(setThemeSetting(ITheme.System))}>System</Radio>
             <Radio value={ITheme.Light} onClick={() => dispatch(setThemeSetting(ITheme.Light))}>Light</Radio>
