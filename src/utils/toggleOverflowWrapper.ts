@@ -1,20 +1,18 @@
-export const toggleOverflowWrapper = (id: string) => {
+export const toggleOverflowWrapper = (id: string, buttonElement: string, containerHeight: string, closedText: string, openedText: string) => {
     const container = document.getElementById(id)
-    const button = document.getElementById(`toggle-${id}`)
+    const button = document.getElementById(buttonElement)
 
     if(container.style.height === '100%'){
-        container.style.height = '50rem'
+        container.style.height = containerHeight
     } else {
         container.style.height = '100%'
 
     }   
 
-    if(button.innerHTML === 'Less...'){
-        button.innerHTML = 'More...'
-        button.style.marginTop = '0'
+    if(button.innerHTML === openedText){
+        button.innerHTML = closedText
         button.scrollIntoView(false)
     } else {
-        button.innerHTML = 'Less...'
-        button.style.marginTop = '1.5rem'
+        button.innerHTML = openedText
     }
 }

@@ -66,7 +66,8 @@ export const RenderMovies = ({data, type, history, overFlowWrapper, title} :rend
                 <div className="movie__itemTitle">{movie.title}{movie.name}</div>
             </div>)}
         </div>
-        {overFlowWrapper && <Button id={`toggle-${type}`} className='drawer-button' onClick={() => toggleOverflowWrapper(type)}block>More...</Button>}
+        {overFlowWrapper && <Button id={`toggle-${type}`} className='drawer-button' 
+            onClick={() => toggleOverflowWrapper(type, `toggle-${type}`, '50rem', 'More...', 'Less...')}block>More...</Button>}
     </div>}
     </>
     )}
@@ -96,6 +97,7 @@ export const RenderTvShows = ({data, type, history, overFlowWrapper, title} :ren
                 <div className="movie__itemTitle">{series.name}</div>
             </div>)}
         </div>
-        {overFlowWrapper && <Button id={`toggle-${type}`} className='drawer-button' onClick={() => toggleOverflowWrapper(type)}block>More...</Button>}
+        {overFlowWrapper && <Button id={`toggle-${type}`} className='drawer-button' 
+            onClick={() => toggleOverflowWrapper(type, `toggle-${type}`, '50rem', 'More...', 'Less...')}block>More...</Button>}
     </div>}
     </>)}

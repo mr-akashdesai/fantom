@@ -10,7 +10,6 @@ import Sidebar from 'rsuite/Sidebar'
 import NavBar from './components/NavBar/NavBar'
 import ScreenRecorder from './components/ScreenRecorder/ScreenRecorder'
 import HomePage from './components/HomePage/HomePage'
-import Calculator from './components/Calculator/Calculator'
 import ColorPicker from './components/ColorPicker/ColorPicker'
 import Weather from './components/Weather/Weather'
 import Sports from './components/Sports/Sports'
@@ -21,11 +20,11 @@ import { getTheme } from './utils/getTheme'
 import { initialContext, useImmerReducer, Context } from './Context/context'
 import { Reducer } from './Context/reducer'
 import { ITheme } from './components/Settings/Types/ITheme'
+import Dictionary from './components/Dictionary/Dictionary'
 
 const App = () => {
 
     const [state, dispatch] = useImmerReducer(Reducer, initialContext)
-    
     const [theme, setTheme] = useState<'light' | 'dark'>('light')
     const [loading, setLoading] = useState(true)
 
@@ -36,7 +35,8 @@ const App = () => {
 
     useEffect(() => {
         switch(state.themeSetting){
-            case ITheme.System: () => window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
+            case ITheme.System:
+                window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
                 e.matches ? setTheme('dark') : setTheme('light')})
                 break
             case ITheme.Light : setTheme('light')
@@ -57,7 +57,6 @@ const App = () => {
     <Context.Provider value={{state, dispatch}}>
         <CustomProvider theme={theme}>
             <Container>
-
                 <Sidebar style={{ display: 'flex', flexDirection: 'column' }}> 
                     <NavBar  />
                 </Sidebar>
@@ -65,7 +64,7 @@ const App = () => {
                     <Route path="/" element={<Navigate replace to="/homepage" />} />
                     <Route path="/homepage" element={<HomePage />} />
                     <Route path="/screen-recorder" element={<ScreenRecorder/>} />
-                    <Route path="/calculator" element={<Calculator />} />
+                    <Route path="/dictionary" element={<Dictionary />} />
                     <Route path="/color-picker" element={<ColorPicker />} />
                     <Route path="/weather" element={<Weather />} />
                     <Route path="/sports" element={<Sports />} />

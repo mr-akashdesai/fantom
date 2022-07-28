@@ -2,11 +2,8 @@
 import React, { useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Divider, Nav } from 'rsuite'
-import { FaHome, FaRunning } from 'react-icons/fa'
-import {BiVideoRecording} from 'react-icons/bi'
-import {BsCalculatorFill} from 'react-icons/bs'
-import {MdColorLens, MdLocalMovies} from 'react-icons/md'
-import {TiWeatherPartlySunny} from 'react-icons/ti'
+import {GiTrophyCup, GiPopcorn} from 'react-icons/gi'
+import {BsCameraReels, BsBook, BsCloudSun, BsDropletHalf} from 'react-icons/bs'
 import logo from '../../assets/images/logo/fantom-logo-large.svg'
 import TopBar from './TopBar'
 
@@ -36,29 +33,28 @@ const NavBar = () => {
                 </Nav.Item>
                 <Divider />
                 <Nav.Item eventKey="screen-recorder" onClick={() => history('/screen-recorder')}> 
-                    <BiVideoRecording size={iconSize}/>
+                    <BsCameraReels size={iconSize}/>
                 </Nav.Item>
-                <Nav.Item eventKey="calculator" onClick={() => history('/calculator')}>
-                    <BsCalculatorFill size={iconSize} />
+                <Nav.Item eventKey="dictionary" onClick={() => history('/dictionary')}> 
+                    <BsBook size={iconSize}/>
                 </Nav.Item>
                 <Nav.Item eventKey="color-picker" onClick={() => history('/color-picker')}>
-                    <MdColorLens size={iconSize} />
+                    <BsDropletHalf size={iconSize} />
                 </Nav.Item>
                 <Nav.Item eventKey="weather" onClick={() => history('/weather')}>
-                    <TiWeatherPartlySunny size={iconSize} />
+                    <BsCloudSun size={iconSize} />
                 </Nav.Item>
                 <Nav.Item eventKey="sports" onClick={() => history('/sports')}>
-                    <FaRunning size={iconSize} />
+                    <GiTrophyCup size={iconSize} />
                 </Nav.Item>
                 <Nav.Item eventKey="movies" onClick={() => history('/entertainment')}>
-                    <MdLocalMovies size={iconSize} />
+                    <GiPopcorn size={iconSize} />
                 </Nav.Item>
             </Nav>
         </div>
     </div>
     </>
     )
-FaHome
 }
 
 export default NavBar
