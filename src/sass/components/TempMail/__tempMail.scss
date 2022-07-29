@@ -1,0 +1,43 @@
+.tempMail_modalTitle {
+    display: grid;
+    grid-auto-flow: column;
+
+    h3{
+        text-align: end;
+    }
+}
+
+.tempMail__modalBackBtn{
+    cursor: pointer;
+    margin-bottom: 1rem;
+
+    svg {
+        transform: translate(0px, 4px);
+        margin-right: 0.5rem;
+    }
+}
+
+.tempMail_modalBody {
+    label {
+        display: block;
+        padding-bottom: 0.5rem;
+    }
+}
+
+.tempMail__modalButtonContainer{
+    display: grid;
+    grid-auto-flow: column;
+    margin-top: 2rem;
+
+    .tempMail__btnActive {
+        border-bottom: 5px solid;
+        border-radius: 0;
+        color: white;
+    }
+}
+
+.tempMail__modalFooterContainer{
+    button {
+        width: 100%;
+    }
+}

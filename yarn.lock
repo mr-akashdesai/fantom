@@ -30,6 +30,13 @@
   dependencies:
     "regenerator-runtime" "^0.13.4"
 
+"@cemalgnlts/mailjs@^2.0.1":
+  "integrity" "sha512-GXLnUCdFjEQHuJYoCVWeozTIA1eO3ehhKbEs8Kj7eGsdNhMuvNKmZpDVJdXTPHPFLnBJbTvvHwUuE+Eq4+pZJA=="
+  "resolved" "https://registry.npmjs.org/@cemalgnlts/mailjs/-/mailjs-2.0.1.tgz"
+  "version" "2.0.1"
+  dependencies:
+    "node-fetch" "^2.6.1"
+
 "@discoveryjs/json-ext@^0.5.0":
   "integrity" "sha512-dBVuXR082gk3jsFp7Rd/JI4kytwGHecnCoTtXFb7DB6CNHp4rg5k1bhg0nWdLGLnOV71lmDzGQaLMy8iPLY0pw=="
   "resolved" "https://registry.npmjs.org/@discoveryjs/json-ext/-/json-ext-0.5.7.tgz"
@@ -6055,7 +6062,7 @@
   dependencies:
     "semver" "^7.3.5"
 
-"node-fetch@^2.6.7":
+"node-fetch@^2.6.1", "node-fetch@^2.6.7":
   "integrity" "sha512-ZjMPFEfVx5j+y2yF35Kzx5sF7kDzxuDj6ziH4FFbOp87zKDZNx8yExJIb05OGF4Nlt9IHFIMBkRl41VdvcNdbQ=="
   "resolved" "https://registry.npmjs.org/node-fetch/-/node-fetch-2.6.7.tgz"
   "version" "2.6.7"

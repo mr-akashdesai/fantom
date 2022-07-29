@@ -21,6 +21,7 @@ import { initialContext, useImmerReducer, Context } from './Context/context'
 import { Reducer } from './Context/reducer'
 import { ITheme } from './components/Settings/Types/ITheme'
 import Dictionary from './components/Dictionary/Dictionary'
+import TempMail from './components/TempMail/TempMail'
 
 const App = () => {
 
@@ -71,6 +72,7 @@ const App = () => {
                     <Route path="/entertainment" element={<Entertainment />} />
                     <Route path="/movie-details/:id" element={<MovieDetails />} />
                     <Route path="/series-details/:id" element={<SeriesDetails />} />"
+                    <Route path="/temp-mail" element={<TempMail />} />
                 </Routes>
             </Container>
         </CustomProvider>
