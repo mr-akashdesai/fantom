@@ -1,3 +1,17 @@
+.tempMail__container{
+    padding: 1rem;
+    background-color: #15171b;
+    border-radius: 20px;
+    background-color: var(--rs-input-bg);
+    margin-top: 1rem;
+}
+
+.tempMail__headerContainer {
+    border: 1px solid gray;
+    padding: 0.5rem;
+    border-radius: 5px;
+}
+
 .tempMail_modalTitle {
     display: grid;
     grid-auto-flow: column;
@@ -40,4 +54,20 @@
     button {
         width: 100%;
     }
+}
+
+.tempMail__errorMessage{
+    margin-top: 1rem;
+    color: red;
+    svg {
+        transform: translate(0px, 4px);
+        margin-right: 0.5rem;
+    }
+
+}
+
+.tempMail__loginError {
+    float: left;
+    margin-bottom: 1rem;
+    margin-top: 0;
 }
