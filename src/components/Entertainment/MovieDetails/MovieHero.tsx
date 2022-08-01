@@ -1,15 +1,11 @@
 import { format } from 'date-fns'
 import React from 'react'
 import { ReactCountryFlag } from 'react-country-flag'
-import { IoMdArrowRoundBack } from 'react-icons/io'
 import { RiStarSFill } from 'react-icons/ri'
-import { useNavigate } from 'react-router-dom'
-import { Button } from 'rsuite'
 import defaultBackdrop from '../../../assets/images/default-hero-image.jpeg'
 
 const MovieHero = (movie: any) => {
 
-    const history = useNavigate()
     const Genres = () => {
         const genres = new Array<string>(movie.genres.map((genre: { name: any }) => genre.name))
         return genres.toString()
@@ -19,7 +15,6 @@ const MovieHero = (movie: any) => {
     <>
     {!!movie &&
         <div className="hero__container">
-            <Button active className="hero__backBtn" appearance="subtle" onClick={() => history(-1)}><IoMdArrowRoundBack size={'2rem'}/></Button>
             <img className="hero__backdropImage" src={`${process.env.MOVIE_DB_IMAGE_URL}${movie.backdrop_path}`}
                 onError={({ currentTarget }) => {
                 currentTarget.onerror = null // prevents looping

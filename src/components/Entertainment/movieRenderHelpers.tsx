@@ -5,8 +5,6 @@ import { Button } from 'rsuite'
 import { toggleOverflowWrapper } from '../../utils/toggleOverflowWrapper'
 import noPicFound from '../../assets/images/no-image.jpeg'
 
-
-
 export enum SectionType {
     trending = 'trending',
     popular = 'popular',
@@ -35,8 +33,8 @@ type renderProps ={
 
 export const redirectToCorrectMediaType = (mediaType: string, id: number) => {
     switch (mediaType) {
-        case 'movie': return `/movie-details/${id}`
-        case 'tv': return `/series-details/${id}`
+        case 'movie': return `movie-details/${id}`
+        case 'tv': return `series-details/${id}`
     }
 } 
 
@@ -51,7 +49,7 @@ export const RenderMovies = ({data, type, history, overFlowWrapper, title} :rend
             </div>
         <div id={type} className={overFlowWrapper ? 'movie__container movie__overflowWrapper' : 'movie__container'}>
             {data && data.results.map((movie: any, index: number) => 
-            <div key={index} className="movie__itemContainer" onClick={() => history(`/movie-details/${movie.id}`)}>
+            <div key={index} className="movie__itemContainer" onClick={() => history(`/entertainment/movie-details/${movie.id}`)}>
                 <img className="movie__posterImage" 
                     src={`${process.env.MOVIE_DB_IMAGE_SMALL_URL}${movie.poster_path}`} 
                     onError={({ currentTarget }) => {
@@ -82,7 +80,7 @@ export const RenderTvShows = ({data, type, history, overFlowWrapper, title} :ren
             </div>
         <div id={type} className={overFlowWrapper ? 'movie__container movie__overflowWrapper' : 'movie__container'}>
         {data && data.results.map((series: any, index: number) => 
-            <div key={index} className="movie__itemContainer" onClick={() => history(`/series-details/${series.id}`)}>
+            <div key={index} className="movie__itemContainer" onClick={() => history(`/entertainment/series-details/${series.id}`)}>
                 <img className="movie__posterImage" 
                     src={`${process.env.MOVIE_DB_IMAGE_SMALL_URL}${series.poster_path}`}
                     onError={({ currentTarget }) => {

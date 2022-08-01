@@ -22,7 +22,6 @@ const SearchModal = ({open, handleClose, suggestions, history, value, ...inputPr
         <InputGroup.Button disabled>
             <GoSearch />
         </InputGroup.Button>
-    {/* <Input placeholder='Search movie or series...' value={value} {...inputProps} /> */}
     </InputGroup>
 </Modal.Header>
 <Modal.Body>
@@ -31,7 +30,7 @@ const SearchModal = ({open, handleClose, suggestions, history, value, ...inputPr
         {suggestions.filter((suggestion: any) => suggestion.media_type != 'person').map((suggestion: any, index: number) => {
             switch(suggestion.media_type) {
             case 'movie': return (
-            <div key={index} className="movie__suggestionItem" onClick={() => history(`/movie-details/${suggestion.id}`)}>
+            <div key={index} className="movie__suggestionItem" onClick={() => history(`movie-details/${suggestion.id}`)}>
             <img className="movie__suggestionItemImage" 
                 src={`${process.env.MOVIE_DB_IMAGE_SMALL_URL}${suggestion.poster_path}`}
                 onError={({ currentTarget }) => {
@@ -41,7 +40,7 @@ const SearchModal = ({open, handleClose, suggestions, history, value, ...inputPr
                 {suggestion.title}&nbsp;{suggestion.release_date && format(new Date(suggestion.release_date), '(yyyy)')}
             </div>)
             case 'tv': return (
-            <div key={index} className="movie__suggestionItem"onClick={() => history(`/series-details/${suggestion.id}`)}>
+            <div key={index} className="movie__suggestionItem"onClick={() => history(`series-details/${suggestion.id}`)}>
                 <img className="movie__suggestionItemImage" 
                 src={`${process.env.MOVIE_DB_IMAGE_SMALL_URL}${suggestion.poster_path}`}
                 onError={({ currentTarget }) => {

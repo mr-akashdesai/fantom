@@ -98,7 +98,7 @@ const Entertainment = () => {
     const TypeToggle = () =>   
         <div id={'button-container'} className="movies__buttonContainer">
             <ButtonToolbar>
-            <Button className="movies__paginationBtn" onClick={() => setPageNumber(pageNumber - 1 > 0 ? pageNumber - 1 : 1)}><IoIosArrowBack/></Button>
+            <Button className="movies__paginationBtn" onClick={() => setPageNumber(Math.max(1, pageNumber - 1))}><IoIosArrowBack/></Button>
             <div className="movies__pageNumber">
             <DebounceInput
                 value={pageNumber}

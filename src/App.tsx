@@ -22,6 +22,7 @@ import { Reducer } from './Context/reducer'
 import { ITheme } from './components/Settings/Types/ITheme'
 import Dictionary from './components/Dictionary/Dictionary'
 import TempMail from './components/TempMail/TempMail'
+import MailViewMessage from './components/TempMail/MailViewMessage'
 
 const App = () => {
 
@@ -70,9 +71,10 @@ const App = () => {
                     <Route path="/weather" element={<Weather />} />
                     <Route path="/sports" element={<Sports />} />
                     <Route path="/entertainment" element={<Entertainment />} />
-                    <Route path="/movie-details/:id" element={<MovieDetails />} />
-                    <Route path="/series-details/:id" element={<SeriesDetails />} />"
+                    <Route path="/entertainment/movie-details/:id" element={<MovieDetails />} />
+                    <Route path="/entertainment/series-details/:id" element={<SeriesDetails />} />"
                     <Route path="/temp-mail" element={<TempMail />} />
+                    <Route path="/temp-mail/view/:id" element={<MailViewMessage />} />
                 </Routes>
             </Container>
         </CustomProvider>

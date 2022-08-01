@@ -1,12 +1,12 @@
 import React from 'react'
 import { RenderTvShows, SectionType } from '../movieRenderHelpers'
 
-type SeriesRecommendationsProps = {
-    seriesRecommendations: any;
-    history: any;
-}
+// type SeriesRecommendationsProps = {
+//     seriesRecommendations: any;
+//     history: any;
+// }
 
-const SeriesRecommendations = ({seriesRecommendations, history} : SeriesRecommendationsProps) => {
+const SeriesRecommendations = ({seriesRecommendations, history} : any) => {
     return (
         <>
         {!!seriesRecommendations &&

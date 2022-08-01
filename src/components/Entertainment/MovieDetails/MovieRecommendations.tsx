@@ -1,12 +1,13 @@
 import React from 'react'
 import { RenderMovies, SectionType } from '../movieRenderHelpers'
 
-type MovieRecommendationsProps = {
-    movieRecommendations: any;
-    history: any;
-}
+// type MovieRecommendationsProps = {
+//     movieRecommendations: any;
+//     history: any;
+//     location: any
+// }
 
-const MovieRecommendations = ({movieRecommendations, history} : MovieRecommendationsProps) => {
+const MovieRecommendations = ({movieRecommendations, history}: any) => {
     return (
         <div className="recommendations__container">
             <RenderMovies 
