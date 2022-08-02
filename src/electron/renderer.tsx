@@ -36,7 +36,8 @@ const container = document.getElementById('app')
 const root = createRoot(container)
 
 root.render(
-<Router>
+  <Router>
     <App />
-</Router>)
+  </Router>
+)
 console.log('👋 Hello')

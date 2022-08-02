@@ -1,73 +1,161 @@
-.tempMail__container{
-    padding: 1rem;
-    background-color: #15171b;
-    border-radius: 20px;
-    background-color: var(--rs-input-bg);
-    margin-top: 1rem;
+.tempMail__container {
+  padding: 1rem;
+  background-color: #15171b;
+  border-radius: 20px;
+  background-color: var(--rs-input-bg);
+  margin-top: 1rem;
+  height: 100%;
 }
 
 .tempMail__headerContainer {
-    border: 1px solid gray;
-    padding: 0.5rem;
+  padding: 0.5rem;
+  display: grid;
+  grid-auto-flow: column;
+}
+
+.tempMail__headerReveal {
+  display: grid;
+  grid-auto-flow: column;
+}
+
+.tempMail__messageContainer {
+  font-family: 'Avenir Next';
+  padding: 0.75rem 1rem;
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 31%;
+  grid-gap: 1rem;
+  border-radius: 5px;
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.tempMail__messageBody {
+  white-space: pre-wrap;
+}
+
+.tempMail__messageContents {
+  height: 1.25rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
+.tempMail__messageDate {
+  justify-self: end;
+}
+
+.tempMail__messageUnRead {
+  background: var(--rs-menuitem-active-bg);
+
+  .tempMail__messageSubject,
+  .tempMail__messageDate,
+  .tempMail__messageSender {
+    font-weight: 600;
+  }
+}
+
+.tempMail__messageRead {
+  background: var(--rs-list-border);
+  color: var(--rs-gray-200);
+  @media (prefers-color-scheme: light) {
+    color: var(--rs-gray-700);
+  }
+}
+
+.tempMail__attachments {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: 20%;
+  grid-gap: 1rem;
+  overflow: scroll;
+  margin-top: 1rem;
+}
+
+.tempMail__attachmentContainer {
+  width: 10rem;
+  overflow: hidden;
+  background-color: var(--rs-input-bg);
+  padding: 0.75rem;
+  border-radius: 5px;
+
+  img {
+    width: 100%;
+    height: 5rem;
+    object-fit: cover;
     border-radius: 5px;
+  }
+
+  a {
+    margin-top: 1rem;
+    color: var(--rs-text-primary);
+    height: 1.25rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+  }
 }
 
 .tempMail_modalTitle {
-    display: grid;
-    grid-auto-flow: column;
+  display: grid;
+  grid-auto-flow: column;
 
-    h3{
-        text-align: end;
-    }
+  h3 {
+    text-align: end;
+  }
 }
 
-.tempMail__modalBackBtn{
-    cursor: pointer;
-    margin-bottom: 1rem;
+.tempMail__modalBackBtn {
+  cursor: pointer;
+  margin-bottom: 1rem;
 
-    svg {
-        transform: translate(0px, 4px);
-        margin-right: 0.5rem;
-    }
+  svg {
+    transform: translate(0px, 4px);
+    margin-right: 0.5rem;
+  }
 }
 
 .tempMail_modalBody {
-    label {
-        display: block;
-        padding-bottom: 0.5rem;
-    }
+  label {
+    display: block;
+    padding-bottom: 0.5rem;
+  }
 }
 
-.tempMail__modalButtonContainer{
-    display: grid;
-    grid-auto-flow: column;
-    margin-top: 2rem;
+.tempMail__modalButtonContainer {
+  display: grid;
+  grid-auto-flow: column;
+  margin-top: 2rem;
 
-    .tempMail__btnActive {
-        border-bottom: 5px solid;
-        border-radius: 0;
-        color: white;
-    }
+  .tempMail__btnActive {
+    border-bottom: 5px solid;
+    border-radius: 0;
+    color: white;
+  }
 }
 
-.tempMail__modalFooterContainer{
-    button {
-        width: 100%;
-    }
+.tempMail__modalFooterContainer {
+  button {
+    width: 100%;
+  }
 }
 
-.tempMail__errorMessage{
-    margin-top: 1rem;
-    color: red;
-    svg {
-        transform: translate(0px, 4px);
-        margin-right: 0.5rem;
-    }
-
+.tempMail__errorMessage {
+  margin-top: 1rem;
+  color: red;
+  svg {
+    transform: translate(0px, 4px);
+    margin-right: 0.5rem;
+  }
 }
 
 .tempMail__loginError {
-    float: left;
-    margin-bottom: 1rem;
-    margin-top: 0;
+  float: left;
+  margin-bottom: 1rem;
+  margin-top: 0;
 }

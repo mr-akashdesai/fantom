@@ -1,18 +1,17 @@
-.settings__container{
-    position: absolute;
-    right: 1rem;
-    z-index: 150;
-    padding: 1rem;
-    border-radius: 5px;
-    
-    @media (prefers-color-scheme: dark) {
-        background: #20252C; 
-        color: #98A0B1;
-     }
-     
-     @media (prefers-color-scheme: light) {
-       background: #b0b0b0; 
-       color: black;
-     }
+.settings__container {
+  position: absolute;
+  right: 1rem;
+  z-index: 150;
+  padding: 1rem;
+  border-radius: 5px;
 
+  @media (prefers-color-scheme: dark) {
+    background: #20252c;
+    color: #98a0b1;
+  }
+
+  @media (prefers-color-scheme: light) {
+    background: #b0b0b0;
+    color: black;
+  }
 }

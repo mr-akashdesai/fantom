@@ -1,52 +1,52 @@
 .navBar__container {
-    height: 100%;
-    width: 5rem;
-    position: fixed;
-    padding-top: 8%;
-    z-index: 50;
-    -webkit-user-select: text;
-    -webkit-app-region: no-drag;
+  height: 100%;
+  width: 5rem;
+  position: fixed;
+  padding-top: 8%;
+  z-index: 50;
+  -webkit-user-select: text;
+  -webkit-app-region: no-drag;
 
+  @media (prefers-color-scheme: dark) {
+    background: #20252c;
+    color: #98a0b1;
+  }
+
+  @media (prefers-color-scheme: light) {
+    background: #282828;
+    color: black;
+  }
+
+  .rs-divider-horizontal {
+    margin-left: 1rem;
+    margin-right: 1rem;
+  }
+
+  .rs-nav-subtle.rs-nav-vertical .rs-nav-bar {
+    background: none;
+  }
+
+  .rs-nav-subtle .rs-nav-item {
+    margin-bottom: 1rem;
+  }
+
+  .rs-nav-subtle .rs-nav-item:focus,
+  .rs-nav-subtle .rs-nav-item:hover {
+    color: #fff;
+  }
+
+  .rs-nav-subtle .rs-nav-item.rs-nav-item-active:before {
     @media (prefers-color-scheme: dark) {
-         background: #20252C; 
-         color: #98A0B1;
-      }
-      
-      @media (prefers-color-scheme: light) {
-        background: #282828; 
-        color: black;
-      }
-
-    .rs-divider-horizontal {
-        margin-left: 1rem;
-        margin-right: 1rem;
+      background-color: #fff;
     }
 
-    .rs-nav-subtle.rs-nav-vertical .rs-nav-bar {
-      background: none;
+    @media (prefers-color-scheme: light) {
+      background-color: #373737;
     }
-
-    .rs-nav-subtle .rs-nav-item {
-      margin-bottom: 1rem;
-    }
-
-    .rs-nav-subtle .rs-nav-item:focus, .rs-nav-subtle .rs-nav-item:hover {
-      color: #fff;
-    }
-
-    .rs-nav-subtle .rs-nav-item.rs-nav-item-active:before {
-      @media (prefers-color-scheme: dark) {
-        background-color:#fff;
-     }
-     
-     @media (prefers-color-scheme: light) {
-        background-color: #373737;
-     }
-    }
-    .rs-nav-item.rs-nav-item-active  {
-      color: #fff;
-    }
-      
+  }
+  .rs-nav-item.rs-nav-item-active {
+    color: #fff;
+  }
 }
 
 .rs-container-has-sidebar {
@@ -64,9 +64,9 @@
 }
 
 .navBar__text {
-    font-size: 1.5rem;
-    text-align: center;
-    margin-top: 0.25rem;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-top: 0.25rem;
 }
 
 .navBar__logo {
@@ -82,30 +82,30 @@
   z-index: 100;
 
   @media (prefers-color-scheme: dark) {
-    background: #13161a; 
-    color: #98A0B1;
- }
- 
- @media (prefers-color-scheme: light) {
-   background: #343434; 
-   color: black;
- }
+    background: #13161a;
+    color: #98a0b1;
+  }
 
- .rs-btn-subtle{
-  background-color: transparent !important;
-}
+  @media (prefers-color-scheme: light) {
+    background: #343434;
+    color: black;
+  }
+
+  .rs-btn-subtle {
+    background-color: transparent !important;
+  }
 
   button:hover {
     background: transparent;
   }
 
- .topBar__navButtonContainer{
-  padding-top: 0.1rem;
-  padding-left: 5rem;
- }
+  .topBar__navButtonContainer {
+    padding-top: 0.1rem;
+    padding-left: 5rem;
+  }
 
- .topBar__settings {
-  float: right;
-  padding-right: 0.5rem;
- }
+  .topBar__settings {
+    float: right;
+    padding-right: 0.5rem;
+  }
 }

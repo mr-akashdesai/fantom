@@ -1,73 +1,72 @@
-.dictionary__container{
-    padding-bottom: 2rem;
+.dictionary__container {
+  padding-bottom: 2rem;
 }
 
-.dictionary__definitionContainer{
-    padding: 1rem;
-    background-color: #15171b;
-    border-radius: 20px;
-    background-color: var(--rs-input-bg);
-    margin-top: 1rem;
+.dictionary__definitionContainer {
+  padding: 1rem;
+  background-color: #15171b;
+  border-radius: 20px;
+  background-color: var(--rs-input-bg);
+  margin-top: 1rem;
 }
 
-.dictionary__speaker{
-    cursor: pointer;
-    position: absolute;
-    transform: translate(10px, 5px);
+.dictionary__speaker {
+  cursor: pointer;
+  position: absolute;
+  transform: translate(10px, 5px);
 }
 
 .dictionary__error {
-    text-align: center;
+  text-align: center;
 }
 
 .dictionary__center {
-    position: absolute;
-    top: 45%;
-    width: 80%;
+  position: absolute;
+  top: 45%;
+  width: 80%;
 
-    input {
-        height: 4rem;
-    }
+  input {
+    height: 4rem;
+  }
 
-    button {
-        height: 100% !important;
-    }
+  button {
+    height: 100% !important;
+  }
 }
 
 .dictionary__word::first-letter {
-    text-transform:capitalize;
+  text-transform: capitalize;
 }
 
 .dictionary__word {
-    margin: 2rem 0rem;
-    font-weight: 600;
-    font-size: 2rem;
-    font-family: "Avenir Next";
+  margin: 2rem 0rem;
+  font-weight: 600;
+  font-size: 2rem;
+  font-family: 'Avenir Next';
 }
 
 .dictionary__definitionWrapper {
-    height: 2rem;
-    overflow: hidden;
+  height: 2rem;
+  overflow: hidden;
 }
 
 .dictionary__definitionItem {
-    margin-bottom: 1rem;
-    display: inline-flex;
-    width: 100%;
-    
-    .dictionary__definitionIndex {
-        @media (prefers-color-scheme: dark) {
-            color: var(--rs-gray-300);
-          }
-          
-          @media (prefers-color-scheme: light) {
-            color: var(--rs-gray-800);
-        
-          }
-        margin-right: 1rem;
+  margin-bottom: 1rem;
+  display: inline-flex;
+  width: 100%;
+
+  .dictionary__definitionIndex {
+    @media (prefers-color-scheme: dark) {
+      color: var(--rs-gray-300);
     }
+
+    @media (prefers-color-scheme: light) {
+      color: var(--rs-gray-800);
+    }
+    margin-right: 1rem;
+  }
 }
 
-.dictionary__synonyms{
-    margin-top: 1rem;
+.dictionary__synonyms {
+  margin-top: 1rem;
 }

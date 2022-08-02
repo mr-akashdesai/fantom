@@ -7,17 +7,17 @@ import { RenderMovies, SectionType } from '../movieRenderHelpers'
 //     location: any
 // }
 
-const MovieRecommendations = ({movieRecommendations, history}: any) => {
-    return (
-        <div className="recommendations__container">
-            <RenderMovies 
-                data={movieRecommendations} 
-                type={SectionType.similar} 
-                history={history}
-                title={'You might also like 👀 ....'}
-            />
-        </div>
-    )
+const MovieRecommendations = ({ movieRecommendations, history }: any) => {
+  return (
+    <div className='recommendations__container'>
+      <RenderMovies
+        data={movieRecommendations}
+        type={SectionType.similar}
+        history={history}
+        title={'You might also like 👀 ....'}
+      />
+    </div>
+  )
 }
 
 export default MovieRecommendations

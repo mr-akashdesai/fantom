@@ -24,14 +24,13 @@
   justify-self: flex-end;
   border-radius: 0px 0px 5px 5px;
   width: 14rem;
-  -webkit-box-shadow: 0px 0px 20px -2px rgba(0,0,0,0.5); 
+  -webkit-box-shadow: 0px 0px 20px -2px rgba(0, 0, 0, 0.5);
   box-shadow: 0px 0px 20px -2px rgb(0 0 0 / 50%);
-
 
   @media (prefers-color-scheme: dark) {
     background-color: #30353f;
   }
-  
+
   @media (prefers-color-scheme: light) {
     background-color: #e4e4e4;
   }
@@ -45,176 +44,174 @@
   cursor: pointer;
 }
 
-.currentWeather__container{
-    margin-top: 3rem;
-    border-radius: 20px;
-    background-color: #30353f;
-    height: 10.5rem;
+.currentWeather__container {
+  margin-top: 3rem;
+  border-radius: 20px;
+  background-color: #30353f;
+  height: 10.5rem;
 
-    @media (prefers-color-scheme: dark) {
-        background-color: #30353f;
-      }
-      
-      @media (prefers-color-scheme: light) {
-        background-color: #e4e4e4;
-      }
-      
-    div {
-        display: inline-block;
-    }
+  @media (prefers-color-scheme: dark) {
+    background-color: #30353f;
+  }
+
+  @media (prefers-color-scheme: light) {
+    background-color: #e4e4e4;
+  }
+
+  div {
+    display: inline-block;
+  }
 }
 
 .currentWeather__location {
-    display: block !important;
-    font-size: 1rem;
-    font-variant: all-small-caps;
-    display: block;
-    border-radius: 20px 20px 0 0;
-    padding: 0.5rem 1rem;
+  display: block !important;
+  font-size: 1rem;
+  font-variant: all-small-caps;
+  display: block;
+  border-radius: 20px 20px 0 0;
+  padding: 0.5rem 1rem;
 
-    @media (prefers-color-scheme: dark) {
-        background: black;
-      }
-      
-      @media (prefers-color-scheme: light) {
-        background: white;
-      }
+  @media (prefers-color-scheme: dark) {
+    background: black;
+  }
+
+  @media (prefers-color-scheme: light) {
+    background: white;
+  }
 }
 
 .currentWeather__status {
-    font-weight: 300;
-    position: absolute;
-    font-size: 1.75rem;
-    padding-left: 1rem;
+  font-weight: 300;
+  position: absolute;
+  font-size: 1.75rem;
+  padding-left: 1rem;
 }
 
 .currentWeather__feelsLikeLabel {
-    position: absolute;
-    margin-top: 2.7rem;
-    font-size: 0.6rem;
-    padding-left: 1rem;
-    font-variant: all-petite-caps;
-    @media (prefers-color-scheme: dark) {
-        color: #e4e4e4;
-      }
-      
-      @media (prefers-color-scheme: light) {
-        color: #30353f;
-      }
+  position: absolute;
+  margin-top: 2.7rem;
+  font-size: 0.6rem;
+  padding-left: 1rem;
+  font-variant: all-petite-caps;
+  @media (prefers-color-scheme: dark) {
+    color: #e4e4e4;
+  }
+
+  @media (prefers-color-scheme: light) {
+    color: #30353f;
+  }
 }
 
 .currentWeather__lastUpdatedLabel {
-    position: absolute;
-    margin-top: 5rem;
-    font-size: 0.6rem;
-    padding-left: 1rem;
-    font-variant: all-petite-caps;
-    @media (prefers-color-scheme: dark) {
-        color: #e4e4e4;
-      }
-      
-      @media (prefers-color-scheme: light) {
-        color: #30353f;
-      }
+  position: absolute;
+  margin-top: 5rem;
+  font-size: 0.6rem;
+  padding-left: 1rem;
+  font-variant: all-petite-caps;
+  @media (prefers-color-scheme: dark) {
+    color: #e4e4e4;
+  }
+
+  @media (prefers-color-scheme: light) {
+    color: #30353f;
+  }
 }
 
 .currentWeather__highLow {
-    position: absolute;
-    margin-top: 5.5rem;
-    font-variant: all-petite-caps;
-    margin-left: 2rem;
+  position: absolute;
+  margin-top: 5.5rem;
+  font-variant: all-petite-caps;
+  margin-left: 2rem;
 
-    @media (prefers-color-scheme: dark) {
-        color: #e4e4e4;
-      }
-      
-      @media (prefers-color-scheme: light) {
-        color: #30353f;
-      }
+  @media (prefers-color-scheme: dark) {
+    color: #e4e4e4;
+  }
+
+  @media (prefers-color-scheme: light) {
+    color: #30353f;
+  }
 }
 
-
 .currentWeather__feelsLike {
-    font-weight: 400;
-    position: absolute;
-    margin-top: 3.5rem;
-    padding-left: 1rem;
+  font-weight: 400;
+  position: absolute;
+  margin-top: 3.5rem;
+  padding-left: 1rem;
 }
 
 .currentWeather__lastUpdated {
-    font-weight: 400;
-    position: absolute;
-    margin-top: 5.75rem;
-    padding-left: 1rem;
-    font-size: 0.75rem;
+  font-weight: 400;
+  position: absolute;
+  margin-top: 5.75rem;
+  padding-left: 1rem;
+  font-size: 0.75rem;
 }
 
 .currentWeather__tempContainer {
-    float: right;
-    padding-right: 2rem;
+  float: right;
+  padding-right: 2rem;
 }
 
 .currentWeather__temperature {
-    font-weight: 400;
-    padding-top: 2rem;
-    font-size: 2.5rem;
-    float: right;
+  font-weight: 400;
+  padding-top: 2rem;
+  font-size: 2.5rem;
+  float: right;
 }
 
 .currentWeather__icon {
-    img {
-        padding-right: 0.5rem;
-        padding-top: 2rem;
-    }
+  img {
+    padding-right: 0.5rem;
+    padding-top: 2rem;
+  }
 }
 
-.currentWeather__localTime{
+.currentWeather__localTime {
   float: right;
 }
 
 .forecast__container {
-    margin-top: 2rem;
-    padding: 1rem;
-    border-radius: 20px;
-    display: flex;
+  margin-top: 2rem;
+  padding: 1rem;
+  border-radius: 20px;
+  display: flex;
 
+  @media (prefers-color-scheme: dark) {
+    background-color: #30353f;
+  }
 
-    @media (prefers-color-scheme: dark) {
-        background-color: #30353f;
-      }
-      
-      @media (prefers-color-scheme: light) {
-        background-color: #e4e4e4;
-      }
+  @media (prefers-color-scheme: light) {
+    background-color: #e4e4e4;
+  }
 
-    button {
-        display: inline-flex;
-        padding: 0;
-        margin: auto;
-    }
+  button {
+    display: inline-flex;
+    padding: 0;
+    margin: auto;
+  }
 }
 
 .forecast__hourContainer {
-    padding: 1rem 0rem;
-    display: inline-flex;
-    width: 80%;
-    overflow-x: scroll;
-    scroll-behavior: smooth;
+  padding: 1rem 0rem;
+  display: inline-flex;
+  width: 80%;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
 
-    &::-webkit-scrollbar-track {
-      @media (prefers-color-scheme: dark) {
-          background-color: #30353f;
-        }
-        
-        @media (prefers-color-scheme: light) {
-          background-color: #e4e4e4;
-        }
+  &::-webkit-scrollbar-track {
+    @media (prefers-color-scheme: dark) {
+      background-color: #30353f;
     }
+
+    @media (prefers-color-scheme: light) {
+      background-color: #e4e4e4;
+    }
+  }
 }
 
 .forecast__hourlyForecast {
-    text-align: center;
-    font-size: 0.75rem;
-    font-weight: 300;
-    font-variant: all-small-caps;
+  text-align: center;
+  font-size: 0.75rem;
+  font-weight: 300;
+  font-variant: all-small-caps;
 }

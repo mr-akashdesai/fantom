@@ -5,18 +5,17 @@ import { IContext } from './IContext'
 import { Actions } from './reducer'
 
 export const initialContext: IContext = {
-    themeSetting: ITheme.System,
+  themeSetting: ITheme.System,
 }
 
 export const Context = React.createContext<{
-  state: IContext,
-  dispatch: React.Dispatch<Actions>,
-}>
-  ({
-    dispatch: () => undefined,
-    state: initialContext,
-  })
+  state: IContext
+  dispatch: React.Dispatch<Actions>
+}>({
+  dispatch: () => undefined,
+  state: initialContext,
+})
 
-export const useImmerReducer = (reducer: any, initialState: IContext) : any=> {
+export const useImmerReducer = (reducer: any, initialState: IContext): any => {
   return React.useReducer(produce(reducer), initialState)
 }

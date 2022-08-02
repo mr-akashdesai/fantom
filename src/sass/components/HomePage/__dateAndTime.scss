@@ -1,42 +1,42 @@
-.dateAndTime__container{
-    position: absolute;
-    right: 0;
-    top: 5rem;
-    padding: 1rem;
-    border-radius: 1rem 0rem 0rem 1rem;
-    z-index: 1;
-    text-align: center;
-    font-family: 'Avenir Next';
+.dateAndTime__container {
+  position: absolute;
+  right: 0;
+  top: 5rem;
+  padding: 1rem;
+  border-radius: 1rem 0rem 0rem 1rem;
+  z-index: 1;
+  text-align: center;
+  font-family: 'Avenir Next';
 
-    .react-clock {
-        margin: auto;
+  .react-clock {
+    margin: auto;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    background: rgba(62, 62, 62, 0.5);
+    .react-clock__face {
+      background-color: rgba(0, 0, 0, 0.8);
     }
 
-    @media (prefers-color-scheme: dark) {
-        background: rgba(62, 62, 62, 0.5);
-        .react-clock__face {
-            background-color: rgba(0, 0, 0, 0.8);
-        }
-
-        .react-clock__hour-hand__body, .react-clock__minute-hand__body {
-            background-color: lightgrey;
-        }
-
-        .react-clock__mark__body{
-            background-color: lightgrey;
-        }
-    
-      }
-      
-      @media (prefers-color-scheme: light) {
-        background: rgba(226, 226, 226, 0.5);
-        .react-clock__face {
-            background-color: rgba(255, 255, 255, 0.8);
-        }
-        
-      }
-
-    .dateAndTime__date, .dateAndTime__time {
-        padding: 0.75rem 0rem;
+    .react-clock__hour-hand__body,
+    .react-clock__minute-hand__body {
+      background-color: lightgrey;
     }
+
+    .react-clock__mark__body {
+      background-color: lightgrey;
+    }
+  }
+
+  @media (prefers-color-scheme: light) {
+    background: rgba(226, 226, 226, 0.5);
+    .react-clock__face {
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+  }
+
+  .dateAndTime__date,
+  .dateAndTime__time {
+    padding: 0.75rem 0rem;
+  }
 }

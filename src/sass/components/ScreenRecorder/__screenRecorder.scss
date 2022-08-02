@@ -1,52 +1,52 @@
 .screenRecorder__pickSourceContainer {
-    padding-top: 2rem;
+  padding-top: 2rem;
 
-    .rs-btn-icon-with-text.rs-btn-lg.rs-btn-icon-placement-left {
-        padding: 10px 16px 10px 0px;
-    }
+  .rs-btn-icon-with-text.rs-btn-lg.rs-btn-icon-placement-left {
+    padding: 10px 16px 10px 0px;
+  }
 }
 
-.screenRecorder__imagePreview  {
-    width: 5rem;
-    float: right;
+.screenRecorder__imagePreview {
+  width: 5rem;
+  float: right;
 }
 
 .screenRecorder__imagePreviewContainer {
-    display: flow-root;
-    cursor: pointer;
+  display: flow-root;
+  cursor: pointer;
 }
 
-.screenRecorder__modalButtonGroup{
-    padding-top: 1rem;
+.screenRecorder__modalButtonGroup {
+  padding-top: 1rem;
 }
 
 .screenRecorder__button {
-    width: 10rem;
+  width: 10rem;
 }
 
 .screenRecorder__startBtn {
-    margin-right: 1rem;
+  margin-right: 1rem;
 }
 
 .screenRecorder__videoPlayer {
-    width: 100%;
-    max-height: 27.5rem;
-    object-fit: contain;
-    display: grid;
-    margin: auto;
+  width: 100%;
+  max-height: 27.5rem;
+  object-fit: contain;
+  display: grid;
+  margin: auto;
 }
 
 .screenRecorder__videoContainer {
-    padding: 2rem 0rem;
+  padding: 2rem 0rem;
 }
 
 .screenRecorder__recordingControls {
-    text-align: end;
+  text-align: end;
 }
 
 .screenRecorder__emoji {
-    font-size: 1.1rem;
-    position: absolute;
-    padding-left: 0.75rem;
-    margin-top: -0.25rem;
+  font-size: 1.1rem;
+  position: absolute;
+  padding-left: 0.75rem;
+  margin-top: -0.25rem;
 }

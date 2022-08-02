@@ -6,23 +6,28 @@ import { Button } from 'rsuite'
 import Settings from '../Settings/Settings'
 
 const TopBar = () => {
+  const [openSettings, setOpenSettings] = useState(false)
 
-    const [openSettings, setOpenSettings] = useState(false)
+  const navigate = useNavigate()
 
-    const navigate = useNavigate()
-
-    return (
-        <div className="topBar__container">
-            <span className="topBar__navButtonContainer">
-            <Button appearance="subtle" onClick={() => navigate(-1)}><HiOutlineArrowSmLeft size={'1.25rem'}/></Button>
-            <Button appearance="subtle" onClick={() => navigate(+1)}><HiOutlineArrowSmRight size={'1.25rem'}/></Button>
-            </span>
-            <span className="topBar__settings">
-            <Button appearance="subtle" onClick={() => setOpenSettings(true)}><IoMdSettings size={'1.25rem'}/></Button>
-            </span>
-            {openSettings && <Settings setOpenSettings={setOpenSettings} />}
-        </div>
-    )
+  return (
+    <div className='topBar__container'>
+      <span className='topBar__navButtonContainer'>
+        <Button appearance='subtle' onClick={() => navigate(-1)}>
+          <HiOutlineArrowSmLeft size={'1.25rem'} />
+        </Button>
+        <Button appearance='subtle' onClick={() => navigate(+1)}>
+          <HiOutlineArrowSmRight size={'1.25rem'} />
+        </Button>
+      </span>
+      <span className='topBar__settings'>
+        <Button appearance='subtle' onClick={() => setOpenSettings(true)}>
+          <IoMdSettings size={'1.25rem'} />
+        </Button>
+      </span>
+      {openSettings && <Settings setOpenSettings={setOpenSettings} />}
+    </div>
+  )
 }
 
 export default TopBar
