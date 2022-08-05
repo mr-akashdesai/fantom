@@ -1,4 +1,4 @@
-export const loginWithToken = async (token: string, mailjs: any) => {
+export const loginWithToken = async (token: string, mailjs: any, setStorage?: any) => {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore
   mailjs.token = token
@@ -10,6 +10,7 @@ export const loginWithToken = async (token: string, mailjs: any) => {
 
   mailjs.id = res.data.id
   mailjs.address = res.data.address
+  setStorage && setStorage({ quota: res.data.quota, used: res.data.used })
 
   return mailjs
 }

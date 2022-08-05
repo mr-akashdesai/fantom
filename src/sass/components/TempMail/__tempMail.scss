@@ -11,11 +11,52 @@
   padding: 0.5rem;
   display: grid;
   grid-auto-flow: column;
+
+  .tempMail__headerStorage {
+    font-variant: small-caps;
+  }
+
+  .rs-progress-line {
+    padding: 0;
+  }
+
+  .rs-progress-line-inner {
+    background: #afd4e1;
+  }
 }
 
-.tempMail__headerReveal {
+.tempMail__headerTitle {
+  display: inline-flex;
+  .tempMail__headerAddress {
+    display: flex;
+    font-size: 0.75rem;
+    cursor: pointer;
+    margin-left: 1rem;
+    margin-top: 1rem;
+    color: var(--rs-gray-200);
+    @media (prefers-color-scheme: light) {
+      color: var(--rs-gray-700);
+    }
+
+    svg {
+      margin-left: 0.25rem;
+      transform: translate(0px, 3px);
+    }
+  }
+
+  .tempMail__headerAddress:hover {
+    color: var(--rs-btn-default-active-bg);
+  }
+}
+
+.tempMail__headerReveal,
+.tempMail__messageHeader {
   display: grid;
   grid-auto-flow: column;
+}
+
+.tempMail__mailViewControls {
+  justify-self: end;
 }
 
 .tempMail__messageContainer {
@@ -29,6 +70,29 @@
   margin-bottom: 0.5rem;
   overflow: hidden;
   cursor: pointer;
+}
+
+.tempMail__messageSenderContainer {
+  padding: 0.75rem 1rem;
+  background-color: var(--rs-body);
+  margin-bottom: 1rem;
+}
+
+.tempMail__messageSenderName {
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+.tempMail__messageSenderAddress {
+  font-size: 0.75rem;
+  color: var(--rs-gray-200);
+  @media (prefers-color-scheme: light) {
+    color: var(--rs-gray-700);
+  }
+}
+
+.tempMail__messageSenderDate {
+  float: right;
 }
 
 .tempMail__messageBody {
@@ -67,16 +131,14 @@
 }
 
 .tempMail__attachments {
-  display: grid;
-  grid-auto-flow: column;
-  grid-auto-columns: 20%;
+  display: flex;
   grid-gap: 1rem;
   overflow: scroll;
   margin-top: 1rem;
 }
 
 .tempMail__attachmentContainer {
-  width: 10rem;
+  width: 12rem;
   overflow: hidden;
   background-color: var(--rs-input-bg);
   padding: 0.75rem;
@@ -88,25 +150,48 @@
     object-fit: cover;
     border-radius: 5px;
   }
+}
+
+.tempMail__attachmentDownloadContainer {
+  display: grid;
+  grid-auto-flow: column;
+  margin-top: 1rem;
+  color: var(--rs-text-primary);
 
   a {
-    margin-top: 1rem;
     color: var(--rs-text-primary);
-    height: 1.25rem;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    -webkit-box-orient: vertical;
   }
+
+  a:hover {
+    color: var(--rs-btn-default-active-bg);
+  }
+}
+
+.tempMail__attachmentFileName {
+  color: var(--rs-text-primary);
+  height: 1.25rem;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
 }
 
 .tempMail_modalTitle {
   display: grid;
   grid-auto-flow: column;
 
-  h3 {
+  h3,
+  p {
     text-align: end;
+  }
+
+  p {
+    font-variant: all-petite-caps;
+    color: var(--rs-gray-200);
+    @media (prefers-color-scheme: light) {
+      color: var(--rs-gray-700);
+    }
   }
 }
 
@@ -135,7 +220,7 @@
   .tempMail__btnActive {
     border-bottom: 5px solid;
     border-radius: 0;
-    color: white;
+    color: var(--rs-text-primary);
   }
 }
 
