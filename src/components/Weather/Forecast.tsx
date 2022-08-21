@@ -1,9 +1,6 @@
-import { format } from 'date-fns'
 import React, { useEffect } from 'react'
-import {
-  MdOutlineKeyboardArrowLeft,
-  MdOutlineKeyboardArrowRight,
-} from 'react-icons/md'
+import { format } from 'date-fns'
+import { MdOutlineKeyboardArrowLeft, MdOutlineKeyboardArrowRight } from 'react-icons/md'
 import { Button } from 'rsuite'
 
 const Forecast = (forecastData: any) => {
@@ -30,21 +27,14 @@ const Forecast = (forecastData: any) => {
 
   const todayHourlyForecast = () => (
     <>
-      <Button
-        appearance={'subtle'}
-        onClick={() =>
-          (document.getElementById('hourContainer').scrollLeft -= 150)
-        }>
+      <Button appearance={'subtle'} onClick={() => (document.getElementById('hourContainer').scrollLeft -= 150)}>
         <MdOutlineKeyboardArrowLeft size={'2rem'} />
       </Button>
       <div id='hourContainer' className='forecast__hourContainer'>
         {data &&
           data.forecastday[0].hour.map((value: any, index: any) => {
             return (
-              <div
-                id={`hour-${index}`}
-                key={index}
-                className='forecast__hourlyForecast'>
+              <div id={`hour-${index}`} key={index} className='forecast__hourlyForecast'>
                 <div>{checkCurrentHour(value.time)}</div>
                 <img src={value.condition.icon} />
                 <div>{Math.round(value.temp_c)}°</div>
@@ -52,21 +42,13 @@ const Forecast = (forecastData: any) => {
             )
           })}
       </div>
-      <Button
-        appearance={'subtle'}
-        onClick={() =>
-          (document.getElementById('hourContainer').scrollLeft += 150)
-        }>
+      <Button appearance={'subtle'} onClick={() => (document.getElementById('hourContainer').scrollLeft += 150)}>
         <MdOutlineKeyboardArrowRight size={'2rem'} />
       </Button>
     </>
   )
 
-  return (
-    <>
-      <div className='forecast__container'>{todayHourlyForecast()}</div>
-    </>
-  )
+  return <div className='forecast__container'>{todayHourlyForecast()}</div>
 }
 
 export default Forecast

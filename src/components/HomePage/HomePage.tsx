@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Spline from '@splinetool/react-spline'
-import { Loader } from 'rsuite'
 import { useNavigate } from 'react-router-dom'
+import { Loader } from 'rsuite'
 
 enum Component {
   Weather = '932e56b4-64ce-4c7d-899e-ae8de5be6782',

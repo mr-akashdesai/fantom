@@ -1,6 +1,7 @@
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 import { Loader } from 'rsuite'
+import { fetchLocation } from '../../api/locationApi'
+import { fetchSportsOnLocation } from '../../api/sportsApi'
 import { formattedDistanceToNow } from '../../utils/formattedDistanceToNow'
 
 const Sports = () => {
@@ -19,8 +20,7 @@ const Sports = () => {
   const getSports = async () => {
     !long &&
       !lat &&
-      axios
-        .post(`${process.env.GOOGLE_GEOLOCATION_URL}/geolocate?key=${process.env.GOOGLE_API_KEY}`)
+      fetchLocation()
         .then(res => {
           setLat(res.data.location.lat)
           setLong(res.data.location.lng)
@@ -32,14 +32,13 @@ const Sports = () => {
 
     long &&
       lat &&
-      (await axios
-        .get(`${process.env.WEATHER_API_URL}/sports.json?key=${process.env.WEATHER_API_KEY}&q=${lat},${long}`)
+      fetchSportsOnLocation(long, lat)
         .then(res => setSports(res.data))
         .catch(err => {
           setError(true)
-          console.log('ERROR: Could not retrieve current weather', err)
+          console.log('ERROR: Could not retrieve sports', err)
         })
-        .then(() => setLoading(false)))
+        .then(() => setLoading(false))
   }
 
   const getIcon = (sport: string) => {
@@ -89,12 +88,9 @@ const Sports = () => {
     return matches
   }
 
-  if (error) {
-    return <div>Error</div>
-  }
-  if (loading) {
-    return <Loader size={'lg'} backdrop content='loading...' vertical />
-  }
+  if (error) return <div>Error</div>
+
+  if (loading) return <Loader size={'lg'} backdrop content='loading...' vertical />
 
   return (
     <>

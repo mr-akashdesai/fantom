@@ -1,9 +1,9 @@
-import { format } from 'date-fns'
 import React from 'react'
+import { format } from 'date-fns'
 import { RiStarSFill } from 'react-icons/ri'
 import { Button } from 'rsuite'
-import { toggleOverflowWrapper } from '../../utils/toggleOverflowWrapper'
 import noPicFound from '../../assets/images/no-image.jpeg'
+import { toggleOverflowWrapper } from '../../utils/toggleOverflowWrapper'
 
 export enum SectionType {
   trending = 'trending',

@@ -1,7 +1,7 @@
 import React from 'react'
 import defaultProfilePicture from '../../assets/images/blank-profile-pic.webp'
 
-const CastDetails = (cast: any) => {
+const CastDetails = ({ cast }: any) => {
   return (
     <>
       {!!cast && cast.cast.length > 0 && (

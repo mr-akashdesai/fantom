@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { InputGroup, Input, Loader } from 'rsuite'
 import SearchIcon from '@rsuite/icons/Search'
-import axios from 'axios'
-import { toggleOverflowWrapper } from '../../utils/toggleOverflowWrapper'
 import { GiSpeaker } from 'react-icons/gi'
+import { Input, InputGroup, Loader } from 'rsuite'
+import { fetchDefinition } from '../../api/dictionaryApi'
+import { toggleOverflowWrapper } from '../../utils/toggleOverflowWrapper'
 
 const Dictionary = () => {
   const [searchWord, setSearchWord] = useState('')
@@ -26,8 +26,7 @@ const Dictionary = () => {
 
   const getDefintion = async () => {
     setLoading(true)
-    await axios
-      .get(`https://api.dictionaryapi.dev/api/v2/entries/en/${searchWord}`)
+    fetchDefinition(searchWord)
       .then(res => {
         setDefinition(res.data[0]), setError(null)
       })

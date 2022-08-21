@@ -1,11 +1,11 @@
-import axios from 'axios'
-import { format } from 'date-fns'
 import React, { useEffect, useState } from 'react'
+import { format } from 'date-fns'
+import { DebounceInput } from 'react-debounce-input'
 import { GoSearch } from 'react-icons/go'
 import { useNavigate } from 'react-router-dom'
-import { InputGroup, Input, Modal } from 'rsuite'
+import { Input, InputGroup, Modal } from 'rsuite'
+import { fetchSearchResults } from '../../api/entertainmentApi'
 import noPicFound from '../../assets/images/no-image.jpeg'
-import { DebounceInput } from 'react-debounce-input'
 
 const SearchModal = ({ open, handleClose, suggestions, history, value, ...inputProps }: any) => (
   <Modal size={'full'} backdrop={true} keyboard={false} open={open} onClose={handleClose}>
@@ -90,12 +90,9 @@ const MultiSearch = () => {
 
   const SetSuggestions = async () => {
     searchText.length >= 3 &&
-      (await axios
-        .get(
-          `${process.env.MOVIE_DB_URL}/search/multi?api_key=${process.env.MOVIE_DB_API_KEY}&language=en-US&query=${searchText}&page=1&include_adult=false`
-        )
+      fetchSearchResults(searchText)
         .then(res => setSuggestions(res.data.results))
-        .catch(err => console.log(err)))
+        .catch(err => console.log(err))
   }
 
   const onInputChange = async (value: string) => setSearchText(value)

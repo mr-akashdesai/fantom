@@ -1,13 +1,9 @@
-import axios from 'axios'
 import React, { useState } from 'react'
 import { GoSearch } from 'react-icons/go'
 import { InputGroup, Input } from 'rsuite'
+import { fetchLocationOnSearch } from '../../api/locationApi'
 
-type SearchProps = {
-  setCoords: any
-}
-
-const WeatherSearch = ({ setCoords }: SearchProps) => {
+const WeatherSearch = ({ setCoords }: any) => {
   const [searchText, setSearchText] = useState('')
   const [suggestions, setSuggestions] = useState([])
   const [showSuggestions, setShowSuggestions] = useState(true)
@@ -36,22 +32,15 @@ const WeatherSearch = ({ setCoords }: SearchProps) => {
     setSearchText(value)
 
     value.length >= 3 &&
-      (await axios
-        .get(
-          `${process.env.WEATHER_API_URL}/search.json?key=${process.env.WEATHER_API_KEY}&q=${value}`
-        )
+      fetchLocationOnSearch(value)
         .then(res => setSuggestions(res.data))
-        .catch(err => console.log(err)))
+        .catch(err => console.log(err))
   }
 
   return (
     <>
       <InputGroup inside size={'md'} className='weather__search'>
-        <Input
-          placeholder='Search city...'
-          value={searchText}
-          onChange={value => onInputChange(value)}
-        />
+        <Input placeholder='Search city...' value={searchText} onChange={value => onInputChange(value)} />
         <InputGroup.Button disabled>
           <GoSearch />
         </InputGroup.Button>

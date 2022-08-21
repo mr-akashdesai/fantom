@@ -1,16 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import React, { useEffect, useState } from 'react'
-import { useNavigate, useParams } from 'react-router-dom'
-import { loginWithToken } from '../../utils/mailLoginWithToken'
 import Mailjs from '@cemalgnlts/mailjs'
-import { getMailAttachment } from '../../utils/getMailAttachment'
-import { Letter } from 'react-letter'
-import { extract } from 'letterparser'
-import { Button, Divider, Modal } from 'rsuite'
+import RemindIcon from '@rsuite/icons/legacy/Remind'
 import { formatDistance } from 'date-fns'
+import { extract } from 'letterparser'
 import { BsDownload, BsPrinter } from 'react-icons/bs'
 import { GiTrashCan } from 'react-icons/gi'
-import RemindIcon from '@rsuite/icons/legacy/Remind'
+import { Letter } from 'react-letter'
+import { useNavigate, useParams } from 'react-router-dom'
+import { Button, Divider, Modal } from 'rsuite'
+import { getMailAttachment } from '../../api/tempMailApi'
 
 type AttachmentProps = {
   filename: string
@@ -44,28 +43,33 @@ const MailViewMessage = () => {
 
   useEffect(() => {
     setLoading(true)
-    Promise.all([loginWithToken(token, mailjs)]).then(() => {
-      Promise.all([
-        mailjs.getMessage(params.id).then(res => {
-          setMessage(res.data)
-          if (!res.data.seen) {
-            mailjs.setMessageSeen(params.id, true)
-          }
-          if (res.data.hasAttachments) {
-            res.data.attachments.forEach((attachment, id) => {
-              getMailAttachment(token, attachment.downloadUrl).then((res: any) =>
-                MapAttachmentItem(id, res, attachment)
-              )
-            })
-          }
-        }),
-        mailjs.getSource(params.id).then(source => {
-          const { html, text } = extract(source.data.data)
-          setHtml(html)
-          setText(text)
-        })
-      ]).then(() => setLoading(false))
-    })
+    mailjs
+      .loginWithToken(token)
+      .then(() => {
+        Promise.all([
+          mailjs.getMessage(params.id).then(res => {
+            setMessage(res.data)
+            if (!res.data.seen) {
+              mailjs.setMessageSeen(params.id, true)
+            }
+            if (res.data.hasAttachments) {
+              res.data.attachments.forEach((attachment, id) => {
+                getMailAttachment(token, attachment.downloadUrl).then((res: any) =>
+                  MapAttachmentItem(id, res, attachment)
+                )
+              })
+            }
+          }),
+          mailjs.getSource(params.id).then(source => {
+            const { html, text } = extract(source.data.data)
+            setHtml(html)
+            setText(text)
+          })
+        ])
+          .then(() => setLoading(false))
+          .catch(err => console.log(err))
+      })
+      .catch(err => console.log(err))
   }, [])
 
   const MapAttachmentItem = (id: number, res: any, attachment: Attachment) => {
@@ -123,7 +127,7 @@ const MailViewMessage = () => {
   }
 
   const handleDeleteMessage = () => {
-    Promise.all([loginWithToken(token, mailjs)]).then(() => {
+    Promise.all([mailjs.loginWithToken(token)]).then(() => {
       mailjs.deleteMessage(params.id).then(() => {
         setOpenDeletionModal(false)
         history(-1)

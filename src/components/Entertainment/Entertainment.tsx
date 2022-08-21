@@ -1,13 +1,20 @@
 /* eslint-disable quotes */
-import axios from 'axios'
 import React, { useEffect, useState } from 'react'
-import { Button, ButtonToolbar, Loader } from 'rsuite'
-import { useNavigate } from 'react-router-dom'
-import Trending from './Trending'
-import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
-import { SectionType, RenderMovies, RenderTvShows } from './movieRenderHelpers'
 import { DebounceInput } from 'react-debounce-input'
+import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io'
+import { useNavigate } from 'react-router-dom'
+import { Button, ButtonToolbar, Loader } from 'rsuite'
+import {
+  fetchMoviesByPageNumber,
+  fetchTopRatedMoviesByPageNumber,
+  fetchTopRatedTVShowsByPageNumber,
+  fetchTrending,
+  fetchTVShowsByPageNumber,
+  fetchUpcomingMoviesByPageNumber
+} from '../../api/entertainmentApi'
+import { SectionType, RenderMovies, RenderTvShows } from './movieRenderHelpers'
 import MultiSearch from './MultiSearch'
+import Trending from './Trending'
 
 enum Type {
   movies = 1,
@@ -33,53 +40,42 @@ const Entertainment = () => {
 
   useEffect(() => {
     setLoading(true)
-    Promise.all([getTrending(), getMovies(), getTvShows()]).then(() => setLoading(false))
+    Promise.all([getTrendingData(), getMovieData(), getTvShowData()]).then(() => setLoading(false))
   }, [pageNumber])
 
-  const getTrending = async () => {
-    await axios
-      .get(`${process.env.MOVIE_DB_URL}/trending/all/day?api_key=${process.env.MOVIE_DB_API_KEY}`)
-      .then(res => setTrending(res.data))
+  const getTrendingData = async () => {
+    fetchTrending()
+      .then(res => setTrending(res.data.results))
       .catch(err => console.error(err))
   }
 
-  const getMovies = async () => {
-    await axios
-      .get(
-        `${process.env.MOVIE_DB_URL}/discover/movie?api_key=${process.env.MOVIE_DB_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page=${pageNumber}`
-      )
+  const getMovieData = async () => {
+    fetchMoviesByPageNumber(pageNumber)
       .then(res => setMovies(res.data))
       .catch(err => console.log(err))
 
-    await axios
-      .get(
-        `${process.env.MOVIE_DB_URL}/movie/upcoming?api_key=${process.env.MOVIE_DB_API_KEY}&language=en-US&page=${pageNumber}`
-      )
+    fetchUpcomingMoviesByPageNumber(pageNumber)
       .then(res => setUpcomingMovies(res.data))
       .catch(err => console.log(err))
 
-    await axios
-      .get(
-        `${process.env.MOVIE_DB_URL}/movie/top_rated?api_key=${process.env.MOVIE_DB_API_KEY}&language=en-US&page=${pageNumber}`
-      )
+    fetchTopRatedMoviesByPageNumber(pageNumber)
       .then(res => setTopRatedMovies(res.data))
       .catch(err => console.log(err))
   }
 
-  const getTvShows = async () => {
-    await axios
-      .get(
-        `${process.env.MOVIE_DB_URL}/tv/popular?api_key=${process.env.MOVIE_DB_API_KEY}&language=en-US&page=${pageNumber}`
-      )
+  const getTvShowData = async () => {
+    fetchTVShowsByPageNumber(pageNumber)
       .then(res => setTvShows(res.data))
       .catch(err => console.log(err))
 
-    await axios
-      .get(
-        `${process.env.MOVIE_DB_URL}/tv/top_rated?api_key=${process.env.MOVIE_DB_API_KEY}&language=en-US&page=${pageNumber}`
-      )
+    fetchTopRatedTVShowsByPageNumber(pageNumber)
       .then(res => setTopRatedTvShows(res.data))
       .catch(err => console.log(err))
+  }
+
+  const setPageNumberInput = (input: string) => {
+    const int = parseInt(input)
+    !isNaN(int) && setPageNumber(int)
   }
 
   const Popular = () => (
@@ -111,11 +107,6 @@ const Entertainment = () => {
       )}
     </div>
   )
-
-  const setPageNumberInput = (input: string) => {
-    const int = parseInt(input)
-    !isNaN(int) && setPageNumber(int)
-  }
 
   const TypeToggle = () => (
     <div id={'button-container'} className='movies__buttonContainer'>
@@ -150,12 +141,9 @@ const Entertainment = () => {
     </div>
   )
 
-  if (error) {
-    return <div>Error</div>
-  }
-  if (loading) {
-    return <Loader size={'lg'} backdrop content='loading...' vertical />
-  }
+  if (error) return <div>Error</div>
+
+  if (loading) return <Loader size={'lg'} backdrop content='loading...' vertical />
 
   return (
     <>
@@ -165,7 +153,7 @@ const Entertainment = () => {
             <h3>Entertainment 🍿</h3>
             <MultiSearch />
           </div>
-          <Trending {...trending} />
+          <Trending data={trending} />
           <TypeToggle />
           <Popular />
           <Upcoming />

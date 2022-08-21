@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import React, { useEffect, useState } from 'react'
+import { BsCameraReels, BsBook, BsCloudSun, BsDropletHalf } from 'react-icons/bs'
+import { GiTrophyCup, GiPopcorn } from 'react-icons/gi'
+import { GoMail } from 'react-icons/go'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Divider, Nav } from 'rsuite'
-import { GiTrophyCup, GiPopcorn } from 'react-icons/gi'
-import { BsCameraReels, BsBook, BsCloudSun, BsDropletHalf } from 'react-icons/bs'
 import logo from '../../assets/images/logo/fantom-logo-large.svg'
 import TopBar from './TopBar'
-import { GoMail } from 'react-icons/go'
 
 const NavBar = () => {
   const history = useNavigate()

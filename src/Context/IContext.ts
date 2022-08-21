@@ -1,4 +1,4 @@
-import { ITheme } from '../components/Settings/Types/ITheme'
+import { ITheme } from '../types/ITheme'
 
 export interface IContext {
   themeSetting?: ITheme

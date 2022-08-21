@@ -1,10 +1,10 @@
-import { format } from 'date-fns'
 import React from 'react'
+import { format } from 'date-fns'
 import { ReactCountryFlag } from 'react-country-flag'
 import { RiStarSFill } from 'react-icons/ri'
 import defaultBackdrop from '../../../assets/images/default-hero-image.jpeg'
 
-const MovieHero = (movie: any) => {
+const MovieHero = ({ movie }: any) => {
   const Genres = () => {
     const genres = new Array<string>(movie.genres.map((genre: { name: any }) => genre.name))
     return genres.toString()

@@ -51,7 +51,7 @@
     "webpack": "^5.73.0"
   },
   "dependencies": {
-    "@cemalgnlts/mailjs": "^2.0.1",
+    "@cemalgnlts/mailjs": "^2.0.2",
     "@electron-toolkit/preload": "^1.0.2",
     "@electron/remote": "^2.0.8",
     "@splinetool/react-spline": "^2.2.1",
@@ -67,7 +67,6 @@
     "node-polyfill-webpack-plugin": "^2.0.0",
     "node-sass": "^7.0.1",
     "react": "^18.2.0",
-    "react-clock": "^3.1.0",
     "react-color": "^2.19.3",
     "react-colorful": "^5.5.1",
     "react-country-flag": "^3.0.2",

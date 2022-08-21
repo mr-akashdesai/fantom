@@ -1,10 +1,10 @@
-import { format } from 'date-fns'
 import React from 'react'
+import { format } from 'date-fns'
 import { RiStarSFill } from 'react-icons/ri'
 import { useNavigate } from 'react-router-dom'
 import { redirectToCorrectMediaType } from './movieRenderHelpers'
 
-const Trending = (data: any) => {
+const Trending = ({ data }: any) => {
   const history = useNavigate()
   return (
     <div className='movies__gridContainer'>
@@ -13,7 +13,7 @@ const Trending = (data: any) => {
       </div>
       <div className='trending__container'>
         {data &&
-          data.results.map((item: any, index: number) => (
+          data.map((item: any, index: number) => (
             <div
               key={index}
               className={'trending__itemContainer'}

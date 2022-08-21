@@ -1,4 +1,4 @@
-import { ITheme } from '../components/Settings/Types/ITheme'
+import { ITheme } from '../types/ITheme'
 import { ActionType } from './reducer'
 
 export interface ISetThemeSetting {
@@ -10,6 +10,6 @@ export const setThemeSetting = (value: ITheme): ISetThemeSetting => {
   window.electron.changeThemeSource(value)
   return {
     payload: value,
-    type: ActionType.setThemeSetting,
+    type: ActionType.setThemeSetting
   }
 }
