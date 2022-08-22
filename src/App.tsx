@@ -22,7 +22,7 @@ import { getTheme } from './utils/getTheme'
 
 const App = () => {
   const [state, dispatch] = useImmerReducer(Reducer, initialContext)
-  const storedTheme = window.localStorage.getItem('theme')
+  const storedTheme = window.localStorage.getItem('theme') as ITheme
 
   useEffect(() => {
     window.electron.changeThemeSource(storedTheme ? storedTheme : ITheme.System)

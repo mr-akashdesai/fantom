@@ -1,12 +1,9 @@
 // See the Electron documentation for details on how to use preload scripts:
 // https://www.electronjs.org/docs/latest/tutorial/process-model#preload-scripts
 import { contextBridge, ipcRenderer } from 'electron'
-import { exposeElectronAPI } from '@electron-toolkit/preload'
 import { ITheme } from '../types/ITheme'
 
-exposeElectronAPI()
-
-const ELECTRON_API = {
+export const ELECTRON_API = {
   changeThemeSource: (args: ITheme) => ipcRenderer.send('dialog:setThemeSource', args),
 
   getSources: () => ipcRenderer.invoke('dialog:getSources'),

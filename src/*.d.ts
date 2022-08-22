@@ -1,7 +1,7 @@
-import { ElectronAPI } from '@electron-toolkit/preload'
+import { ELECTRON_API } from './electron/preload'
 
 declare global {
   interface Window {
-    electron: any
+    electron: typeof ELECTRON_API
   }
 }
