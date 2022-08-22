@@ -3,7 +3,7 @@ import PcIcon from '@rsuite/icons/Pc'
 import { Grid, Row, Modal, Button, List } from 'rsuite'
 import IconButton from 'rsuite/IconButton'
 import videoPlaceholder from '../../assets/images/video-placeholder.png'
-import { ISource } from '../../types/ISource'
+import { ISource } from '../../types/ScreenRecorder/ISource'
 import { maxChars } from '../../utils/maxChars'
 
 const ScreenRecorder = () => {

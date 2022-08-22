@@ -9,24 +9,13 @@ import { GiTrashCan } from 'react-icons/gi'
 import { Letter } from 'react-letter'
 import { useNavigate, useParams } from 'react-router-dom'
 import { Button, Divider, Modal } from 'rsuite'
-import { getMailAttachment } from '../../api/tempMailApi'
+import { fetchMailAttachment } from '../../api/tempMailApi'
+import { IAttachment } from '../../types/TempMail/IAttachment'
 
 type AttachmentProps = {
   filename: string
   src: string
 }
-
-interface Attachment {
-  id: string
-  filename: string
-  contentType: string
-  disposition: string
-  transferEncoding: string
-  related: boolean
-  size: number
-  downloadUrl: string
-}
-
 const MailViewMessage = () => {
   const history = useNavigate()
   const params = useParams()
@@ -54,7 +43,7 @@ const MailViewMessage = () => {
             }
             if (res.data.hasAttachments) {
               res.data.attachments.forEach((attachment, id) => {
-                getMailAttachment(token, attachment.downloadUrl).then((res: any) =>
+                fetchMailAttachment(token, attachment.downloadUrl).then((res: any) =>
                   MapAttachmentItem(id, res, attachment)
                 )
               })
@@ -72,7 +61,7 @@ const MailViewMessage = () => {
       .catch(err => console.log(err))
   }, [])
 
-  const MapAttachmentItem = (id: number, res: any, attachment: Attachment) => {
+  const MapAttachmentItem = (id: number, res: any, attachment: IAttachment) => {
     const attachmentEncoded = Buffer.from(res.data, 'binary').toString(attachment.transferEncoding as BufferEncoding)
     const src = `data:${attachment.contentType};${attachment.transferEncoding},${attachmentEncoded}`
     setAttachments(prevState => [...prevState, <AttachmentItem key={id} filename={attachment.filename} src={src} />])
@@ -127,7 +116,7 @@ const MailViewMessage = () => {
   }
 
   const handleDeleteMessage = () => {
-    Promise.all([mailjs.loginWithToken(token)]).then(() => {
+    mailjs.loginWithToken(token).then(() => {
       mailjs.deleteMessage(params.id).then(() => {
         setOpenDeletionModal(false)
         history(-1)

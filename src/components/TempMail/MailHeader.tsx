@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
-import { BsPersonCircle } from 'react-icons/bs'
-import { Button, Dropdown, Progress } from 'rsuite'
 import EyeIcon from '@rsuite/icons/legacy/Eye'
 import EyeSlashIcon from '@rsuite/icons/legacy/EyeSlash'
+import { BsPersonCircle } from 'react-icons/bs'
 import { FiCopy } from 'react-icons/fi'
+import { Button, Dropdown, Progress } from 'rsuite'
 
 const MailHeader = ({ setShowLoginModal, credentials, setCredentials, setMessages, storage }: any) => {
   const [visible, setVisible] = useState(false)
@@ -26,7 +26,6 @@ const MailHeader = ({ setShowLoginModal, credentials, setCredentials, setMessage
 
   const signOut = () => {
     window.localStorage.removeItem('token')
-    window.localStorage.removeItem('isLoggedIn')
     setCredentials(null)
     setMessages(null)
     setShowLoginModal(true)

@@ -1,7 +1,7 @@
 import { nativeTheme, desktopCapturer, dialog, clipboard, shell } from 'electron'
 import { writeFile } from 'fs'
-import { ISource } from '../types/ISource'
 import { ITheme } from '../types/ITheme'
+import { ISource } from '../types/ScreenRecorder/ISource'
 
 export const changeThemeSource = (args: ITheme) => {
   nativeTheme.themeSource = args

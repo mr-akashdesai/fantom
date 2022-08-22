@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react'
+import EyeIcon from '@rsuite/icons/legacy/Eye'
+import EyeSlashIcon from '@rsuite/icons/legacy/EyeSlash'
+import { BiErrorCircle } from 'react-icons/bi'
 import { FaLock } from 'react-icons/fa'
 import { GrMail } from 'react-icons/gr'
 import { HiOutlineArrowSmLeft } from 'react-icons/hi'
-import { BiErrorCircle } from 'react-icons/bi'
 import { Modal, InputGroup, Whisper, Tooltip, Input, Button, Divider, Loader } from 'rsuite'
-import EyeIcon from '@rsuite/icons/legacy/Eye'
-import EyeSlashIcon from '@rsuite/icons/legacy/EyeSlash'
 
 const MailModal = ({ mailjs, showLoginModal, setShowLoginModal, history, setCredentials }: any) => {
   const [loading, setLoading] = useState(false)
@@ -236,9 +236,7 @@ const MailModal = ({ mailjs, showLoginModal, setShowLoginModal, history, setCred
     </>
   )
 
-  if (loading) {
-    return <Loader size={'lg'} backdrop content='loading...' vertical />
-  }
+  if (loading) return <Loader size={'lg'} backdrop content='loading...' vertical />
 
   return (
     <Modal style={{ top: '10%' }} size={'sm'} backdrop={'static'} open={showLoginModal} onClose={() => history(-1)}>
