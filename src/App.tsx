@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import { CustomProvider, Loader } from 'rsuite'
+import { CustomProvider } from 'rsuite'
 import Container from 'rsuite/Container'
 import Sidebar from 'rsuite/Sidebar'
 import ColorPicker from './components/ColorPicker/ColorPicker'
@@ -15,6 +15,7 @@ import Sports from './components/Sports/Sports'
 import MailViewMessage from './components/TempMail/MailViewMessage'
 import TempMail from './components/TempMail/TempMail'
 import Weather from './components/Weather/Weather'
+import paths from './constants/paths'
 import { Context, initialContext, useImmerReducer } from './Context/context'
 import { Reducer } from './Context/reducer'
 import { ITheme } from './types/ITheme'
@@ -37,17 +38,17 @@ const App = () => {
               <NavBar />
             </Sidebar>
             <Routes>
-              <Route path='/' element={<Navigate replace to='/homepage' />} />
-              <Route path='/homepage' element={<HomePage />} />
-              <Route path='/screen-recorder' element={<ScreenRecorder />} />
-              <Route path='/dictionary' element={<Dictionary />} />
-              <Route path='/color-picker' element={<ColorPicker />} />
-              <Route path='/weather' element={<Weather />} />
-              <Route path='/sports' element={<Sports />} />
-              <Route path='/entertainment' element={<Entertainment />} />
+              <Route path='/' element={<Navigate replace to={paths.homepage()} />} />
+              <Route path={paths.homepage()} element={<HomePage />} />
+              <Route path={paths.screenRecorder()} element={<ScreenRecorder />} />
+              <Route path={paths.dictionary()} element={<Dictionary />} />
+              <Route path={paths.colorPicker()} element={<ColorPicker />} />
+              <Route path={paths.weather()} element={<Weather />} />
+              <Route path={paths.sports()} element={<Sports />} />
+              <Route path={paths.entertainment()} element={<Entertainment />} />
               <Route path='/entertainment/movie-details/:id' element={<MovieDetails />} />
               <Route path='/entertainment/series-details/:id' element={<SeriesDetails />} />
-              <Route path='/temp-mail' element={<TempMail />} />
+              <Route path={paths.tempMail()} element={<TempMail />} />
               <Route path='/temp-mail/view/:id' element={<MailViewMessage />} />
             </Routes>
           </Container>

@@ -1,12 +1,14 @@
-import { formatDistance } from 'date-fns'
 import React from 'react'
+import { formatDistance } from 'date-fns'
 import { useNavigate } from 'react-router-dom'
+import paths from '../../constants/paths'
 
 const MailMessages = ({ messages }: any) => {
   const history = useNavigate()
   return (
     <>
       {messages &&
+        messages.length > 0 &&
         messages.map((message: any) => (
           <div
             key={message.id}
@@ -15,7 +17,7 @@ const MailMessages = ({ messages }: any) => {
                 ? 'tempMail__messageContainer tempMail__messageRead'
                 : 'tempMail__messageContainer tempMail__messageUnRead'
             }
-            onClick={() => history(`view/${message.id}`)}>
+            onClick={() => history(paths.tempMailViewMessage(message.id))}>
             <div className='tempMail__messageSender'>{message.from.name}</div>
             <div className='tempMail__messageContents'>
               {message.hasAttachments && '📎 '}

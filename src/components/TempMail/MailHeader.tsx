@@ -25,7 +25,7 @@ const MailHeader = ({ setShowLoginModal, credentials, setCredentials, setMessage
   }
 
   const signOut = () => {
-    window.localStorage.removeItem('token')
+    window.localStorage.removeItem('mailToken')
     setCredentials(null)
     setMessages(null)
     setShowLoginModal(true)

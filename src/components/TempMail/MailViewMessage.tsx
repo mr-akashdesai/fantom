@@ -8,9 +8,10 @@ import { BsDownload, BsPrinter } from 'react-icons/bs'
 import { GiTrashCan } from 'react-icons/gi'
 import { Letter } from 'react-letter'
 import { useNavigate, useParams } from 'react-router-dom'
-import { Button, Divider, Modal } from 'rsuite'
+import { Button, Divider, Loader, Modal } from 'rsuite'
 import { fetchMailAttachment } from '../../api/tempMailApi'
 import { IAttachment } from '../../types/TempMail/IAttachment'
+import Error from '../Error/Error'
 
 type AttachmentProps = {
   filename: string
@@ -20,9 +21,10 @@ const MailViewMessage = () => {
   const history = useNavigate()
   const params = useParams()
   const mailjs = new Mailjs()
-  const token = window.localStorage.getItem('token')
+  const token = window.localStorage.getItem('mailToken')
 
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
   const [openDeletionModal, setOpenDeletionModal] = useState(false)
 
   const [message, setMessage] = useState(null)
@@ -35,32 +37,42 @@ const MailViewMessage = () => {
     mailjs
       .loginWithToken(token)
       .then(() => {
-        Promise.all([
-          mailjs.getMessage(params.id).then(res => {
-            setMessage(res.data)
-            if (!res.data.seen) {
-              mailjs.setMessageSeen(params.id, true)
-            }
-            if (res.data.hasAttachments) {
-              res.data.attachments.forEach((attachment, id) => {
-                fetchMailAttachment(token, attachment.downloadUrl).then((res: any) =>
-                  MapAttachmentItem(id, res, attachment)
-                )
-              })
-            }
-          }),
-          mailjs.getSource(params.id).then(source => {
-            const { html, text } = extract(source.data.data)
-            setHtml(html)
-            setText(text)
-          })
-        ])
-          .then(() => setLoading(false))
-          .catch(err => console.log(err))
+        Promise.all([getMessageAndSetAsSeen(), getSource()])
       })
-      .catch(err => console.log(err))
+      .catch(err => setError(err.message))
+      .then(() => setLoading(false))
   }, [])
 
+  const getMessageAndSetAsSeen = () => {
+    mailjs.getMessage(params.id).then(res => {
+      setMessage(res.data)
+      if (!res.data.seen) {
+        mailjs.setMessageSeen(params.id, true)
+      }
+      if (res.data.hasAttachments) {
+        res.data.attachments.forEach((attachment, id) => {
+          fetchMailAttachment(token, attachment.downloadUrl).then((res: any) => MapAttachmentItem(id, res, attachment))
+        })
+      }
+    })
+  }
+
+  const getSource = () => {
+    mailjs.getSource(params.id).then(source => {
+      const { html, text } = extract(source.data.data)
+      setHtml(html)
+      setText(text)
+    })
+  }
+
+  const handleDeleteMessage = () => {
+    mailjs.loginWithToken(token).then(() => {
+      mailjs.deleteMessage(params.id).then(() => {
+        setOpenDeletionModal(false)
+        history(-1)
+      })
+    })
+  }
   const MapAttachmentItem = (id: number, res: any, attachment: IAttachment) => {
     const attachmentEncoded = Buffer.from(res.data, 'binary').toString(attachment.transferEncoding as BufferEncoding)
     const src = `data:${attachment.contentType};${attachment.transferEncoding},${attachmentEncoded}`
@@ -69,14 +81,14 @@ const MailViewMessage = () => {
 
   const AttachmentItem = ({ filename, src }: AttachmentProps) => (
     <div className='tempMail__attachmentContainer'>
-      <img width='200' src={src} />
+      <img width='200' src={src} alt={filename} />
       <div className='tempMail__attachmentDownloadContainer'>
         <span className='tempMail__attachmentDownload'>
           <a href={src} download={filename}>
             <BsDownload />
           </a>
         </span>
-        <span className='tempMail__attachmentFileName'>&nbsp;{filename}</span>
+        <span className='tempMail__attachmentFileName'>{filename}</span>
       </div>
     </div>
   )
@@ -115,15 +127,6 @@ const MailViewMessage = () => {
     )
   }
 
-  const handleDeleteMessage = () => {
-    mailjs.loginWithToken(token).then(() => {
-      mailjs.deleteMessage(params.id).then(() => {
-        setOpenDeletionModal(false)
-        history(-1)
-      })
-    })
-  }
-
   const MailViewControls = () => (
     <span className='tempMail__mailViewControls'>
       <Button style={{ marginTop: '5%' }} appearance='subtle' onClick={() => window.print()}>
@@ -134,6 +137,9 @@ const MailViewMessage = () => {
       </Button>
     </span>
   )
+
+  if (loading) return <Loader size={'lg'} backdrop content='loading...' vertical />
+  if (error) return <Error message={error} />
 
   return (
     <>

@@ -6,13 +6,14 @@ import { GoMail } from 'react-icons/go'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Divider, Nav } from 'rsuite'
 import logo from '../../assets/images/logo/fantom-logo-large.svg'
+import paths from '../../constants/paths'
 import TopBar from './TopBar'
 
 const NavBar = () => {
   const history = useNavigate()
   const location = useLocation()
 
-  const [active, setActive] = useState('home')
+  const [active, setActive] = useState('homepage')
   const iconSize = '1.5rem'
 
   useEffect(() => {
@@ -29,29 +30,29 @@ const NavBar = () => {
       <div className='navBar__container'>
         <div className='navBar__bar'>
           <Nav vertical activeKey={active} appearance={'subtle'} onSelect={onSelect}>
-            <Nav.Item eventKey='homepage' onClick={() => history('/homepage')}>
+            <Nav.Item eventKey='homepage' onClick={() => history(paths.homepage())}>
               <img className='navBar__logo' src={logo} />
             </Nav.Item>
             <Divider />
-            <Nav.Item eventKey='screen-recorder' onClick={() => history('/screen-recorder')}>
+            <Nav.Item eventKey='screen-recorder' onClick={() => history(paths.screenRecorder())}>
               <BsCameraReels size={iconSize} />
             </Nav.Item>
-            <Nav.Item eventKey='dictionary' onClick={() => history('/dictionary')}>
+            <Nav.Item eventKey='dictionary' onClick={() => history(paths.dictionary())}>
               <BsBook size={iconSize} />
             </Nav.Item>
-            <Nav.Item eventKey='color-picker' onClick={() => history('/color-picker')}>
+            <Nav.Item eventKey='color-picker' onClick={() => history(paths.colorPicker())}>
               <BsDropletHalf size={iconSize} />
             </Nav.Item>
-            <Nav.Item eventKey='weather' onClick={() => history('/weather')}>
+            <Nav.Item eventKey='weather' onClick={() => history(paths.weather())}>
               <BsCloudSun size={iconSize} />
             </Nav.Item>
-            <Nav.Item eventKey='temp-mail' onClick={() => history('/temp-mail')}>
+            <Nav.Item eventKey='temp-mail' onClick={() => history(paths.tempMail())}>
               <GoMail size={iconSize} />
             </Nav.Item>
-            <Nav.Item eventKey='sports' onClick={() => history('/sports')}>
+            <Nav.Item eventKey='sports' onClick={() => history(paths.sports())}>
               <GiTrophyCup size={iconSize} />
             </Nav.Item>
-            <Nav.Item eventKey='entertainment' onClick={() => history('/entertainment')}>
+            <Nav.Item eventKey='entertainment' onClick={() => history(paths.entertainment())}>
               <GiPopcorn size={iconSize} />
             </Nav.Item>
           </Nav>

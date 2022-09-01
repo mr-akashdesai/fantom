@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
+const Dotenv = require('dotenv-webpack')
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin')
 const NodePolyfillPlugin = require('node-polyfill-webpack-plugin')
-const Dotenv = require('dotenv-webpack')
 
-module.exports = [ new Dotenv(), new ForkTsCheckerWebpackPlugin(), new NodePolyfillPlugin()]
+module.exports = [new Dotenv(), new ForkTsCheckerWebpackPlugin(), new NodePolyfillPlugin()]

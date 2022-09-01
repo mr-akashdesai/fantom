@@ -34,9 +34,7 @@ const Dictionary = () => {
       .then(() => setLoading(false))
   }
 
-  if (loading) {
-    return <Loader size={'lg'} backdrop content='loading...' vertical />
-  }
+  if (loading) return <Loader size={'lg'} backdrop content='loading...' vertical />
 
   return (
     <>

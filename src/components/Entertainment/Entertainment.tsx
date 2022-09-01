@@ -12,6 +12,7 @@ import {
   fetchTVShowsByPageNumber,
   fetchUpcomingMoviesByPageNumber
 } from '../../api/entertainmentApi'
+import Error from '../Error/Error'
 import { SectionType, RenderMovies, RenderTvShows } from './movieRenderHelpers'
 import MultiSearch from './MultiSearch'
 import Trending from './Trending'
@@ -46,31 +47,31 @@ const Entertainment = () => {
   const getTrendingData = async () => {
     fetchTrending()
       .then(res => setTrending(res.data.results))
-      .catch(err => console.error(err))
+      .catch(err => setError(err.message))
   }
 
   const getMovieData = async () => {
     fetchMoviesByPageNumber(pageNumber)
       .then(res => setMovies(res.data))
-      .catch(err => console.log(err))
+      .catch(err => setError(err.message))
 
     fetchUpcomingMoviesByPageNumber(pageNumber)
       .then(res => setUpcomingMovies(res.data))
-      .catch(err => console.log(err))
+      .catch(err => setError(err.message))
 
     fetchTopRatedMoviesByPageNumber(pageNumber)
       .then(res => setTopRatedMovies(res.data))
-      .catch(err => console.log(err))
+      .catch(err => setError(err.message))
   }
 
   const getTvShowData = async () => {
     fetchTVShowsByPageNumber(pageNumber)
       .then(res => setTvShows(res.data))
-      .catch(err => console.log(err))
+      .catch(err => setError(err.message))
 
     fetchTopRatedTVShowsByPageNumber(pageNumber)
       .then(res => setTopRatedTvShows(res.data))
-      .catch(err => console.log(err))
+      .catch(err => setError(err.message))
   }
 
   const setPageNumberInput = (input: string) => {
@@ -141,9 +142,8 @@ const Entertainment = () => {
     </div>
   )
 
-  if (error) return <div>Error</div>
-
   if (loading) return <Loader size={'lg'} backdrop content='loading...' vertical />
+  if (error) return <Error message={error} />
 
   return (
     <>

@@ -8,15 +8,15 @@ import Settings from '../Settings/Settings'
 const TopBar = () => {
   const [openSettings, setOpenSettings] = useState(false)
 
-  const navigate = useNavigate()
+  const history = useNavigate()
 
   return (
     <div className='topBar__container'>
       <span className='topBar__navButtonContainer'>
-        <Button appearance='subtle' onClick={() => navigate(-1)}>
+        <Button appearance='subtle' onClick={() => history(-1)}>
           <HiOutlineArrowSmLeft size={'1.25rem'} />
         </Button>
-        <Button appearance='subtle' onClick={() => navigate(+1)}>
+        <Button appearance='subtle' onClick={() => history(+1)}>
           <HiOutlineArrowSmRight size={'1.25rem'} />
         </Button>
       </span>

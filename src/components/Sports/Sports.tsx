@@ -3,58 +3,58 @@ import { Loader } from 'rsuite'
 import { fetchLocation } from '../../api/locationApi'
 import { fetchSportsOnLocation } from '../../api/sportsApi'
 import { formattedDistanceToNow } from '../../utils/formattedDistanceToNow'
+import Error from '../Error/Error'
+
+enum Sport {
+  FOOTBALL = 'football',
+  CRICKET = 'cricket',
+  GOLF = 'golf'
+}
 
 const Sports = () => {
   const [sports, setSports] = useState(null)
 
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(false)
+  const [error, setError] = useState(null)
 
   const [lat, setLat] = useState(null)
   const [long, setLong] = useState(null)
 
   useEffect(() => {
-    getSports()
-  }, [lat, long])
+    setLoading(true)
+    getLocation().then(() => getSports())
+  }, [])
 
+  const getLocation = async () => {
+    await fetchLocation()
+      .then(res => {
+        setLat(res.data.location.lat)
+        setLong(res.data.location.lng)
+      })
+      .catch(err => setError(`ERROR: Could not retrieve location data, ${err.message}`))
+      .then(() => setLoading(false))
+  }
   const getSports = async () => {
-    !long &&
-      !lat &&
-      fetchLocation()
-        .then(res => {
-          setLat(res.data.location.lat)
-          setLong(res.data.location.lng)
-        })
-        .catch(err => {
-          setError(true)
-          console.log('ERROR: Could not retrieve location data', err)
-        })
-
-    long &&
-      lat &&
-      fetchSportsOnLocation(long, lat)
-        .then(res => setSports(res.data))
-        .catch(err => {
-          setError(true)
-          console.log('ERROR: Could not retrieve sports', err)
-        })
-        .then(() => setLoading(false))
+    await fetchSportsOnLocation(long, lat)
+      .then(res => setSports(res.data))
+      .catch(err => setError(`ERROR: Could not retrieve sports ${err.message}`))
+      .then(() => setLoading(false))
   }
 
-  const getIcon = (sport: string) => {
+  const getIcon = (sport: Sport) => {
     switch (sport) {
-      case 'football':
+      case Sport.FOOTBALL:
         return '⚽️'
-      case 'cricket':
+      case Sport.CRICKET:
         return '🏏'
-      case 'golf':
+      case Sport.GOLF:
         return '⛳️'
       default:
         return '🏅'
     }
   }
 
-  const renderMatches = (sport: any) => {
+  const renderMatches = (sport: Sport) => {
     const sportsArr = sports[sport]
 
     const matches = sportsArr.length > 0 && (
@@ -88,19 +88,18 @@ const Sports = () => {
     return matches
   }
 
-  if (error) return <div>Error</div>
-
   if (loading) return <Loader size={'lg'} backdrop content='loading...' vertical />
+  if (error) return <Error message={error} />
 
   return (
     <>
-      {!loading && (
+      {!loading && sports && (
         <div className='page-container'>
           <h3>Sports 🏆</h3>
           <div className='sports__container'>
-            {renderMatches('cricket')}
-            {renderMatches('football')}
-            {renderMatches('golf')}
+            {renderMatches(Sport.FOOTBALL)}
+            {renderMatches(Sport.CRICKET)}
+            {renderMatches(Sport.GOLF)}
           </div>
         </div>
       )}

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Loader } from 'rsuite'
 import { fetchSeriesCast, fetchSeriesDetails, fetchSeriesRecommendations } from '../../../api/entertainmentApi'
+import Error from '../../Error/Error'
 import CastDetails from '../CastDetails'
 import SeriesHero from './SeriesHero'
 import SeriesRecommendations from './SeriesRecommendations'
@@ -10,6 +11,7 @@ const SeriesDetails = () => {
   const params = useParams()
   const history = useNavigate()
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(null)
   const [series, setSeries] = useState(null)
   const [seriesCast, setSeriesCast] = useState(null)
   const [seriesRecommendations, setSeriesRecommendations] = useState(null)
@@ -22,22 +24,22 @@ const SeriesDetails = () => {
   const GetSeriesDetails = async () => {
     fetchSeriesDetails(params.id)
       .then(res => setSeries(res.data))
-      .catch(err => console.error(err))
+      .catch(err => setError(err.message))
   }
 
   const GetSeriesCast = async () => {
     fetchSeriesCast(params.id)
       .then(res => setSeriesCast(res.data))
-      .catch(err => console.error(err))
+      .catch(err => setError(err.message))
   }
 
   const GetSeriesRecommendations = async () => {
     fetchSeriesRecommendations(params.id)
       .then(res => setSeriesRecommendations(res.data))
-      .catch(err => console.error(err))
+      .catch(err => setError(err.message))
   }
 
-  // if (error) { return <div>Error</div> }
+  if (error) return <Error message={error} />
   if (loading) {
     return <Loader size={'lg'} backdrop content='loading...' vertical />
   }

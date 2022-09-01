@@ -3,6 +3,7 @@ import { format } from 'date-fns'
 import { RiStarSFill } from 'react-icons/ri'
 import { Button } from 'rsuite'
 import noPicFound from '../../assets/images/no-image.jpeg'
+import paths from '../../constants/paths'
 import { toggleOverflowWrapper } from '../../utils/toggleOverflowWrapper'
 
 export enum SectionType {
@@ -39,9 +40,9 @@ type renderProps = {
 export const redirectToCorrectMediaType = (mediaType: string, id: number) => {
   switch (mediaType) {
     case 'movie':
-      return `movie-details/${id}`
+      return paths.movieDetails(id)
     case 'tv':
-      return `series-details/${id}`
+      return paths.seriesDetails(id)
   }
 }
 
@@ -56,10 +57,7 @@ export const RenderMovies = ({ data, type, history, overFlowWrapper, title }: re
           <div id={type} className={overFlowWrapper ? 'movie__container movie__overflowWrapper' : 'movie__container'}>
             {data &&
               data.results.map((movie: any, index: number) => (
-                <div
-                  key={index}
-                  className='movie__itemContainer'
-                  onClick={() => history(`/entertainment/movie-details/${movie.id}`)}>
+                <div key={index} className='movie__itemContainer' onClick={() => history(paths.movieDetails(movie.id))}>
                   <img
                     className='movie__posterImage'
                     src={`${process.env.MOVIE_DB_IMAGE_SMALL_URL}${movie.poster_path}`}
@@ -113,7 +111,7 @@ export const RenderTvShows = ({ data, type, history, overFlowWrapper, title }: r
                 <div
                   key={index}
                   className='movie__itemContainer'
-                  onClick={() => history(`/entertainment/series-details/${series.id}`)}>
+                  onClick={() => history(paths.seriesDetails(series.id))}>
                   <img
                     className='movie__posterImage'
                     src={`${process.env.MOVIE_DB_IMAGE_SMALL_URL}${series.poster_path}`}
