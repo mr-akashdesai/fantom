@@ -3,7 +3,7 @@ import { GoSearch } from 'react-icons/go'
 import { InputGroup, Input } from 'rsuite'
 import { fetchLocationOnSearch } from '../../api/locationApi'
 
-const WeatherSearch = ({ setCoords }: any) => {
+const WeatherSearch = ({ setCoords, setError }: any) => {
   const [searchText, setSearchText] = useState('')
   const [suggestions, setSuggestions] = useState([])
   const [showSuggestions, setShowSuggestions] = useState(true)
@@ -34,7 +34,7 @@ const WeatherSearch = ({ setCoords }: any) => {
     value.length >= 3 &&
       fetchLocationOnSearch(value)
         .then(res => setSuggestions(res.data))
-        .catch(err => console.log(err))
+        .catch(err => setError(err.message))
   }
 
   return (

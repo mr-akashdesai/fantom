@@ -51,7 +51,7 @@ const MailViewMessage = () => {
       }
       if (res.data.hasAttachments) {
         res.data.attachments.forEach((attachment, id) => {
-          fetchMailAttachment(token, attachment.downloadUrl).then((res: any) => MapAttachmentItem(id, res, attachment))
+          fetchMailAttachment(token, attachment.downloadUrl).then((res: any) => mapAttachmentItem(id, res, attachment))
         })
       }
     })
@@ -73,7 +73,7 @@ const MailViewMessage = () => {
       })
     })
   }
-  const MapAttachmentItem = (id: number, res: any, attachment: IAttachment) => {
+  const mapAttachmentItem = (id: number, res: any, attachment: IAttachment) => {
     const attachmentEncoded = Buffer.from(res.data, 'binary').toString(attachment.transferEncoding as BufferEncoding)
     const src = `data:${attachment.contentType};${attachment.transferEncoding},${attachmentEncoded}`
     setAttachments(prevState => [...prevState, <AttachmentItem key={id} filename={attachment.filename} src={src} />])

@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react'
 import { Loader } from 'rsuite'
 import { fetchLocation } from '../../api/locationApi'
 import { fetchCurrentWeatherOnLocation, fetchWeatherForecastOnLocation } from '../../api/weatherApi'
+import Error from '../Error/Error'
 import CurrentWeather from './CurrentWeather'
 import Forecast from './Forecast'
 import WeatherSearch from './WeatherSearch'
 
 const Weather = () => {
   const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(false)
+  const [error, setError] = useState(null)
 
   const [lat, setLat] = useState(null)
   const [long, setLong] = useState(null)
@@ -28,28 +29,19 @@ const Weather = () => {
         setLat(res.data.location.lat)
         setLong(res.data.location.lng)
       })
-      .catch(err => {
-        setError(true)
-        console.log('ERROR: Could not retrieve location data', err)
-      })
+      .catch(err => setError('ERROR: Could not retrieve location data' + err.message))
   }
 
   const GetCurrentWeather = async () => {
     fetchCurrentWeatherOnLocation(long, lat)
       .then(res => setCurrentWeather(res.data))
-      .catch(err => {
-        setError(true)
-        console.log('ERROR: Could not retrieve current weather', err)
-      })
+      .catch(err => setError('ERROR: Could not retrieve current weather' + err.message))
   }
 
   const GetForecast = async () => {
     fetchWeatherForecastOnLocation(long, lat)
       .then(res => setForecast(res.data))
-      .catch(err => {
-        setError(true)
-        console.log('ERROR: could not retrieve forecast', err)
-      })
+      .catch(err => setError('ERROR: could not retrieve forecast' + err.message))
   }
 
   const setCoords = (lat: string, long: string) => {
@@ -57,8 +49,7 @@ const Weather = () => {
     setLat(lat)
   }
 
-  if (error) return <div>Error</div>
-
+  if (error) return <Error message={error} />
   if (loading) return <Loader size={'lg'} backdrop content='loading...' vertical />
 
   return (
@@ -67,7 +58,7 @@ const Weather = () => {
         <div className='page-container'>
           <div className='weather__header'>
             <h3 className='weather__title'>Weather 🌦</h3>
-            <WeatherSearch setCoords={setCoords} />
+            <WeatherSearch setError={setError} setCoords={setCoords} />
           </div>
           <CurrentWeather currentWeather={currentWeather} forecastData={forecast} />
           <Forecast forecastData={forecast} />

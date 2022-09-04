@@ -1,5 +1,4 @@
 import axios from 'axios'
-import SeriesDetails from '../components/Entertainment/SeriesDetails/SeriesDetails'
 
 export const fetchTrending = async () => {
   return await axios.get(`${process.env.MOVIE_DB_URL}/trending/all/day?api_key=${process.env.MOVIE_DB_API_KEY}`)

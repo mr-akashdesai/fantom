@@ -6,6 +6,7 @@ import { CgColorPicker } from 'react-icons/cg'
 import { HiOutlineViewGridAdd } from 'react-icons/hi'
 import { Button } from 'rsuite'
 import useEyeDropper from 'use-eye-dropper'
+import Error from '../Error/Error'
 import ColorOutput from './ColorOutput'
 const tinycolor = require('tinycolor2')
 
@@ -13,7 +14,7 @@ const ColorPicker = () => {
   const { open } = useEyeDropper()
   const [color, setColor] = useState({ r: 72, g: 140, b: 129, a: 1 })
   const [colorString, setColorString] = useState('')
-  const [error, setError] = useState()
+  const [error, setError] = useState(null)
   const [palette, setPalette] = useState([])
   const [paletteIndex, setPaletteIndex] = useState(0)
   let convertableColor
@@ -30,7 +31,6 @@ const ColorPicker = () => {
         setColor(convertableColor.toRgb())
       })
       .catch(e => {
-        console.log(e)
         if (!e.canceled) setError(e)
       })
   }
@@ -53,6 +53,8 @@ const ColorPicker = () => {
     const index = palette.findIndex(val => val === color.hex)
     setPaletteIndex(index)
   }
+
+  if (error) return <Error message={error} />
 
   return (
     <div className='page-container'>

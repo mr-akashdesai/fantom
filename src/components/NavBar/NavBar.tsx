@@ -30,29 +30,32 @@ const NavBar = () => {
       <div className='navBar__container'>
         <div className='navBar__bar'>
           <Nav vertical activeKey={active} appearance={'subtle'} onSelect={onSelect}>
-            <Nav.Item eventKey='homepage' onClick={() => history(paths.homepage())}>
+            <Nav.Item title='Home' eventKey='homepage' onClick={() => history(paths.homepage())}>
               <img className='navBar__logo' src={logo} />
             </Nav.Item>
             <Divider />
-            <Nav.Item eventKey='screen-recorder' onClick={() => history(paths.screenRecorder())}>
+            <Nav.Item
+              title='Screen Recorder'
+              eventKey='screen-recorder'
+              onClick={() => history(paths.screenRecorder())}>
               <BsCameraReels size={iconSize} />
             </Nav.Item>
-            <Nav.Item eventKey='dictionary' onClick={() => history(paths.dictionary())}>
+            <Nav.Item title='Dictionary' eventKey='dictionary' onClick={() => history(paths.dictionary())}>
               <BsBook size={iconSize} />
             </Nav.Item>
-            <Nav.Item eventKey='color-picker' onClick={() => history(paths.colorPicker())}>
+            <Nav.Item title='Color Picker' eventKey='color-picker' onClick={() => history(paths.colorPicker())}>
               <BsDropletHalf size={iconSize} />
             </Nav.Item>
-            <Nav.Item eventKey='weather' onClick={() => history(paths.weather())}>
+            <Nav.Item title='Weather' eventKey='weather' onClick={() => history(paths.weather())}>
               <BsCloudSun size={iconSize} />
             </Nav.Item>
-            <Nav.Item eventKey='temp-mail' onClick={() => history(paths.tempMail())}>
+            <Nav.Item title='Temp Mail' eventKey='temp-mail' onClick={() => history(paths.tempMail())}>
               <GoMail size={iconSize} />
             </Nav.Item>
-            <Nav.Item eventKey='sports' onClick={() => history(paths.sports())}>
+            <Nav.Item title='Sports' eventKey='sports' onClick={() => history(paths.sports())}>
               <GiTrophyCup size={iconSize} />
             </Nav.Item>
-            <Nav.Item eventKey='entertainment' onClick={() => history(paths.entertainment())}>
+            <Nav.Item title='Entertainment' eventKey='entertainment' onClick={() => history(paths.entertainment())}>
               <GiPopcorn size={iconSize} />
             </Nav.Item>
           </Nav>

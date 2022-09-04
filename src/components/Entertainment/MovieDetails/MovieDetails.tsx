@@ -22,24 +22,24 @@ const MovieDetails = () => {
   }, [params.id])
 
   const GetMovieDetails = async () => {
-    fetchMovieDetails(params.id)
+    await fetchMovieDetails(params.id)
       .then(res => setMovie(res.data))
       .catch(err => setError(err.message))
   }
 
   const GetMovieCast = async () => {
-    fetchMovieCast(params.id)
+    await fetchMovieCast(params.id)
       .then(res => setMovieCast(res.data))
       .catch(err => setError(err.message))
   }
 
   const GetMovieRecommendations = async () => {
-    fetchMovieRecommndations(params.id)
+    await fetchMovieRecommndations(params.id)
       .then(res => setMovieRecommendations(res.data))
       .catch(err => setError(err.message))
   }
 
-  if (error) return <Error messages={error} />
+  if (error) return <Error message={error} />
   if (loading) return <Loader size={'lg'} backdrop content='loading...' vertical />
 
   return (
