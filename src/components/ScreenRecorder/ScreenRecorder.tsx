@@ -148,7 +148,7 @@ const ScreenRecorder = () => {
         buffer: buffer
       })
       .then((res: any) => res && console.log('Recording Saved! 🎉'))
-      .catch((err: any) => console.log('Error: ' + err.message))
+      .catch((err: Error) => console.log('Error: ' + err.message))
     setDisableStart(false)
   }
 

@@ -36,7 +36,7 @@ const CurrentWeather = ({ currentWeather, forecastData }: CurrentWeatherProps) =
           {Math.round(forecast.mintemp_c)}°
         </span>
         <span className='currentWeather__icon'>
-          <img src={weather.condition.icon} />
+          <img src={`http://${weather.condition.icon}`} />
         </span>
       </div>
     </div>

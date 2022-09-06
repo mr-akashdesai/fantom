@@ -32,11 +32,11 @@ const Forecast = (forecastData: any) => {
       </Button>
       <div id='hourContainer' className='forecast__hourContainer'>
         {data &&
-          data.forecastday[0].hour.map((value: any, index: any) => {
+          data.forecastday[0].hour.map((value: any, index: number) => {
             return (
               <div id={`hour-${index}`} key={index} className='forecast__hourlyForecast'>
                 <div>{checkCurrentHour(value.time)}</div>
-                <img src={value.condition.icon} />
+                <img src={`http://${value.condition.icon}`} />
                 <div>{Math.round(value.temp_c)}°</div>
               </div>
             )

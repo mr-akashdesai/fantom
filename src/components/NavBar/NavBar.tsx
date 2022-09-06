@@ -5,7 +5,7 @@ import { GiTrophyCup, GiPopcorn } from 'react-icons/gi'
 import { GoMail } from 'react-icons/go'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { Divider, Nav } from 'rsuite'
-import logo from '../../assets/images/logo/fantom-logo-large.svg'
+import logo from '../../assets/images/logo/fantom-logo-lg.svg'
 import paths from '../../constants/paths'
 import TopBar from './TopBar'
 

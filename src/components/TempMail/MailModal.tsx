@@ -100,7 +100,7 @@ const MailModal = ({ mailjs, showLoginModal, setShowLoginModal, history, setCred
         setRepeatPassword('')
         setShowLoginModal(false)
       })
-      .catch((err: any) => console.log(err.message))
+      .catch((err: Error) => console.log(err.message))
       .then(() => setLoading(false))
   }
 

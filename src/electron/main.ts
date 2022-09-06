@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import { app, BrowserWindow, ipcMain, nativeTheme } from 'electron'
+import { app, BrowserWindow, ipcMain, nativeImage, nativeTheme } from 'electron'
 import { changeThemeSource, getvideoSources, saveRecording, openRecording, copyToClipboard } from './helpers'
 const path = require('path')
 const isDev = require('electron-is-dev')
@@ -15,11 +15,11 @@ if (require('electron-squirrel-startup')) {
   app.quit()
 }
 
-const logosPath = path.join(__dirname, '../../src/assets/images/logo/fantom-logo-lg.png')
+const logo = nativeImage.createFromPath(path.join(__dirname, '../../src/assets/images/logo/fantom-logo-lg.png'))
 
 const createWindow = (): void => {
   if (process.platform === 'darwin') {
-    app.dock.setIcon(logosPath)
+    app.dock.setIcon(logo)
   }
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -32,7 +32,7 @@ const createWindow = (): void => {
     titleBarStyle: 'hidden',
     titleBarOverlay: true,
     trafficLightPosition: { x: 10, y: 10 },
-    icon: logosPath,
+    icon: logo,
     webPreferences: {
       preload: MAIN_WINDOW_PRELOAD_WEBPACK_ENTRY,
       nodeIntegration: true,
@@ -40,10 +40,10 @@ const createWindow = (): void => {
       contextIsolation: true
     }
   })
+  mainWindow.setIcon(logo)
   mainWindow.loadURL(MAIN_WINDOW_WEBPACK_ENTRY)
   // Open the DevTools.
   mainWindow.webContents.openDevTools()
-
   mainWindow.once('ready-to-show', () => {
     mainWindow.show()
   })
