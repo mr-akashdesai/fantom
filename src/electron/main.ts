@@ -27,6 +27,7 @@ const createWindow = (): void => {
     backgroundColor: nativeTheme.shouldUseDarkColors ? '#282C34' : '#ddd',
     height: 960,
     width: 1280,
+    minHeight: 600,
     minWidth: 768,
     show: false,
     titleBarStyle: 'hidden',

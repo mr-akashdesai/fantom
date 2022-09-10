@@ -252,7 +252,7 @@ const MailModal = ({ mailjs, showLoginModal, setShowLoginModal, history, setCred
   if (loading) return <Loader size={'lg'} backdrop content='loading...' vertical />
 
   return (
-    <Modal style={{ top: '10%' }} size={'sm'} backdrop={'static'} open={showLoginModal} onClose={() => history(-1)}>
+    <Modal style={{ top: '5%' }} size={'sm'} backdrop={'static'} open={showLoginModal} onClose={() => history(-1)}>
       <Modal.Header closeButton={false}>
         <Modal.Title className='tempMail_modalTitle'>
           <a className='tempMail__modalBackBtn' onClick={() => history(-1)}>
