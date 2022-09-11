@@ -7,7 +7,7 @@
 An open source <a href="https://www.electronjs.org/">Electron</a> Multi Utility App built w/ <a href="https://www.typescriptlang.org">TypeScript</a> using <a href="https://reactjs.org/">React</a>
 </p>
 <p align="center">
-<a href="https://opensource.org/licenses/MIT)">
+<a href="https://opensource.org/licenses/MIT">
 <img src="https://img.shields.io/badge/License-MIT-yellow.svg" />
 </a>
 </p>
