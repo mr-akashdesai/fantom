@@ -26,13 +26,10 @@ An open source <a href="https://www.electronjs.org/">Electron</a> Multi Utility 
 
 ## 💻 Quickstart
 
-### Install dependancies through npm or yarn
+### Install dependancies 
 
 ```bash
 npm install
-```
-```bash
-yarn install
 ```
 
 ### Create .env 
