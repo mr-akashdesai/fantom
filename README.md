@@ -47,7 +47,7 @@ npm start
 yarn start
 ```
 
-### Create into an application
+### Package application
 
 ```bash
 npm run make
