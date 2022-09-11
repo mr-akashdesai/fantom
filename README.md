@@ -31,6 +31,9 @@ An open source <a href="https://www.electronjs.org/">Electron</a> Multi Utility 
 ```bash
 npm install
 ```
+```bash
+yarn install
+```
 
 ### Create .env 
 > Refer to .example-env file to see where you can get api keys, all keys are free but may require registration
