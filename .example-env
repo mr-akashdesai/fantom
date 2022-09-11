@@ -1,0 +1,10 @@
+DICTIONARY_API_URL = 'https://api.dictionaryapi.dev/api/'
+WEATHER_API_URL = 'https://api.weatherapi.com/v1'
+WEATHER_API_KEY = Get key from https://www.weatherapi.com/
+GOOGLE_GEOLOCATION_URL = 'https://www.googleapis.com/geolocation/v1'
+GOOGLE_API_KEY = Get key from https://developers.google.com/maps/documentation/javascript/get-api-key
+MOVIE_DB_URL = 'https://api.themoviedb.org/3'
+MOVIE_DB_IMAGE_URL = 'https://image.tmdb.org/t/p/original'
+MOVIE_DB_IMAGE_SMALL_URL = 'https://image.tmdb.org/t/p/w500'
+MOVIE_DB_API_KEY = Get key from https://developers.themoviedb.org/3/getting-started/introduction
+MAIL_API_URL = 'https://api.mail.tm'

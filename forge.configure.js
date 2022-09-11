@@ -1,15 +1,28 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 /* eslint-disable quotes */
+const packageJson = require('./package.json')
+const { version } = packageJson
 
-module.exports = {
+const commonLinuxConfig = {
+  icon: {
+    scalable: './src/assets/images/logo/fantom-logo-lg.svg'
+  }
+}
+
+const config = {
   packagerConfig: {
     icon: './src/assets/images/logo/fantom-logo.icns'
   },
   makers: [
     {
       name: '@electron-forge/maker-squirrel',
-      config: {
-        name: 'screen_recorder_electron_react'
-      }
+      platforms: ['win32'],
+      config: arch => ({
+        name: 'fantom',
+        iconUrl: './src/assets/images/logo/fantom-logo.ico',
+        setupExe: `fantom-${version}-win32-${arch}-setup.exe`,
+        noMsi: true
+      })
     },
     {
       name: '@electron-forge/maker-zip',
@@ -17,11 +30,26 @@ module.exports = {
     },
     {
       name: '@electron-forge/maker-deb',
-      config: {}
+      platforms: ['linux'],
+      config: commonLinuxConfig
     },
     {
       name: '@electron-forge/maker-rpm',
-      config: {}
+      platforms: ['linux'],
+      config: commonLinuxConfig
+    }
+  ],
+  publishers: [
+    {
+      name: '@electron-forge/publisher-github',
+      config: {
+        repository: {
+          owner: 'mr-akashdesai',
+          name: 'fantom'
+        },
+        prerelease: false,
+        draft: true
+      }
     }
   ],
   plugins: [
@@ -48,3 +76,5 @@ module.exports = {
     ]
   ]
 }
+
+module.exports = config
