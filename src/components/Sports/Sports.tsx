@@ -22,7 +22,7 @@ const Sports = () => {
 
   useEffect(() => {
     setLoading(true)
-    getLocation().then(() => getSports())
+    getLocation()
   }, [])
 
   const getLocation = async () => {
@@ -31,8 +31,8 @@ const Sports = () => {
         setLat(res.data.location.lat)
         setLong(res.data.location.lng)
       })
+      .then(() => getSports())
       .catch(err => setError(`ERROR: Could not retrieve location data, ${err.message}`))
-      .then(() => setLoading(false))
   }
   const getSports = async () => {
     await fetchSportsOnLocation(long, lat)

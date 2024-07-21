@@ -41,7 +41,7 @@ const HomePage = () => {
       {loading && <Loader size={'lg'} backdrop content='loading...' vertical />}
       <div className='homepage__container'>
         <Spline
-          scene='https://prod.spline.design/4WBy1xcLZjy5bWq6/scene.splinecode'
+          scene='https://prod.spline.design/KFdXC4c2wQoe7ldH/scene.splinecode'
           onMouseDown={onMouseDown}
           onLoad={onLoad}
         />
