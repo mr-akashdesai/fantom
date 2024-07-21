@@ -42,7 +42,7 @@
   margin: 2rem 0rem;
   font-weight: 600;
   font-size: 2rem;
-  font-family: 'Avenir Next';
+  font-family: "Avenir Next";
 }
 
 .dictionary__definitionWrapper {
@@ -54,6 +54,7 @@
   margin-bottom: 1rem;
   display: inline-flex;
   width: 100%;
+  margin-right: 1rem;
 
   .dictionary__definitionIndex {
     @media (prefers-color-scheme: dark) {
@@ -63,7 +64,6 @@
     @media (prefers-color-scheme: light) {
       color: var(--rs-gray-800);
     }
-    margin-right: 1rem;
   }
 }
 
