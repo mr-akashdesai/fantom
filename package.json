@@ -64,7 +64,7 @@
     "date-fns-tz": "^2.0.1",
     "dotenv-webpack": "^8.0.0",
     "electron-is-dev": "^2.0.0",
-    "electron-squirrel-startup": "^1.0.0",
+    "electron-squirrel-startup": "^1.0.1",
     "immer": "^9.0.15",
     "letterparser": "^0.0.8",
     "node-polyfill-webpack-plugin": "^2.0.0",
